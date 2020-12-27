@@ -20,7 +20,8 @@
 <body class="bg-dark" id="bs-overrides">
     <div class="container-fluid">
 
-            <!--header: prof-pic|navbar|search-->
+        <!--pop row (first row) in the grid layout;
+            header: prof-pic|navbar|search-->
         <div class="row sticky-top" name="top-row">
             <div class="col-12 bg-dark">
                 <nav class="navbar navbar-dark navbar-expand-sm pt-3 shadow d-flex">
@@ -58,6 +59,7 @@
             </div>
         </div>
 
+        <!--main row (second row) in the grid layout-->
         <div class="container-fluid ml-n3">
             <div class="row" name="main-row">
 
@@ -80,7 +82,7 @@
                             <a href="#" class="btn btn-secondary btn-lg btn-block text-white-50" role="button" name="settings">Settings</a>
                         </li>
                         <li class="list-group-item bg-secondary border-0 d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#tweet">Tweet</button>
+                            <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#post-tweet-id">Tweet</button>
                         </li>
                         <li class="list-group-item bg-secondary mt-5">
                             <div class="mt-5"></div>    <!--there's gotta be a better way to do that.-->
@@ -98,7 +100,7 @@
                 </div>
         
 
-                <!--main-content-->
+                <!--main-content-->         <!--NEED TO MAKE THIS A LIST!-->
                 <div class="col-8 offset-2 container-fluid" name="main-content">
                     <div class="card mx-3 my-5"> <!--mb-5 mt-3-->
                         <div class="row no-gutters bg-dark text-white-50">
@@ -108,10 +110,11 @@
                             <div class="col">
                                 <div class="card-block px-2">
                                     <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body">Content</div>
+                                    <div class="card-body" onclick="setInfo(this)" type="button" data-toggle="modal" data-target="#tweet-id">Content</div>
                                     <div class="card-footer">
                                         <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="modal" data-target="#post-comment"><i class="far fa-comment-alt"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="modal" data-target="#tweet-id"><span data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></span></button>
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
@@ -352,9 +355,10 @@
             </div>
         </div>
     </div>
-       
-    <div id="tweet" class="modal fade my-5">
-        <div class="modal-dialog col-5 d-flex">
+    
+    <!--post new tweet modal-->
+    <div id="post-tweet-id" class="modal fade">
+        <div class="modal-dialog col-5 d-flex modal-dialog-centered">
             <div class="modal-content bg-secondary flex-grow-1" style="border-radius: 20px;">
                 <div class="modal-header">
                     <button type="button" class="close text-white-50" data-dismiss="modal">&times;</button>
@@ -366,6 +370,124 @@
                 <div class="modal-footer">
                     <button type="button" onclick="postTweet()" class="close btn btn-default" data-dismiss="modal">Tweet</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!--post comment modal-->
+    <!--I'll need to consider Twitter's strength later:
+        all comments are actually posts but in relation to a different post.
+        i.e. all post and comment is the same thing, but a "clear" post has no relation (yet).
+        This means I'll have to restructure the post/comments mechanisms later.-->
+    <div id="post-comment" class="modal fade">
+        <div class="modal-dialog col-5 d-flex">
+            <div class="modal-content bg-secondary flex-grow-1" style="border-radius: 20px;">
+                <div class="modal-header">
+                    <button type="button" class="close text-white-50" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!--needs to auto-extend/grow height-->
+                    <textarea id="tweet-text" class="form-control bg-secondary text-white-50 border-dark overflow-auto" style="resize:none;" rows="4"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="postComment()" class="close btn btn-default" data-dismiss="modal">Tweet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--pop-up tweet modal-->
+    <div id="tweet-id" class="modal fade">
+        <div class="modal-dialog col-5 d-flex">
+            <div class="modal-content bg-secondary flex-grow-1" style="border-radius: 20px;">
+                <div class="row no-gutters bg-dark text-white-50">
+                    <div class="col-auto">
+                        <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
+                    </div>
+                    <div class="col">
+                        <div class="card-block px-2">
+                            <div class="card-header"></div>
+                            <div class="card-body" style="white-space: pre-wrap;"></div>
+                            <div class="card-footer">
+                                <span class="btn-toolbar btn-group-sm px-5">
+                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
+                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></button>
+                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
+                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
+                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group collapse" id="comments">
+                    <li class="card">
+                        <div class="row no-gutters bg-dark text-white-50">
+                            <div class="col-auto">
+                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
+                            </div>
+                            <div class="col">
+                                <div class="card-block px-2">
+                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
+                                    <div class="card-body" onclick="setInfo(this)" type="button" data-toggle="modal" data-target="#tweet-id">Content</div>
+                                    <div class="card-footer">
+                                        <span class="btn-toolbar btn-group-sm px-5">
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="row no-gutters bg-dark text-white-50">
+                            <div class="col-auto">
+                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
+                            </div>
+                            <div class="col">
+                                <div class="card-block px-2">
+                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
+                                    <div class="card-body" onclick="setInfo(this)" type="button" data-toggle="modal" data-target="#tweet-id">Content</div>
+                                    <div class="card-footer">
+                                        <span class="btn-toolbar btn-group-sm px-5">
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="row no-gutters bg-dark text-white-50">
+                            <div class="col-auto">
+                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
+                            </div>
+                            <div class="col">
+                                <div class="card-block px-2">
+                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
+                                    <div class="card-body" onclick="setInfo(this)" type="button" data-toggle="modal" data-target="#tweet-id">Content</div>
+                                    <div class="card-footer">
+                                        <span class="btn-toolbar btn-group-sm px-5">
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
+                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
