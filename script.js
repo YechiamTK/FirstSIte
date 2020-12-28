@@ -1,21 +1,15 @@
 "use strict";
 
-var json = {username:"Yechiam Weiss", tweet:"Hello world this is my first tweet!~~!<br><br><br><br><br>Sup!"};
-var info = [];
-
-
-/*{username:"Yechiam Weiss", tweet:"Hello world this is my SECOND tweet!~~!"}+
-{username:"Yechiam Weiss", tweet:"Hello world this is my Th1rd tweet!~~!"}+
-{username:"Yechiam Weiss", tweet:"Hello world this is my F0uRth tweet!~~!"};*/
-
 /*
 Begin the page with a new tweet loaded; testing purposes.
 I'll need to edit it later with db to load all [recent?] tweets from db.
 */
-$(document).ready(function(){                           
-    newTweet(json);
-
+$(document).ready(function(){ 
+    for (let i=0; i<tweets.length;i++){
+        newTweet(tweets[i]);
+    }
 });
+
 
 /*
  General purpose addition (closured) function. Used in newTweet() [temporary].
@@ -44,7 +38,7 @@ function newTweet(tweet_info) {
     row_class.setAttribute("class", "row no-gutters bg-dark text-white-50");
     row_class.setAttribute("name", "row-class"+counter);
     let profile_class = '<div class="col-auto">'+
-    '<img src="profile.jpg" style="height:50px;" class="img-fluid" alt=""></img></div>';
+    '<img src="logo.png" style="height:50px;" class="img-fluid" alt=""></img></div>';
     let col_class = document.createElement("div");
     col_class.setAttribute("class", "col");
     col_class.setAttribute("name", "col-class"+counter);
@@ -52,7 +46,7 @@ function newTweet(tweet_info) {
     card_col_class.setAttribute("class", "card-block px-2");
     card_col_class.setAttribute("name", "card-col-class"+counter);
     let card_footer = '<div class="card-footer"><span class="btn-toolbar btn-group-sm px-5">'+
-        '<button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-comment-alt"></i></button>'+
+        '<button type="button" class="btn text-white-50 mx-auto rounded-circle" data-toggle="modal" data-target="#post-comment"><i class="far fa-comment-alt"></i></button>'+
         '<button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="fas fa-retweet"></i></button>'+
         '<button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-heart"></i></button>'+
         '<button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-share-square"></i></button></span></div>';
@@ -73,7 +67,23 @@ function newTweet(tweet_info) {
     $("div[name='card-col-class"+counter+"']").append(card_header);
     $("div[name='card-col-class"+counter+"']").append(card_body);
     $("div[name='card-col-class"+counter+"']").append(card_footer);    
+    
+    //add click function on the comment button to put the info of the commented tweet
+    $('.fa-comment-alt').parent().on('click', function(){
+        //get tweet's info from parent's card
+        let usrname = $(this).parents(".card-footer").siblings(".card-header").text();
+        let twt = $(this).parents(".card-footer").siblings(".card-body").text();
+        //get the new tweet's DOM
+        let header = $("#post-comment").find(".card").find(".card-header");
+        let body = $("#post-comment").find(".card").find(".card-body");
+        let footer = $("#post-comment").find(".card").find(".card-footer");
+        //insert the info to the comment modal
+        header.text(usrname);
+        body.text(twt);
+        footer.text("replying to "+usrname);
+    });
 }
+
 
 /*
 (suppose to be) General function for posting a new Tweet.
@@ -85,7 +95,10 @@ function postTweet(){
     let tweet_json = {username:"Yechiam Weiss", tweet: text};
     $("#tweet-text").val('');
     newTweet(tweet_json);
+    tweets.push(tweet_json);
+
 }
+
 
 /*
 Pass the tweet info from the card to the pop-up modal.
@@ -107,30 +120,3 @@ function setInfo(t){
     $("#tweet-id").find(".card-header").append(closeBtn);
     $("#tweet-id").find(".card-body").text(twt);
 }
-/*
-$(".fa-comment-alt").click(function () { 
-    this.parents(".row").find("ul").toggle();    
-});*/
-
-
-//WHYY DOESNT IT WORKK???!?!!?!
-$("div[name='main-content'").on('click', '.fa-comment-alt', function(){
-    //get tweet's info from parent's card
-    let usrname = $(this).parents(".card-footer").siblings(".card-header").text();
-    let twt = $(this).parents(".card-footer").siblings(".card-body").text();
-
-    //empty the header, otherwise close button won't work.
-    $("#tweet-id").find(".card-header").empty();
-    //create close button
-    let closeBtn = $("<button>&times;</button>");
-    closeBtn.attr({
-        'type': 'button',
-        'class': 'close text-white-50',
-        'data-dismiss': 'modal'});
-        
-    //add the tweet's info and the close button to the modal's html.
-    $("#post-comment").find(".card-header").text(usrname);
-    $("#post-comment").find(".card-header").append(closeBtn);
-    $("#post-comment").find(".card-body").prepend("replying to "+usrname);
-    $("#post-comment").find(".card-body").prepend(twt);
-});

@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="tweets.js"></script>
     <script src="script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,6 +27,8 @@
             <div class="col-12 bg-dark">
                 <nav class="navbar navbar-dark navbar-expand-sm pt-3 shadow d-flex">
                     <img src="logo.png" style="height:50px;" class="rounded-circle" alt="Profile Picture"></img>
+                    <!--<span class="col-sm-1 offset-2 d-inline">-->
+                    <!--</span>-->
                     <span class="mx-5"></span>
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item mx-5"><a href="#" class="nav-link" name="home">Home</a></li>
@@ -57,6 +60,7 @@
                     </form>
                 </nav>
             </div>
+            <!--<button class="btn btn-sm" style="z-index: 2; width:10vw;height: -5vw;" data-toggle="collapse" data-target="#sb-left">collapse</button>-->
         </div>
 
         <!--main row (second row) in the grid layout-->
@@ -65,7 +69,14 @@
 
                 <!--sidebar-left-->
                 <div class="col-2 position-fixed" style="height: 100vh;" name="sidebar-left">
-                    <ul  class="list-group bg-secondary h-100" name="sb-left">
+                    <aside>
+                        <!--WHAT NEEDS TO BE DONE:
+                            a) new function to transform() the sidebar; perhaps using scale()
+                            b) add it to click
+                            c) don't need collapse-->
+                        <button class="btn-sm btn-info" style="border-radius: 50%;position: absolute;top: 45%; right: -1rem;z-index: 2;" data-toggle="collapse" data-target="#sb-left">collapse</button>
+                    </aside>
+                    <ul  class="list-group bg-secondary h-100 collapse show" id="sb-left">
                         <li class="list-group-item bg-secondary border-0">
                             <a href="#" class="btn btn-secondary btn-lg btn-block text-white-50" role="button" name="explore">#Explore</a>
                         </li>
@@ -88,7 +99,7 @@
                             <div class="mt-5"></div>    <!--there's gotta be a better way to do that.-->
                             <div class="row d-flex">    <!--add button functionality.-->
                                 <div class="col-auto">
-                                    <img src="profile.jpg" class="rounded-circle img-fluid" style="height: 40px" alt="Profile Picture" />
+                                    <img src="logo.png" class="rounded-circle img-fluid" style="height: 40px" alt="Profile Picture" />
                                 </div>
                                 <div class="col">
                                 <div>user-name</div>
@@ -98,7 +109,6 @@
                         </li>
                     </ul>
                 </div>
-        
 
                 <!--main-content-->         <!--NEED TO MAKE THIS A LIST!-->
                 <div class="col-8 offset-2 container-fluid" name="main-content">
@@ -120,188 +130,6 @@
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
                                         </span>
                                     </div>
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">
-                                        <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="fas fa-retweet"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-heart"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-share-square"></i></button>
-                                        </span>
-                                    </div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">
-                                        <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="fas fa-retweet"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-heart"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-share-square"></i></button>
-                                        </span>
-                                    </div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">
-                                        <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="fas fa-retweet"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-heart"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-share-square"></i></button>
-                                        </span>
-                                    </div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">
-                                        <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="fas fa-retweet"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-heart"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-share-square"></i></button>
-                                        </span>
-                                    </div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">
-                                        <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="fas fa-retweet"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-heart"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-share-square"></i></button>
-                                        </span>
-                                    </div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">
-                                        <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="fas fa-retweet"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-heart"></i></button>
-                                            <button type="button" class="btn text-white-50 mx-auto  rounded-circle"><i class="far fa-share-square"></i></button>
-                                        </span>
-                                    </div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">Buttons</div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header">@Username</div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">Buttons</div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header">@Username</div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">Buttons</div>     
-                                </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <div class="card mx-3 my-5">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header">@Username</div>
-                                    <div class="card-body">Content</div>
-                                    <div class="card-footer">Buttons</div>     
                                 </div>
                             </div>
                         </div>           
@@ -380,17 +208,41 @@
         i.e. all post and comment is the same thing, but a "clear" post has no relation (yet).
         This means I'll have to restructure the post/comments mechanisms later.-->
     <div id="post-comment" class="modal fade">
-        <div class="modal-dialog col-5 d-flex">
-            <div class="modal-content bg-secondary flex-grow-1" style="border-radius: 20px;">
+        <div class="modal-dialog modal-lg col-5 d-flex">
+            <div class="modal-content bg-dark flex-grow-1" style="border-radius: 20px;">
                 <div class="modal-header">
                     <button type="button" class="close text-white-50" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body container-fluid">
                     <!--needs to auto-extend/grow height-->
-                    <textarea id="tweet-text" class="form-control bg-secondary text-white-50 border-dark overflow-auto" style="resize:none;" rows="4"></textarea>
+                    <div class="row">
+                        <div class="card my-auto w-100" style="border: none;">
+                            <div class="row no-gutters bg-dark text-white-50">
+                                <div class="col-auto">
+                                    <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
+                                </div>
+                                <div class="col">
+                                    <div class="card-block px-2">
+                                        <div class="card-header mt-n3 bg-dark font-weight-bold" style="border:none;"></div>
+                                        <div class="card-body mt-n4 bg-dark" style="white-space:pre-wrap;border:none;"></div>
+                                        <div class="card-footer mt-n4 bg-dark text-info" style="opacity: 0.8;border:none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters bg-dark text-white-50">
+                        <div class="col-auto">
+                            <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
+                        </div>
+                        <div class="col">
+                            <textarea id="tweet-text" class="form-control bg-dark text-white-50 border-dark overflow-auto" style="resize:none;border:none;" rows="4"></textarea>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" onclick="postComment()" class="close btn btn-default" data-dismiss="modal">Tweet</button>
+                    <!--I need to make each tweet have a unique indicator (href? id?) so I can update its comments-->
                 </div>
             </div>
         </div>
@@ -407,7 +259,7 @@
                     <div class="col">
                         <div class="card-block px-2">
                             <div class="card-header"></div>
-                            <div class="card-body" style="white-space: pre-wrap;"></div>
+                            <div class="card-body" style="white-space: pre-wrap;"></div>    <!--pre-wrap not working for some reason-->
                             <div class="card-footer">
                                 <span class="btn-toolbar btn-group-sm px-5">
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
@@ -433,51 +285,8 @@
                                     <div class="card-footer">
                                         <span class="btn-toolbar btn-group-sm px-5">
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body" onclick="setInfo(this)" type="button" data-toggle="modal" data-target="#tweet-id">Content</div>
-                                    <div class="card-footer">
-                                        <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
-                                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <div class="card-block px-2">
-                                    <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
-                                    <div class="card-body" onclick="setInfo(this)" type="button" data-toggle="modal" data-target="#tweet-id">Content</div>
-                                    <div class="card-footer">
-                                        <span class="btn-toolbar btn-group-sm px-5">
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></button>
+                                            <!--<button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comments"></i></button>-->
+                                            <!--NEED TO BE ABLE TO OPEN SELECTED COMMENT AS TWEET-->
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
