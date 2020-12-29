@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="bs_overrides.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="tweets.js"></script>
+    <script src="tweetClass.js"></script>
     <script src="script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -43,7 +45,7 @@
                         <li class="nav-item mx-5 dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown" name="messages">Messages</a>
                             <div class="dropdown-menu mx-auto">
-                                <a href="#" class="dropdown-item">message number one long</a>
+                                <a href="#" class="dropdown-item">message number one long<br><br></a>
                                 <a href="#" class="dropdown-item">message num 2</a>
                                 <a href="#" class="dropdown-item">message number three long</a>
                             </div>
@@ -68,13 +70,10 @@
             <div class="row" name="main-row">
 
                 <!--sidebar-left-->
-                <div class="col-2 position-fixed" style="height: 100vh;" name="sidebar-left">
+                <div class="col-2 position-fixed" id="sidebar-left"> <!--style="height: 100vh;"-->
                     <aside>
-                        <!--WHAT NEEDS TO BE DONE:
-                            a) new function to transform() the sidebar; perhaps using scale()
-                            b) add it to click
-                            c) don't need collapse-->
-                        <button class="btn-sm btn-info" style="border-radius: 50%;position: absolute;top: 45%; right: -1rem;z-index: 2;" data-toggle="collapse" data-target="#sb-left">collapse</button>
+                        <button class="btn btn-info" style="border-radius: 50%;position: absolute;top: 45%; right: -0.5rem;z-index: 2; opacity: 1
+                         !important;" onclick="sidebarTransform(this, 'left',$('#sidebar-left'))"><i class="fas fa-arrow-left"></i></button>
                     </aside>
                     <ul  class="list-group bg-secondary h-100 collapse show" id="sb-left">
                         <li class="list-group-item bg-secondary border-0">
@@ -111,14 +110,16 @@
                 </div>
 
                 <!--main-content-->         <!--NEED TO MAKE THIS A LIST!-->
-                <div class="col-8 offset-2 container-fluid" name="main-content">
+                <div class="col-8 offset-2 container-fluid" name="main-content"> <!-- position-absolute" style="z-index:-1;-->
+                    <!--PROBLEM WITH ARROW ICON AND Z-INDEX OF main-content: 
+                        SETTING Z-INDEX TO main-content REQUIRES SETTING POSITION:ABSOLUTE/RELTAIVE, WHICH BREAKS THE TOP-BAR.-->
                     <div class="card mx-3 my-5"> <!--mb-5 mt-3-->
                         <div class="row no-gutters bg-dark text-white-50">
-                            <div class="col-auto">
+                            <div class="col-auto" style="flex-grow:0 !important;">
                                 <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
                             </div>
                             <div class="col">
-                                <div class="card-block px-2">
+                                <div class="px-2">
                                     <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
                                     <div class="card-body" onclick="setInfo(this)" type="button" data-toggle="modal" data-target="#tweet-id">Content</div>
                                     <div class="card-footer">
@@ -138,6 +139,10 @@
 
                 <!--sidebar-right-->
                 <div class="col-2 position-fixed offset-10 overflow-auto" style="height: 89vh;" name="sidebar-right">
+                    <!--<aside>
+                        <button class="btn btn-info" style="border-radius: 50%;position: absolute;top: 45%; left: -1rem;z-index: 3; opacity: 1
+                         !important;" onclick="sidebarTransform(this, 'left',$('#sidebar-right'))"><i class="fas fa-arrow-right"></i></button>
+                    </aside>-->
                     <ul class="list-group bg-secondary h-100" name="sb-right">
                         <button type="button" href="#" class="list-group-item list-group-item-action bg-secondary text-white-50 mx-auto">
                             <div><small>name-of-trend</small><div>
@@ -222,7 +227,7 @@
                                     <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
                                 </div>
                                 <div class="col">
-                                    <div class="card-block px-2">
+                                    <div class="px-2">
                                         <div class="card-header mt-n3 bg-dark font-weight-bold" style="border:none;"></div>
                                         <div class="card-body mt-n4 bg-dark" style="white-space:pre-wrap;border:none;"></div>
                                         <div class="card-footer mt-n4 bg-dark text-info" style="opacity: 0.8;border:none;"></div>
@@ -241,8 +246,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="postComment()" class="close btn btn-default" data-dismiss="modal">Tweet</button>
-                    <!--I need to make each tweet have a unique indicator (href? id?) so I can update its comments-->
+                    <button type="button" onclick="newComment(this)" class="close btn btn-default" data-dismiss="modal">Tweet</button>
                 </div>
             </div>
         </div>
@@ -257,7 +261,7 @@
                         <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
                     </div>
                     <div class="col">
-                        <div class="card-block px-2">
+                        <div class="px-2">
                             <div class="card-header"></div>
                             <div class="card-body" style="white-space: pre-wrap;"></div>    <!--pre-wrap not working for some reason-->
                             <div class="card-footer">
@@ -279,7 +283,7 @@
                                 <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
                             </div>
                             <div class="col">
-                                <div class="card-block px-2">
+                                <div class="px-2">
                                     <div class="card-header"><a href="#" class="link text-decoration-none">@Username</a></div>
                                     <div class="card-body" onclick="setInfo(this)" type="button" data-toggle="modal" data-target="#tweet-id">Content</div>
                                     <div class="card-footer">
