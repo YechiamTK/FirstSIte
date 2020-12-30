@@ -267,7 +267,7 @@
                             <div class="card-footer">
                                 <span class="btn-toolbar btn-group-sm px-5">
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle" data-toggle="collapse" data-target="#comments"><i class="far fa-comments"></i></button>
+                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle" onclick="showHideComments(this, true)"><i class="far fa-comments"></i></button> <!-- data-toggle="collapse" data-target="#comments"-->
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
@@ -276,8 +276,8 @@
                         </div>
                     </div>
                 </div>
-                <ul class="list-group collapse" id="comments">
-                    <li class="card">
+                <ul class="list-group" id="comments">
+                    <li class="card to-clone" style="display:none;">    <!--list item to clone-->
                         <div class="row no-gutters bg-dark text-white-50">
                             <div class="col-auto">
                                 <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">

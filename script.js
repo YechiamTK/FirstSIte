@@ -118,6 +118,35 @@ function newComment(elem){
 
 
 /*
+*/
+function showHideComments(elem, showFlag){
+    if (showFlag == true){
+        let parentId = $(elem).parents(".card-footer").siblings(".card-header").find(".tweet-id").text();
+        let prevTweetPlace = getTweetPlaceById(parentId, allTweets);
+        let prevTweet = allTweets[prevTweetPlace];
+        let tweetsToComment = prevTweet.getComments();
+
+        for (let i=0; i < tweetsToComment.length; i++){
+            let newCard = $(elem).parents(".modal-content").find("ul li:first").clone();
+            let currTweet = tweetsToComment[i];
+            $(newCard).attr({       //clear the "clone" attributes from our new card
+                'class': 'card',
+                'style': ''
+            });
+            $(newCard).find(".card-header").text(currTweet.getUsername());
+            $(newCard).find(".card-body").text(currTweet.getMessage());
+            $(elem).parents(".modal-content").find("ul").prepend(newCard);
+        }
+    }
+    else{
+        let cardsList = $(elem).parents(".modal-content").find("ul");
+        $(cardsList).find('.card').not('.to-clone').remove();
+    }
+    $(elem).attr({'onclick': 'showHideComments(this, '+!showFlag+')'});
+}
+
+
+/*
  Returns tweet's location inside the tweets' array.
 Currently not the best practice, by will do for now.
  */
@@ -151,8 +180,9 @@ Pass the tweet info from the card to the pop-up modal.
 */
 function setInfo(t){
     //get tweet's info from the card
-    let usrname = t.previousElementSibling.innerText;
+    let usrname = $(t).siblings(".card-header").text();
     let twt = t.innerText;
+    let id = '<span class="tweet-id" style="display:none;">'+$(t).siblings("span").text()+'</span>';
     //empty the header, otherwise close button won't work.
     $("#tweet-id").find(".card-header").empty();
     //create close button
@@ -164,6 +194,7 @@ function setInfo(t){
     //add the tweet's info and the close button to the modal's html.
     $("#tweet-id").find(".card-header").text(usrname);
     $("#tweet-id").find(".card-header").append(closeBtn);
+    $("#tweet-id").find(".card-header").append(id);
     $("#tweet-id").find(".card-body").text(twt);
 }
 
