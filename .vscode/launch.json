@@ -7,8 +7,9 @@
         {
             "type": "pwa-chrome",
             "request": "launch",
+            //"runtimeArgs": ["--allow-file-access-from-files"],
             "name": "Open site.html",
-            "file": "c:\\Users\\yyyop\\Documents\\VScode\\repos\\FirstSIte\\site.html"
+            "file": "c:\\Users\\yyyop\\Documents\\VScode\\repos\\FirstSIte\\index.html"
         }
     ]
 }

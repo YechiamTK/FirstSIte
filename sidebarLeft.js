@@ -1,0 +1,77 @@
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+import SideBarLeftOption from './SidebarLeftOption.js';
+import ProfileFooter from './profileFooter.js';
+
+var SidebarLeft = function (_React$Component) {
+    _inherits(SidebarLeft, _React$Component);
+
+    function SidebarLeft(props) {
+        _classCallCheck(this, SidebarLeft);
+
+        return _possibleConstructorReturn(this, (SidebarLeft.__proto__ || Object.getPrototypeOf(SidebarLeft)).call(this, props));
+    }
+
+    _createClass(SidebarLeft, [{
+        key: 'render',
+        value: function render() {
+            var arrowStyle = {
+                bordeRadius: '50%',
+                position: 'absolute',
+                top: '45%',
+                right: '-0.5rem',
+                zIndex: '2',
+                opacity: '1!important',
+                transition: 'transform 0.5s' };
+            var transformSidebarLeft = this.props.transformSidebarLeft;
+            var oppositeTransform = this.props.leftTransform == "left" ? "right" : "left";
+            var transformBar = this.props.leftTransform == "left" ? { transform: 'translate(-85%)' } : { transform: 'translate(0%)' };
+            var transformArrow = this.props.leftTransform == "left" ? { transform: 'rotate(180deg)' } : { transform: 'rotate(0deg)' };
+
+            return React.createElement(
+                'div',
+                { className: 'col-2 position-fixed', id: 'sidebar-left' },
+                React.createElement(
+                    'aside',
+                    null,
+                    React.createElement(
+                        'button',
+                        { className: 'btn btn-info', style: arrowStyle + transformArrow, onClick: function onClick() {
+                                return transformSidebarLeft(oppositeTransform);
+                            } },
+                        React.createElement('i', { className: 'fas fa-arrow-left' })
+                    )
+                ),
+                React.createElement(
+                    'ul',
+                    { className: 'list-group bg-secondary h-100 collapse show', id: 'sb-left', style: { transition: 'transform 0.5s' } + transformBar },
+                    React.createElement(SideBarLeftOption, { option: '#Explore' }),
+                    React.createElement(SideBarLeftOption, { option: 'Bookmarks' }),
+                    React.createElement(SideBarLeftOption, { option: 'Lists' }),
+                    React.createElement(SideBarLeftOption, { option: 'Moments' }),
+                    React.createElement(SideBarLeftOption, { option: 'Settings' }),
+                    React.createElement(
+                        'li',
+                        { className: 'list-group-item bg-secondary border-0 d-flex justify-content-center align-items-center' },
+                        React.createElement(
+                            'button',
+                            { type: 'button', className: 'btn btn-info btn-lg btn-block', dataToggle: 'modal', dataTarget: '#post-tweet-id' },
+                            'Tweet'
+                        )
+                    ),
+                    React.createElement(ProfileFooter, { name: 'user-name', username: '@Username' })
+                )
+            );
+        }
+    }]);
+
+    return SidebarLeft;
+}(React.Component);
+
+export default SidebarLeft;
