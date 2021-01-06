@@ -9,9 +9,11 @@ class MainContent extends React.Component{
 
     render(){
         return(
-            <div className="col-8 offset-2 container-fluid">
-                {this.props.tweets.map((tweet, i) => <div><TweetCard tweetInfo={tweet} place={i}/></div>)}
-            </div>);
+            <Col xs={{size: 8, offset: 2}}>
+                <Container fuild={true}>
+                    {this.props.tweets.map((tweet, i) => <div><TweetCard tweetInfo={tweet} place={i}/></div>)}
+                </Container>
+            </Col>);
     }   
 }
 

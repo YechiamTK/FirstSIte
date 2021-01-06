@@ -35,37 +35,41 @@ var SidebarLeft = function (_React$Component) {
             var transformArrow = this.props.leftTransform == "left" ? { transform: 'rotate(180deg)' } : { transform: 'rotate(0deg)' };
 
             return React.createElement(
-                'div',
-                { className: 'col-2 position-fixed', id: 'sidebar-left' },
+                Col,
+                { xs: '2', style: { position: "fixed" }, id: 'sidebar-left' },
                 React.createElement(
                     'aside',
                     null,
                     React.createElement(
-                        'button',
-                        { className: 'btn btn-info', style: arrowStyle + transformArrow, onClick: function onClick() {
+                        Button,
+                        { color: 'info', style: arrowStyle + transformArrow, onClick: function onClick() {
                                 return transformSidebarLeft(oppositeTransform);
                             } },
                         React.createElement('i', { className: 'fas fa-arrow-left' })
                     )
                 ),
                 React.createElement(
-                    'ul',
-                    { className: 'list-group bg-secondary h-100 collapse show', id: 'sb-left', style: { transition: 'transform 0.5s' } + transformBar },
-                    React.createElement(SideBarLeftOption, { option: '#Explore' }),
-                    React.createElement(SideBarLeftOption, { option: 'Bookmarks' }),
-                    React.createElement(SideBarLeftOption, { option: 'Lists' }),
-                    React.createElement(SideBarLeftOption, { option: 'Moments' }),
-                    React.createElement(SideBarLeftOption, { option: 'Settings' }),
+                    Collapse,
+                    { isOpen: isOpen, style: { transition: "transform 0.5s" } + transformBar },
                     React.createElement(
-                        'li',
-                        { className: 'list-group-item bg-secondary border-0 d-flex justify-content-center align-items-center' },
+                        'ul',
+                        { className: 'list-group bg-secondary h-100 collapse show', id: 'sb-left', style: { transition: 'transform 0.5s' } + transformBar },
+                        React.createElement(SideBarLeftOption, { option: '#Explore' }),
+                        React.createElement(SideBarLeftOption, { option: 'Bookmarks' }),
+                        React.createElement(SideBarLeftOption, { option: 'Lists' }),
+                        React.createElement(SideBarLeftOption, { option: 'Moments' }),
+                        React.createElement(SideBarLeftOption, { option: 'Settings' }),
                         React.createElement(
-                            'button',
-                            { type: 'button', className: 'btn btn-info btn-lg btn-block', dataToggle: 'modal', dataTarget: '#post-tweet-id' },
-                            'Tweet'
-                        )
-                    ),
-                    React.createElement(ProfileFooter, { name: 'user-name', username: '@Username' })
+                            'li',
+                            { className: 'bg-secondary border-0 d-flex justify-content-center align-items-center' },
+                            React.createElement(
+                                Button,
+                                { color: 'info', size: 'lg', block: true, dataToggle: 'modal', dataTarget: '#post-tweet-id' },
+                                'Tweet'
+                            )
+                        ),
+                        React.createElement(ProfileFooter, { name: 'user-name', username: '@Username' })
+                    )
                 )
             );
         }
@@ -73,5 +77,25 @@ var SidebarLeft = function (_React$Component) {
 
     return SidebarLeft;
 }(React.Component);
+
+/*
+<div className="col-2 position-fixed" id="sidebar-left">
+    <aside>
+        <button className="btn btn-info" style={arrowStyle + transformArrow} onClick={()=>transformSidebarLeft(oppositeTransform)}><i className="fas fa-arrow-left"></i></button>
+    </aside>
+    <ul  className="list-group bg-secondary h-100 collapse show" id="sb-left" style={{transition: 'transform 0.5s'} + transformBar}>
+        <SideBarLeftOption option="#Explore" />
+        <SideBarLeftOption option="Bookmarks" />
+        <SideBarLeftOption option="Lists" />
+        <SideBarLeftOption option="Moments" />
+        <SideBarLeftOption option="Settings" />
+        <li className="list-group-item bg-secondary border-0 d-flex justify-content-center align-items-center">
+            <button type="button" className="btn btn-info btn-lg btn-block" dataToggle="modal" dataTarget="#post-tweet-id">Tweet</button>
+        </li>
+        <ProfileFooter name="user-name" username="@Username" />
+    </ul>
+</div>
+*/
+
 
 export default SidebarLeft;

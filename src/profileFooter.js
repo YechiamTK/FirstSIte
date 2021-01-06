@@ -4,15 +4,15 @@ class ProfileFooter extends React.Component{
         return(
             <li className="list-group-item bg-secondary mt-5">
                 <div className="mt-5"></div>
-                <div className="row d-flex">
-                    <div className="col-auto">
+                <Row className="d-flex">
+                    <Col xs="auto">
                         <img src={"logo.png"} className="rounded-circle img-fluid" style={{height: '40px'}} alt="Profile Picture" />
-                    </div>
-                    <div className="col">
+                    </Col>
+                    <Col>
                     <div>{this.props.name}</div>
                     <div className="text-white"><small>{this.props.username}</small></div>
-                    </div>
-                </div>
+                    </Col>
+                </Row>
             </li>
         );
     }

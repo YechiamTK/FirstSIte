@@ -6,33 +6,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SideBarLeftOption = function (_React$Component) {
-    _inherits(SideBarLeftOption, _React$Component);
+import Modal from './genericModal.js/index.js';
 
-    function SideBarLeftOption() {
-        _classCallCheck(this, SideBarLeftOption);
+var PopupTweet = function (_React$Component) {
+    _inherits(PopupTweet, _React$Component);
 
-        return _possibleConstructorReturn(this, (SideBarLeftOption.__proto__ || Object.getPrototypeOf(SideBarLeftOption)).apply(this, arguments));
+    function PopupTweet(props) {
+        _classCallCheck(this, PopupTweet);
+
+        return _possibleConstructorReturn(this, (PopupTweet.__proto__ || Object.getPrototypeOf(PopupTweet)).call(this, props));
     }
 
-    _createClass(SideBarLeftOption, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "li",
-                { className: "bg-secondary border-0" },
-                React.createElement(
-                    Button,
-                    { href: "#", color: "secondary text-white-50", size: "lg", block: true },
-                    this.props.option
-                )
-            );
+    _createClass(PopupTweet, [{
+        key: 'render',
+        value: function render(props) {
+            var header = React.createElement('div', null);
+
+            var body = React.createElement('div', null);
+
+            var footer = React.createElement('div', null);
         }
     }]);
 
-    return SideBarLeftOption;
+    return PopupTweet;
 }(React.Component);
-//<a href="#" className="btn btn-secondary btn-lg btn-block text-white-50" role="button" name="explore">{this.props.option}</a>
-
-
-export default SideBarLeftOption;

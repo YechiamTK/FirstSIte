@@ -6,33 +6,59 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SideBarLeftOption = function (_React$Component) {
-    _inherits(SideBarLeftOption, _React$Component);
+var GenericModal = function (_React$Component) {
+    _inherits(GenericModal, _React$Component);
 
-    function SideBarLeftOption() {
-        _classCallCheck(this, SideBarLeftOption);
+    function GenericModal(props) {
+        _classCallCheck(this, GenericModal);
 
-        return _possibleConstructorReturn(this, (SideBarLeftOption.__proto__ || Object.getPrototypeOf(SideBarLeftOption)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (GenericModal.__proto__ || Object.getPrototypeOf(GenericModal)).call(this, props));
     }
 
-    _createClass(SideBarLeftOption, [{
+    _createClass(GenericModal, [{
         key: "render",
-        value: function render() {
+        value: function render(props) {
             return React.createElement(
-                "li",
-                { className: "bg-secondary border-0" },
+                Modal,
+                { isOpen: modal, toggle: toggle, size: "lg", className: "bg-dark d-flex flex-grow-1", style: { borderRadius: '20px' }, id: "post-comment" },
                 React.createElement(
-                    Button,
-                    { href: "#", color: "secondary text-white-50", size: "lg", block: true },
-                    this.props.option
+                    ModalHeader,
+                    null,
+                    props.header
+                ),
+                React.createElement(
+                    ModalBody,
+                    null,
+                    props.body
+                ),
+                React.createElement(
+                    ModalFooter,
+                    null,
+                    props.footer
                 )
             );
         }
     }]);
 
-    return SideBarLeftOption;
+    return GenericModal;
 }(React.Component);
-//<a href="#" className="btn btn-secondary btn-lg btn-block text-white-50" role="button" name="explore">{this.props.option}</a>
 
+/*
+<div id="post-comment" class="modal fade">
+    <div class="modal-dialog modal-lg col-5 d-flex">
+        <div class="modal-content bg-dark flex-grow-1" style="border-radius: 20px;">
+            <div className="modal-header">
+                {props.header}
+            </div>
+            <div className="modal-body">
+                {props.body}
+            </div>
+            <div className="modal-footer">
+                {props.footer}
+            </div>        
+        </div>
+    </div>
+</div>
+*/
 
-export default SideBarLeftOption;
+export default GenericModal;

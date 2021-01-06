@@ -26,6 +26,7 @@ var MainRow = function (_React$Component) {
     _createClass(MainRow, [{
         key: 'transformSidebarLeft',
         value: function transformSidebarLeft(side) {
+            //NEED TO REPLACE ANYTHING THAT USES CLASS-BASED BOOTSTRAP
             switch (side) {
                 case "left":
                     this.setState({ leftTransform: "left" });
@@ -61,11 +62,11 @@ var MainRow = function (_React$Component) {
             var transformSidebarLeft = this.transformSidebarLeft;
 
             return React.createElement(
-                'div',
-                { 'class': 'container-fluid ml-n3' },
+                Container,
+                { fuild: true, className: 'ml-n3' },
                 React.createElement(
-                    'div',
-                    { 'class': 'row', id: 'main-row' },
+                    Row,
+                    { id: 'main-row' },
                     React.createElement(SidebarLeft, { transformSidebarLeft: transformSidebarLeft.bind(this), leftTransform: this.state.leftTransform }),
                     React.createElement(MainContent, { tweets: this.props.tweets, leftTransform: this.state.leftTransform })
                 )

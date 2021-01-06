@@ -21,18 +21,22 @@ var MainContent = function (_React$Component) {
     }
 
     _createClass(MainContent, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return React.createElement(
-                "div",
-                { className: "col-8 offset-2 container-fluid" },
-                this.props.tweets.map(function (tweet, i) {
-                    return React.createElement(
-                        "div",
-                        null,
-                        React.createElement(TweetCard, { tweetInfo: tweet, place: i })
-                    );
-                })
+                Col,
+                { xs: { size: 8, offset: 2 } },
+                React.createElement(
+                    Container,
+                    { fuild: true },
+                    this.props.tweets.map(function (tweet, i) {
+                        return React.createElement(
+                            'div',
+                            null,
+                            React.createElement(TweetCard, { tweetInfo: tweet, place: i })
+                        );
+                    })
+                )
             );
         }
     }]);

@@ -11,6 +11,7 @@ class MainRow extends React.Component{
     }
 
     transformSidebarLeft(side){
+        //NEED TO REPLACE ANYTHING THAT USES CLASS-BASED BOOTSTRAP
         switch (side){
             case "left":
                 this.setState({leftTransform: "left"});
@@ -45,12 +46,12 @@ class MainRow extends React.Component{
         var transformSidebarLeft = this.transformSidebarLeft;
 
         return(
-        <div class="container-fluid ml-n3">
-            <div class="row" id="main-row">
-                <SidebarLeft transformSidebarLeft = {transformSidebarLeft.bind(this)} leftTransform = {this.state.leftTransform} />
+        <Container fuild={true} className="ml-n3">
+            <Row id="main-row">
+            <SidebarLeft transformSidebarLeft = {transformSidebarLeft.bind(this)} leftTransform = {this.state.leftTransform} />
                 <MainContent tweets={this.props.tweets} leftTransform = {this.state.leftTransform} />
-            </div>
-        </div>);
+            </Row>
+        </Container>);
     }
 }
 

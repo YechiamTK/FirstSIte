@@ -6,14 +6,16 @@
     <title>My Twitter Client</title>
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js"></script>
+    <script src="https://unpkg.com/react-transition-group/dist/react-transition-group.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="bs_overrides.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
     <script src="./tweets.js"></script>
     <script src="./tweetClass.js"></script>
     <script type='module' src="./script.js"></script>
@@ -36,17 +38,6 @@
             <div id="sidebar-left"></div>
             <div id="main-content"></div>
             <div id="sidebar-right"></div>
-        </div>
-        
-        <div class="container-fluid ml-n3">
-            <div class="row" name="main-row">
-
-                <!--sidebar-left-->
-                
-
-                <!--sidebar-right-->
-                
-            </div>
         </div>
     </div>
     
@@ -117,6 +108,8 @@
     <div id="tweet-id" class="modal fade">
         <div class="modal-dialog col-5 d-flex">
             <div class="modal-content bg-secondary flex-grow-1" style="border-radius: 20px;">
+                <!--no modal-header-->
+                <!--modal-body-->
                 <div class="row no-gutters bg-dark text-white-50">
                     <div class="col-auto">
                         <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">

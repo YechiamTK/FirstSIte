@@ -23,16 +23,16 @@ var ProfileFooter = function (_React$Component) {
                 { className: "list-group-item bg-secondary mt-5" },
                 React.createElement("div", { className: "mt-5" }),
                 React.createElement(
-                    "div",
-                    { className: "row d-flex" },
+                    Row,
+                    { className: "d-flex" },
                     React.createElement(
-                        "div",
-                        { className: "col-auto" },
+                        Col,
+                        { xs: "auto" },
                         React.createElement("img", { src: "logo.png", className: "rounded-circle img-fluid", style: { height: '40px' }, alt: "Profile Picture" })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "col" },
+                        Col,
+                        null,
                         React.createElement(
                             "div",
                             null,
