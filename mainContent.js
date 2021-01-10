@@ -7,6 +7,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import TweetCard from './tweetCard.js';
+import { togglePopup, toggleComment } from './modalSlice.js';
 
 var MainContent = function (_React$Component) {
     _inherits(MainContent, _React$Component);
@@ -17,15 +18,26 @@ var MainContent = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (MainContent.__proto__ || Object.getPrototypeOf(MainContent)).call(this, props));
 
         var tweets = _this.props.tweets;
+
+        //this.setState = {popup: false, comment: false};
         return _this;
     }
+
+    //showPopup = () => this.setState({popup: true});
+    //hidePopup = () => this.setState({popup: false});
+
+    //showComment = () => this.setState({comment: true});
+    //hideComment = () => this.setState({comment: false});
 
     _createClass(MainContent, [{
         key: 'render',
         value: function render() {
+            var cols = this.props.leftTransform == "left" ? { size: 10 } : { size: 8, offset: 2 };
+            var margin = this.props.leftTransform == "left" ? "ml-4" : "";
+
             return React.createElement(
                 Col,
-                { xs: { size: 8, offset: 2 } },
+                { xs: cols, className: margin },
                 React.createElement(
                     Container,
                     { fuild: true },

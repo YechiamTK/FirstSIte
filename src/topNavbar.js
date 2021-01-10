@@ -12,22 +12,22 @@ class TopNavbar extends React.Component{
                     <span className="mx-5"></span>
                     <Nav className="mx-auto">
                         <NavItem className="mx-5"><NavLink href="#" name="home">Home</NavLink></NavItem>
-                        <Dropdown nav isOpen={dropdownOpen} toggle={toggle} className="mx-5">
+                        <UncontrolledDropdown nav inNavbar className="mx-5">
                             <DropdownToggle nav>Notifications</DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem>notification number one long</DropdownItem>
                                 <DropdownItem>notification num 2</DropdownItem>
                                 <DropdownItem>notification number three long</DropdownItem>
                             </DropdownMenu>
-                        </Dropdown>
-                        <Dropdown nav isOpen={dropdownOpen} toggle={toggle} className="mx-5">
+                        </UncontrolledDropdown>
+                        <UncontrolledDropdown nav inNavbar className="mx-5">
                             <DropdownToggle nav>Messages</DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem>message number one long</DropdownItem>
                                 <DropdownItem>message num 2</DropdownItem>
                                 <DropdownItem>message number three long</DropdownItem>
                             </DropdownMenu>
-                        </Dropdown>
+                        </UncontrolledDropdown>
                     </Nav>
                     <Form inline className="ml-auto">
                         <Input type="search" className="bg-dark form-control btn-outline-dark text-white-50" placeholder="Search..."></Input>

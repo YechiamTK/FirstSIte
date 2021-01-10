@@ -6,59 +6,42 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var GenericModal = function (_React$Component) {
-    _inherits(GenericModal, _React$Component);
+var GenericCard = function (_React$Component) {
+    _inherits(GenericCard, _React$Component);
 
-    function GenericModal(props) {
-        _classCallCheck(this, GenericModal);
+    function GenericCard(props) {
+        _classCallCheck(this, GenericCard);
 
-        return _possibleConstructorReturn(this, (GenericModal.__proto__ || Object.getPrototypeOf(GenericModal)).call(this, props));
+        return _possibleConstructorReturn(this, (GenericCard.__proto__ || Object.getPrototypeOf(GenericCard)).call(this, props));
     }
 
-    _createClass(GenericModal, [{
+    _createClass(GenericCard, [{
         key: "render",
         value: function render(props) {
+
             return React.createElement(
-                Modal,
-                { isOpen: modal, toggle: toggle, size: "lg", className: "bg-dark d-flex flex-grow-1", style: { borderRadius: '20px' }, id: props.id },
+                Col,
+                { className: "px-2" },
                 React.createElement(
-                    ModalHeader,
-                    null,
-                    props.header
+                    CardHeader,
+                    headerArgs,
+                    this.cardheader
                 ),
                 React.createElement(
-                    ModalBody,
-                    null,
-                    props.body
+                    CardBody,
+                    Object.assign({}, bodyArgs, { style: { whiteSpace: "pre-wrap" } }),
+                    this.cardbody
                 ),
                 React.createElement(
-                    ModalFooter,
-                    null,
-                    props.footer
+                    CardFooter,
+                    footerArgs,
+                    this.cardfooter
                 )
             );
         }
     }]);
 
-    return GenericModal;
+    return GenericCard;
 }(React.Component);
 
-/*
-<div id="post-comment" class="modal fade">
-    <div class="modal-dialog modal-lg col-5 d-flex">
-        <div class="modal-content bg-dark flex-grow-1" style="border-radius: 20px;">
-            <div className="modal-header">
-                {props.header}
-            </div>
-            <div className="modal-body">
-                {props.body}
-            </div>
-            <div className="modal-footer">
-                {props.footer}
-            </div>        
-        </div>
-    </div>
-</div>
-*/
-
-export default GenericModal;
+export default GenericCard;

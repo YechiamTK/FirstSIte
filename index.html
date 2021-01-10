@@ -6,11 +6,14 @@
     <title>My Twitter Client</title>
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js"></script>
     <script src="https://unpkg.com/react-transition-group/dist/react-transition-group.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.2/react-redux.min.js"></script>
+    <script src="https://unpkg.com/@reduxjs/toolkit/dist/redux-toolkit.umd.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
     <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="bs_overrides.css" />
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
@@ -25,15 +28,16 @@
 
 
 <body class="bg-dark" id="bs-overrides">
-    <div class="container-fluid">
+    <div id="root"></div>
+    <!--<div class="container-fluid">
 
-        <!--pop row (first row) in the grid layout;
-            header: prof-pic|navbar|search-->
+        <!-pop row (first row) in the grid layout;
+            header: prof-pic|navbar|search->
         <div id="top-navbar"></div>
 
         
 
-        <!--main row (second row) in the grid layout-->
+        <!-main row (second row) in the grid layout->
         <div id="main-row">
             <div id="sidebar-left"></div>
             <div id="main-content"></div>
@@ -41,7 +45,14 @@
         </div>
     </div>
     
-    <!--post new tweet modal-->
+    <!-modals->
+    <div id="post-tweet"></div>
+    <div id="post-comment"></div>
+    <div id="tweet-id"></div>
+
+    
+    <!--MODALS
+    <--post new tweet modal->
     <div id="post-tweet-id" class="modal fade">
         <div class="modal-dialog col-5 d-flex modal-dialog-centered">
             <div class="modal-content bg-secondary flex-grow-1" style="border-radius: 20px;">
@@ -49,7 +60,7 @@
                     <button type="button" class="close text-white-50" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <!--needs to auto-extend/grow height-->
+                    <--needs to auto-extend/grow height->
                     <textarea id="tweet-text" class="form-control bg-secondary text-white-50 border-dark overflow-auto" style="resize:none;" rows="4"></textarea>
                 </div>
                 <div class="modal-footer">
@@ -59,11 +70,11 @@
         </div>
     </div>
 
-    <!--post comment modal-->
-    <!--I'll need to consider Twitter's strength later:
+    <--post comment modal->
+    <--I'll need to consider Twitter's strength later:
         all comments are actually posts but in relation to a different post.
         i.e. all post and comment is the same thing, but a "clear" post has no relation (yet).
-        This means I'll have to restructure the post/comments mechanisms later.-->
+        This means I'll have to restructure the post/comments mechanisms later.->
     <div id="post-comment" class="modal fade">
         <div class="modal-dialog modal-lg col-5 d-flex">
             <div class="modal-content bg-dark flex-grow-1" style="border-radius: 20px;">
@@ -71,7 +82,7 @@
                     <button type="button" class="close text-white-50" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body container-fluid">
-                    <!--needs to auto-extend/grow height-->
+                    <--needs to auto-extend/grow height->
                     <div class="row">
                         <div class="card my-auto w-100" style="border: none;">
                             <div class="row no-gutters bg-dark text-white-50">
@@ -104,12 +115,12 @@
         </div>
     </div>
 
-    <!--pop-up tweet modal-->
+    <--pop-up tweet modal->
     <div id="tweet-id" class="modal fade">
         <div class="modal-dialog col-5 d-flex">
             <div class="modal-content bg-secondary flex-grow-1" style="border-radius: 20px;">
-                <!--no modal-header-->
-                <!--modal-body-->
+                <--no modal-header->
+                <--modal-body->
                 <div class="row no-gutters bg-dark text-white-50">
                     <div class="col-auto">
                         <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
@@ -117,11 +128,11 @@
                     <div class="col">
                         <div class="px-2">
                             <div class="card-header"></div>
-                            <div class="card-body" style="white-space: pre-wrap;"></div>    <!--pre-wrap not working for some reason-->
+                            <div class="card-body" style="white-space: pre-wrap;"></div>    <--pre-wrap not working for some reason->
                             <div class="card-footer">
                                 <span class="btn-toolbar btn-group-sm px-5">
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle" onclick="showHideComments(this, true)"><i class="far fa-comments"></i></button> <!-- data-toggle="collapse" data-target="#comments"-->
+                                    <button type="button" class="btn mx-auto text-white-50 rounded-circle" onclick="showHideComments(this, true)"><i class="far fa-comments"></i></button> <-- data-toggle="collapse" data-target="#comments"->
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
                                     <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
@@ -131,7 +142,7 @@
                     </div>
                 </div>
                 <ul class="list-group" id="comments">
-                    <li class="card to-clone" style="display:none;">    <!--list item to clone-->
+                    <li class="card to-clone" style="display:none;">    <--list item to clone->
                         <div class="row no-gutters bg-dark text-white-50">
                             <div class="col-auto">
                                 <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
@@ -143,8 +154,8 @@
                                     <div class="card-footer">
                                         <span class="btn-toolbar btn-group-sm px-5">
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comment-alt"></i></button>
-                                            <!--<button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comments"></i></button>-->
-                                            <!--NEED TO BE ABLE TO OPEN SELECTED COMMENT AS TWEET-->
+                                            <--<button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-comments"></i></button>->
+                                            <--NEED TO BE ABLE TO OPEN SELECTED COMMENT AS TWEET->
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="fas fa-retweet"></i></button>
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-heart"></i></button>
                                             <button type="button" class="btn mx-auto text-white-50 rounded-circle"><i class="far fa-share-square"></i></button>
@@ -157,6 +168,6 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>-->
 </body>
 </html>

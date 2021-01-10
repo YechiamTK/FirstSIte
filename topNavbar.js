@@ -47,8 +47,8 @@ var TopNavbar = function (_React$Component) {
                                 )
                             ),
                             React.createElement(
-                                Dropdown,
-                                { nav: true, isOpen: dropdownOpen, toggle: toggle, className: 'mx-5' },
+                                UncontrolledDropdown,
+                                { nav: true, inNavbar: true, className: 'mx-5' },
                                 React.createElement(
                                     DropdownToggle,
                                     { nav: true },
@@ -75,8 +75,8 @@ var TopNavbar = function (_React$Component) {
                                 )
                             ),
                             React.createElement(
-                                Dropdown,
-                                { nav: true, isOpen: dropdownOpen, toggle: toggle, className: 'mx-5' },
+                                UncontrolledDropdown,
+                                { nav: true, inNavbar: true, className: 'mx-5' },
                                 React.createElement(
                                     DropdownToggle,
                                     { nav: true },

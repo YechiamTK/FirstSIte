@@ -6,7 +6,7 @@ class GenericModal extends React.Component{
     
     render(props){
         return(
-        <Modal isOpen={modal} toggle={toggle} size="lg" className="bg-dark d-flex flex-grow-1" style={{borderRadius: '20px'}} id="post-comment">
+        <Modal isOpen={modal} toggle={toggle} size="lg" className="bg-dark d-flex flex-grow-1" style={{borderRadius: '20px'}} id={props.id}>
             <ModalHeader>{props.header}</ModalHeader>
             <ModalBody>{props.body}</ModalBody>
             <ModalFooter>{props.footer}</ModalFooter>

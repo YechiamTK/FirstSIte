@@ -7,6 +7,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import GenericModal from './genericModal.js';
+import { connect } from 'react-redux';
 
 var NewTweet = function (_React$Component) {
     _inherits(NewTweet, _React$Component);
@@ -15,10 +16,11 @@ var NewTweet = function (_React$Component) {
         _classCallCheck(this, NewTweet);
 
         return _possibleConstructorReturn(this, (NewTweet.__proto__ || Object.getPrototypeOf(NewTweet)).call(this, props));
+        //this.setState = {showHide: this.props.show ? {display: 'block'} : {display: 'none'}};
     }
 
     _createClass(NewTweet, [{
-        key: "postTweet",
+        key: 'postTweet',
         value: function postTweet() {
             /*
             - get Tweets' data
@@ -27,25 +29,30 @@ var NewTweet = function (_React$Component) {
             */
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render(props) {
-            var header = React.createElement("span", null);
+            var modalHeader = React.createElement('span', null);
             //<button type="button" className="close text-white-50" data-dismiss="modal">&times;</button>
-            var body = React.createElement(Input, { type: "textarea", className: "form control bg-secondary text-white-50 border-dark overflow-auto",
-                placeholder: "Start typing...", style: { resize: 'none;' }, rows: 5 });
+            var modalBody = React.createElement(Input, { type: 'textarea', className: 'form control bg-secondary text-white-50 border-dark overflow-auto',
+                placeholder: 'Start typing...', style: { resize: 'none;' }, rows: 5 });
             //<textarea id="tweet-text" className="form-control bg-secondary text-white-50 border-dark overflow-auto" style={{resize:'none;'}} rows="4"></textarea>
-            var footer = React.createElement(
+            var modalFooter = React.createElement(
                 Button /*onclick="postTweet()"*/,
-                { className: "close", color: "default" },
-                "Tweet"
+                { className: 'close', color: 'default' },
+                'Tweet'
             );
             //<button type="button" /*onclick="postTweet()"*/ className="close btn btn-default" data-dismiss="modal">Tweet</button>;
 
-            return React.createElement(GenericModal, { header: header, body: body, footer: footer });
+            return React.createElement(GenericModal /*display={this.showHide}*/, { header: modalHeader, body: modalBody, footer: modalFooter });
         }
     }]);
 
     return NewTweet;
 }(React.Component);
+
+//const closeTweet = {type: 'modals/toggleModal', payload: ''};
+//const mapStateToProps = state => state.postTweet;
+
+//export default connect(mapStateToProps, closeTweet)(NewTweet);
 
 export default NewTweet;

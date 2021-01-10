@@ -8,6 +8,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import SideBarLeftOption from './SidebarLeftOption.js';
 import ProfileFooter from './profileFooter.js';
+import { connect } from 'react-redux';
+import NewTweet from './newTweet.js';
+import { toggleTweet as _toggleTweet } from './modalSlice.js';
 
 var SidebarLeft = function (_React$Component) {
     _inherits(SidebarLeft, _React$Component);
@@ -15,11 +18,29 @@ var SidebarLeft = function (_React$Component) {
     function SidebarLeft(props) {
         _classCallCheck(this, SidebarLeft);
 
-        return _possibleConstructorReturn(this, (SidebarLeft.__proto__ || Object.getPrototypeOf(SidebarLeft)).call(this, props));
+        //this.state = {show:false};
+
+        //this.showModal = thi.showModal.bind(this);
+        //this.hideModal = thi.hideModal.bind(this);
+        var _this = _possibleConstructorReturn(this, (SidebarLeft.__proto__ || Object.getPrototypeOf(SidebarLeft)).call(this, props));
+
+        _this.postTweetHandler = function () {
+            _this.props.postTweet(_this.state.postTweet);
+
+            //this.setState(postTweet=false)?
+        };
+
+        return _this;
     }
 
     _createClass(SidebarLeft, [{
         key: 'render',
+
+
+        //showModal = () => this.setState({show:true})
+
+        //hideModal = () => this.setState({show:true})
+
         value: function render() {
             var arrowStyle = {
                 bordeRadius: '50%',
@@ -33,6 +54,9 @@ var SidebarLeft = function (_React$Component) {
             var oppositeTransform = this.props.leftTransform == "left" ? "right" : "left";
             var transformBar = this.props.leftTransform == "left" ? { transform: 'translate(-85%)' } : { transform: 'translate(0%)' };
             var transformArrow = this.props.leftTransform == "left" ? { transform: 'rotate(180deg)' } : { transform: 'rotate(0deg)' };
+
+            var toggleTweet = this.props.showTweet.toggleTweet;
+
 
             return React.createElement(
                 Col,
@@ -64,9 +88,10 @@ var SidebarLeft = function (_React$Component) {
                             { className: 'bg-secondary border-0 d-flex justify-content-center align-items-center' },
                             React.createElement(
                                 Button,
-                                { color: 'info', size: 'lg', block: true, dataToggle: 'modal', dataTarget: '#post-tweet-id' },
+                                { color: 'info', size: 'lg', block: true, onClick: toggleTweet },
                                 'Tweet'
-                            )
+                            ),
+                            React.createElement(NewTweet, null)
                         ),
                         React.createElement(ProfileFooter, { name: 'user-name', username: '@Username' })
                     )
@@ -77,6 +102,18 @@ var SidebarLeft = function (_React$Component) {
 
     return SidebarLeft;
 }(React.Component);
+
+//const postTweet = {type: 'modal/toggleTweet', payload: ''};
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return { toggleTweet: function toggleTweet() {
+            return dispatch(_toggleTweet);
+        } };
+};
+//const mapStateToProps = state => state.postTweet;
+
+export default connect({}, mapDispatchToProps)(SidebarLeft);
 
 /*
 <div className="col-2 position-fixed" id="sidebar-left">
@@ -96,6 +133,3 @@ var SidebarLeft = function (_React$Component) {
     </ul>
 </div>
 */
-
-
-export default SidebarLeft;

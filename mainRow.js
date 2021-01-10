@@ -26,35 +26,34 @@ var MainRow = function (_React$Component) {
     _createClass(MainRow, [{
         key: 'transformSidebarLeft',
         value: function transformSidebarLeft(side) {
-            //NEED TO REPLACE ANYTHING THAT USES CLASS-BASED BOOTSTRAP
             switch (side) {
                 case "left":
                     this.setState({ leftTransform: "left" });
 
                     //make sure the main content is adjusting to the change
-                    $("div[name='main-content").attr({ 'style': 'transition: all 0.5s' }); //;z-index: -1
-                    $("div[name='main-content").attr({ "class": "col-10 container-fluid ml-4" });
+                    //$("div[name='main-content").attr({'style': 'transition: all 0.5s'})     //;z-index: -1
+                    //$("div[name='main-content").attr({"class": "col-10 container-fluid ml-4"});
 
                     //also change the button icon! (or at least make it looks like it changes)
-                    $(btn).find("i").attr({ "style": "transition: transform 0.5s; transform: rotate(180deg)" });
+                    //$(btn).find("i").attr({"style": "transition: transform 0.5s; transform: rotate(180deg)"});
                     side = "right";
                     break;
 
                 case "right":
                     this.setState({ leftTransform: "right" });
-                    sidebar.attr({ 'style': sidebar.attr("style") + ';transform: translate(0%)' });
+                    //sidebar.attr({'style': sidebar.attr("style")+';transform: translate(0%)'});
                     //make sure the main content is adjusting to the change
 
-                    $("div[name='main-content").attr({ 'style': 'transition: all 0.5s' }); //;z-index: -1
-                    $("div[name='main-content").attr({ "class": "col-8 offset-2 container-fluid" });
+                    //$("div[name='main-content").attr({'style': 'transition: all 0.5s'})     //;z-index: -1
+                    //$("div[name='main-content").attr({"class": "col-8 offset-2 container-fluid"});
 
                     //also change the button icon! (or at least make it looks like it changes)
-                    $(btn).find("i").attr({ "style": "transition: transform 0.5s; transform: rotate(0deg)" });
+                    //$(btn).find("i").attr({"style": "transition: transform 0.5s; transform: rotate(0deg)"});
                     side = "left";
                     break;
             }
             //change the button to open/close (simply replace the function with the opposite side)
-            $(btn).attr({ 'onclick': "sidebarTransform(this, '" + side + "', $('#" + sidebar.attr('id') + "'))" });
+            //$(btn).attr({'onclick': "sidebarTransform(this, '"+side+"', $('#"+sidebar.attr('id')+"'))"});
         }
     }, {
         key: 'render',

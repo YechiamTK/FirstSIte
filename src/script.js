@@ -1,5 +1,7 @@
 import TopNavbar from './topNavbar.js';
 import MainRow from './mainRow.js';
+import {configureStore} from '@reduxjs/toolkit';
+import modalSlice from './modalsSlice.js';
 
 "use strict";
 var allTweets = [];                 //global variable, because it merely emulates the object I'd control via a server
@@ -15,6 +17,12 @@ $(document).ready(function(){
         newTweet(tweets[i], allTweets);
     }
     ReactDOM.render(<MainRow tweets={allTweets} />, document.getElementById('main-row'));
+
+    const store = configureStore({
+        reducer:{
+            modal: modalSlice.reducer
+        }
+    });
 });
 
 
