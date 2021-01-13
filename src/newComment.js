@@ -1,5 +1,6 @@
 import GenericModal from './genericModal.js';
 import GenericCard from './genericCard.js';
+import { toggleComment } from './modalSlice.js';
 
 class NewComment extends React.Component{
 
@@ -7,40 +8,60 @@ class NewComment extends React.Component{
         super(props);
     }
 
+    postComment(){
+        /*
+        - post it to server (handled as both Tweet and comment to Tweet)
+        [function on server-side catches it and posts it?]
+        */
+    }
+
     render(){
+        const {showComment, toggleComment} = this.props;
 
         var headerArgs = [className="mt-n3 bg-dark font-weight-bold", style={border: 'none'}];
         var bodyArgs = [className="mt-n4 bg-dark", style={border: 'none'}];
         var footerArgs = [className="mt-n4 bg-dark text-info", style={opacity: 0.8, border: 'none'}];
         var modalBody =
-            <Container fuild>
-                <Row>
-                    <Card className="my-auto w-100" style={{border: 'none'}}>
-                        <Row className="no-gutters bg-dark text-white-50">
-                            <Col xs="auto">
+            <Reactstrap.Container fuild>
+                <Reactstrap.Row>
+                    <Reactstrap.Card className="my-auto w-100" style={{border: 'none'}}>
+                        <Reactstrap.Row className="no-gutters bg-dark text-white-50">
+                            <Reactstrap.Col xs="auto">
                                 <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="" />
-                            </Col>
+                            </Reactstrap.Col>
                             <GenericCard {...headerArgs} {...bodyArgs} {...footerArgs}></GenericCard>
-                        </Row>
-                    </Card>
-                </Row>
-                <Row className="no-gutters bg-dark text-white-50">
-                    <Col xs="auto">
+                        </Reactstrap.Row>
+                    </Reactstrap.Card>
+                </Reactstrap.Row>
+                <Reactstrap.Row className="no-gutters bg-dark text-white-50">
+                    <Reactstrap.Col xs="auto">
                         <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="" />
-                    </Col>
-                    <Col>
-                        <Input type="textarea" id="tweet-text" className="form-control bg-dark text-white-50 border-dark overflow-auto" style={{resize: 'none', border:'none'}} rows={4}></Input>
-                    </Col>
-                </Row>
-            </Container>;
+                    </Reactstrap.Col>
+                    <Reactstrap.Col>
+                        <Reactstrap.Input type="textarea" id="tweet-text" className="form-control bg-dark text-white-50 border-dark overflow-auto" 
+                        style={{resize: 'none', border:'none'}} rows={4}></Reactstrap.Input>
+                    </Reactstrap.Col>
+                </Reactstrap.Row>
+            </Reactstrap.Container>;
 
-        var modalFooter = <Button /*onClick="newComment(this)*/ class="close btn btn-default" /*data-dismiss="modal"*/>Tweet</Button>;
+        var modalFooter = <Reactstrap.Button onClick={()=>{toggleComment();postComment()}} class="close btn btn-default">Tweet</Reactstrap.Button>;
 
-        return(<GenericModal id="comment" body={modalBody} footer={modalFooter}></GenericModal>);
+        return(
+            <>
+                {showComment ? (<GenericModal id="comment" body={modalBody} footer={modalFooter}></GenericModal>):null}
+            </>);
     }
 }
 
-export default NewComment;
+const mapDispatchToProps = dispatch => ({
+    toggleComment: ()=>dispatch(toggleComment),
+});
+
+const mapStateToProps = state => ({
+    showComment: state.modal.showComment,
+});
+
+export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(NewComment);
 
 /*
 <div class="row">

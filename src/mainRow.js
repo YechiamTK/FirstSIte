@@ -45,12 +45,12 @@ class MainRow extends React.Component{
         var transformSidebarLeft = this.transformSidebarLeft;
 
         return(
-        <Container fuild={true} className="ml-n3">
-            <Row id="main-row">
+        <Reactstrap.Container/*  fuild={true} */ className="ml-n3">
+            <Reactstrap.Row id="main-row">
             <SidebarLeft transformSidebarLeft = {transformSidebarLeft.bind(this)} leftTransform = {this.state.leftTransform} />
                 <MainContent tweets={this.props.tweets} leftTransform = {this.state.leftTransform} />
-            </Row>
-        </Container>);
+            </Reactstrap.Row>
+        </Reactstrap.Container>);
     }
 }
 

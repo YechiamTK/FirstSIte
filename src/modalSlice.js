@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
+//import { createSlice } from '@reduxjs/toolkit'
 
-const modalSlice = createSlice({
+const modalSlice = RTK.createSlice({
     name: 'modal',
-    initalState: {
+    initialState: {
         showTweet: false,
         showComment: false,
         showPopup: false
@@ -16,9 +16,9 @@ const modalSlice = createSlice({
         },
         togglePopup(state){
             state.showPopup = !state.showPopup;
-        }
-    }
+        },
+    },
 });
 
-export const {toggleModal, toggleComment, togglePopup} = modalSlice.actions;
+export const {toggleTweet, toggleComment, togglePopup} = modalSlice.actions;
 export default modalSlice;

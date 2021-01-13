@@ -1,152 +1,112 @@
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+import GenericCard from './genericCard.js'; //import NewComment from './newComment.js'
+//import PopupTweet from './popupTweet.js';
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-import GenericCard from './genericCard.js';
-import NewComment from './newComment.js';
-import PopupTweet from './popupTweet.js';
-
-var TweetCard = function (_React$Component) {
-    _inherits(TweetCard, _React$Component);
-
-    function TweetCard(props) {
-        _classCallCheck(this, TweetCard);
-
-        var _this = _possibleConstructorReturn(this, (TweetCard.__proto__ || Object.getPrototypeOf(TweetCard)).call(this, props));
-
-        var tweetInfo = _this.props.tweetInfo;
-        return _this;
-    }
-    /*
-    Pass the tweet info from the card to the pop-up modal.
-    *
-    setInfo = () =>{
-        //get tweet's info from the card
-        let usrname = $(this).siblings(".card-header").text();
-        let twt = this.innerText;
-        let id = '<span class="tweet-id" style="display:none;">'+$(this).siblings("span").text()+'</span>';
-        //empty the header, otherwise close button won't work.
-        $("#tweet-id").find(".card-header").empty();
-        //create close button
-        let closeBtn = $("<button>&times;</button>");
-        closeBtn.attr({
-            'type': 'button',
-            'class': 'close text-white-50',
-            'data-dismiss': 'modal'});
-        //add the tweet's info and the close button to the modal's html.
-        $("#tweet-id").find(".card-header").text(usrname);
-        $("#tweet-id").find(".card-header").append(closeBtn);
-        $("#tweet-id").find(".card-header").append(id);
-        $("#tweet-id").find(".card-body").text(twt);
-    }*/
-
-    _createClass(TweetCard, [{
-        key: 'render',
-        value: function render() {
-            var togglePopup = this.props.showPopup.togglePopup;
-            var toggleComment = this.props.showComment.toggleComment;
+class TweetCard extends React.Component {
+  constructor(props) {
+    super(props);
+    var tweetInfo = this.props.tweetInfo;
+  }
+  /*
+  Pass the tweet info from the card to the pop-up modal.
+  *
+  setInfo = () =>{
+      //get tweet's info from the card
+      let usrname = $(this).siblings(".card-header").text();
+      let twt = this.innerText;
+      let id = '<span class="tweet-id" style="display:none;">'+$(this).siblings("span").text()+'</span>';
+      //empty the header, otherwise close button won't work.
+      $("#tweet-id").find(".card-header").empty();
+      //create close button
+      let closeBtn = $("<button>&times;</button>");
+      closeBtn.attr({
+          'type': 'button',
+          'class': 'close text-white-50',
+          'data-dismiss': 'modal'});
+      //add the tweet's info and the close button to the modal's html.
+      $("#tweet-id").find(".card-header").text(usrname);
+      $("#tweet-id").find(".card-header").append(closeBtn);
+      $("#tweet-id").find(".card-header").append(id);
+      $("#tweet-id").find(".card-body").text(twt);
+  }*/
 
 
-            header = React.createElement(
-                'a',
-                { href: '#', className: 'link text-decoration-none' },
-                this.props.tweetInfo.getUsername()
-            );
+  render() {
+    const {
+      togglePopup,
+      toggleComment
+    } = this.props;
+    const header = /*#__PURE__*/React.createElement("a", {
+      href: "#",
+      className: "link text-decoration-none"
+    }, this.props.tweetInfo.getUsername()); //could be useless, will return to it later
 
-            //could be useless, will return to it later
-            bodyArgs = [onClick = { setInfo: setInfo }, type = "button", dataToggle = "modal", dataTarget = "#tweet-id"];
-            body = this.props.tweetInfo.getMessage();
-
-            footer = React.createElement(
-                ButtonToolbar,
-                null,
-                React.createElement(
-                    ButtonGroup,
-                    { size: 'sm', className: 'px-5' },
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle', toggle: toggle /*data-toggle="modal" data-target="#post-comment"*/ },
-                        React.createElement('i', { className: 'far fa-comment-alt' })
-                    ),
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle', onClick: toggleComment /*data-toggle="modal" data-target="#tweet-id"*/ },
-                        React.createElement('i', { className: 'far fa-comment-alt' })
-                    ),
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle' },
-                        React.createElement('i', { className: 'fas fa-retweet' })
-                    ),
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle' },
-                        React.createElement('i', { className: 'far fa-heart' })
-                    ),
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle' },
-                        React.createElement('i', { className: 'far fa-share-square' })
-                    )
-                )
-            );
-
-            return React.createElement(
-                Card,
-                { className: 'mx-3 my-5', id: this.props.tweetInfo.getId(), onClick: togglePopup },
-                React.createElement(
-                    Row,
-                    { className: 'no-gutters bg-dark text-white-50' },
-                    React.createElement(
-                        Col,
-                        { xs: 'auto', style: { flexGrow: '0 !important' } },
-                        React.createElement('img', { src: "./profile.jpg", style: { height: '50px' }, className: 'img-fluid', alt: '' })
-                    ),
-                    React.createElement(GenericCard, Object.assign({ cardheader: header, cardbody: body }, bodyArgs, { cardfooter: footer }))
-                )
-            );
-        }
-    }]);
-
-    return TweetCard;
-}(React.Component);
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {
-        togglePopup: function (_togglePopup) {
-            function togglePopup() {
-                return _togglePopup.apply(this, arguments);
-            }
-
-            togglePopup.toString = function () {
-                return _togglePopup.toString();
-            };
-
-            return togglePopup;
-        }(function () {
-            return dispatch(togglePopup);
-        }),
-        toggleComment: function (_toggleComment) {
-            function toggleComment() {
-                return _toggleComment.apply(this, arguments);
-            }
-
-            toggleComment.toString = function () {
-                return _toggleComment.toString();
-            };
-
-            return toggleComment;
-        }(function () {
-            return dispatch(toggleComment);
-        })
+    const bodyArgs = {
+      /* onClick={setInfo},  */
+      type: "button",
+      dataToggle: "modal",
+      dataTarget: "#tweet-id"
     };
-};
-export default connect({}, mapDispatchToProps)(TweetCard);
+    const body = this.props.tweetInfo.getMessage();
+    const footer = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
+      size: "sm",
+      className: "px-5"
+    }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle",
+      onClick: toggleComment
+      /*data-toggle="modal" data-target="#post-comment"*/
 
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "far fa-comment-alt"
+    })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fas fa-retweet"
+    })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "far fa-heart"
+    })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "far fa-share-square"
+    }))));
+    const headerArgs = {};
+    const footerArgs = {};
+    return /*#__PURE__*/React.createElement(Reactstrap.Card, {
+      className: "mx-3 my-5",
+      id: this.props.tweetInfo.getId(),
+      onClick: togglePopup
+    }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
+      className: "no-gutters bg-dark text-white-50"
+    }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
+      xs: "auto",
+      style: {
+        flexGrow: '0 !important'
+      }
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "./profile.jpg",
+      style: {
+        height: '50px'
+      },
+      className: "img-fluid",
+      alt: ""
+    })), /*#__PURE__*/React.createElement(GenericCard, _extends({
+      cardheader: header,
+      cardbody: body,
+      cardfooter: footer
+    }, bodyArgs))));
+  }
+
+}
+
+const mapDispatchToProps = dispatch => ({
+  togglePopup: () => dispatch(togglePopup),
+  toggleComment: () => dispatch(toggleComment)
+});
+
+export default ReactRedux.connect(null, mapDispatchToProps)(TweetCard);
 /*
 <div className="card mx-3 my-5" id={this.props.tweetInfo.getId()}>
     <div className="row no-gutters bg-dark text-white-50">

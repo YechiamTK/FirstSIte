@@ -1,83 +1,83 @@
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 import GenericModal from './genericModal.js';
 import GenericCard from './genericCard.js';
+import { togglePopup } from './modalSlice.js';
+import CommentSection from './commentSection.js';
 
-var PopupTweet = function (_React$Component) {
-    _inherits(PopupTweet, _React$Component);
+class PopupTweet extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSection: false
+    };
+  }
 
-    function PopupTweet(props) {
-        _classCallCheck(this, PopupTweet);
+  render(props) {
+    const {
+      togglePopup,
+      showPopup
+    } = this.props; //add close button?
 
-        return _possibleConstructorReturn(this, (PopupTweet.__proto__ || Object.getPrototypeOf(PopupTweet)).call(this, props));
-    }
+    const header = /*#__PURE__*/React.createElement("span", null); //NEED TO INSERT CARD INFO, HOW?
 
-    _createClass(PopupTweet, [{
-        key: 'render',
-        value: function render(props) {
-            var header = React.createElement('span', null);
+    const cardfooter = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
+      size: "sm",
+      className: "px-5"
+    }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "far fa-comment-alt"
+    })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle"
+      /*onClick="{toggleCommentSection}*/
 
-            //NEED TO INSERT CARD INFO, HOW?
-            var cardfooter = React.createElement(
-                ButtonToolbar,
-                null,
-                React.createElement(
-                    ButtonGroup,
-                    { size: 'sm', className: 'px-5' },
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle' },
-                        React.createElement('i', { className: 'far fa-comment-alt' })
-                    ),
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle' /*onClick="showHideComments()"*/ },
-                        React.createElement('i', { className: 'far fa-comments' })
-                    ),
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle' },
-                        React.createElement('i', { className: 'fas fa-retweet' })
-                    ),
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle' },
-                        React.createElement('i', { className: 'far fa-heart' })
-                    ),
-                    React.createElement(
-                        Button,
-                        { className: 'mx-auto text-white-50 rounded-circle' },
-                        React.createElement('i', { className: 'far fa-share-square' })
-                    )
-                )
-            );
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "far fa-comments"
+    })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fas fa-retweet"
+    })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "far fa-heart"
+    })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "mx-auto text-white-50 rounded-circle"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "far fa-share-square"
+    }))));
+    var body = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Reactstrap.Row, {
+      className: "no-gutters bg-dark text-white-50"
+    }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
+      xs: "auto"
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "profile.jpg",
+      style: "height:50px;",
+      class: "img-fluid",
+      alt: ""
+    })), /*#__PURE__*/React.createElement(GenericCard, {
+      cardfooter: this.cardfooter
+    })), /*#__PURE__*/React.createElement(CommentSection, {
+      style: {
+        display: this.state.showSection ? 'block' : 'none'
+      },
+      onClick: () => this.state.showSection = !this.state.showSection
+    }));
+    const footer = /*#__PURE__*/React.createElement("span", null);
+    const id = "popup";
+    return /*#__PURE__*/React.createElement(React.Fragment, null, " ", showPopup ? /*#__PURE__*/React.createElement(GenericModal, {
+      body: this.body,
+      id: this.id
+    }) : null, " ");
+  }
 
-            var body = React.createElement(
-                Row,
-                { className: 'no-gutters bg-dark text-white-50' },
-                React.createElement(
-                    Col,
-                    { xs: 'auto' },
-                    React.createElement('img', { src: 'profile.jpg', style: 'height:50px;', 'class': 'img-fluid', alt: '' })
-                ),
-                React.createElement(GenericCard, { cardfooter: this.cardfooter })
-            );
+}
 
-            var footer = React.createElement('span', null);
+const mapDispatchToProps = dispatch => ({
+  togglePopup: () => dispatch(togglePopup)
+});
 
-            var id = "popup";
+const mapStateToProps = state => ({
+  showPopup: state.modal.showPopup
+});
 
-            return React.createElement(GenericModal, { body: this.body, id: this.id });
-        }
-    }]);
-
-    return PopupTweet;
-}(React.Component);
-
-export default PopupTweet;
+export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(PopupTweet);

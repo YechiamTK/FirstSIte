@@ -5,37 +5,37 @@ class TopNavbar extends React.Component{
 
     render(){
         return(
-        <Row fixed='top' name='top-row'>
-            <Col xs='12' className='bg-dark'>
-                <Navbar color='dark' expand='sm' className='pt-3 shadow d-flex'>
+        <Reactstrap.Row fixed='top' name='top-row'>
+            <Reactstrap.Col xs='12' className='bg-dark'>
+                <Reactstrap.Navbar color='dark' expand='sm' className='pt-3 shadow d-flex'>
                     <img src={"logo.png"} style={{height:'50px'}} className="rounded-circle" alt="Profile Picture" />
                     <span className="mx-5"></span>
-                    <Nav className="mx-auto">
-                        <NavItem className="mx-5"><NavLink href="#" name="home">Home</NavLink></NavItem>
-                        <UncontrolledDropdown nav inNavbar className="mx-5">
-                            <DropdownToggle nav>Notifications</DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>notification number one long</DropdownItem>
-                                <DropdownItem>notification num 2</DropdownItem>
-                                <DropdownItem>notification number three long</DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                        <UncontrolledDropdown nav inNavbar className="mx-5">
-                            <DropdownToggle nav>Messages</DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>message number one long</DropdownItem>
-                                <DropdownItem>message num 2</DropdownItem>
-                                <DropdownItem>message number three long</DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                    </Nav>
-                    <Form inline className="ml-auto">
-                        <Input type="search" className="bg-dark form-control btn-outline-dark text-white-50" placeholder="Search..."></Input>
-                        <InputGroup><Button color="dark"><i className="fas fa-search"></i></Button></InputGroup>
-                    </Form>
-                </Navbar>
-            </Col>
-        </Row>);
+                    <Reactstrap.Nav className="mx-auto">
+                        <Reactstrap.NavItem className="mx-5"><Reactstrap.NavLink href="#" name="home">Home</Reactstrap.NavLink></Reactstrap.NavItem>
+                        <Reactstrap.UncontrolledDropdown /*nav={true} inNavbar={true}*/ className="mx-5">
+                            <Reactstrap.DropdownToggle /* nav={true} */>Notifications</Reactstrap.DropdownToggle>
+                            <Reactstrap.DropdownMenu>
+                                <Reactstrap.DropdownItem>notification number one long</Reactstrap.DropdownItem>
+                                <Reactstrap.DropdownItem>notification num 2</Reactstrap.DropdownItem>
+                                <Reactstrap.DropdownItem>notification number three long</Reactstrap.DropdownItem>
+                            </Reactstrap.DropdownMenu>
+                        </Reactstrap.UncontrolledDropdown>
+                        <Reactstrap.UncontrolledDropdown /* nav={true} inNavbar={true} */ className="mx-5">
+                            <Reactstrap.DropdownToggle /* nav={true} */>Messages</Reactstrap.DropdownToggle>
+                            <Reactstrap.DropdownMenu>
+                                <Reactstrap.DropdownItem>message number one long</Reactstrap.DropdownItem>
+                                <Reactstrap.DropdownItem>message num 2</Reactstrap.DropdownItem>
+                                <Reactstrap.DropdownItem>message number three long</Reactstrap.DropdownItem>
+                            </Reactstrap.DropdownMenu>
+                        </Reactstrap.UncontrolledDropdown>
+                    </Reactstrap.Nav>
+                    <Reactstrap.Form inline className="ml-auto">
+                        <Reactstrap.Input type="search" className="bg-dark form-control btn-outline-dark text-white-50" placeholder="Search..."></Reactstrap.Input>
+                        <Reactstrap.InputGroup><Reactstrap.Button color="dark"><i className="fas fa-search"></i></Reactstrap.Button></Reactstrap.InputGroup>
+                    </Reactstrap.Form>
+                </Reactstrap.Navbar>
+            </Reactstrap.Col>
+        </Reactstrap.Row>);
     }
     /*
 <div className="row sticky-top" name="top-row">

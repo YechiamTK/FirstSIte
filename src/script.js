@@ -1,7 +1,7 @@
 import TopNavbar from './topNavbar.js';
 import MainRow from './mainRow.js';
-import {configureStore} from '@reduxjs/toolkit';
-import modalSlice from './modalsSlice.js';
+import modalSlice from './modalSlice.js';
+import App from './App.js';
 
 "use strict";
 var allTweets = [];                 //global variable, because it merely emulates the object I'd control via a server
@@ -11,18 +11,24 @@ var currUser = "Yechiam Weiss";     //global variable, because I actually need t
 Begin the page with a new tweet loaded; testing purposes.
 I'll need to edit it later with db to load all [recent?] tweets from db.
 */
-$(document).ready(function(){
-    ReactDOM.render(<TopNavbar />, document.getElementById('top-navbar'));
-    for (let i=0; i<tweets.length;i++){
-        newTweet(tweets[i], allTweets);
-    }
-    ReactDOM.render(<MainRow tweets={allTweets} />, document.getElementById('main-row'));
-
-    const store = configureStore({
+document.addEventListener("DOMContentLoaded", function(){
+    const rootElem = document.getElementById("root");
+    const store = RTK.configureStore({
         reducer:{
             modal: modalSlice.reducer
         }
     });
+    for (let i=0; i<tweets.length;i++){
+        newTweet(tweets[i], allTweets);
+    }
+
+    ReactDOM.render(
+        <ReactRedux.Provider store={store}>
+            <App tweets={allTweets} />
+        </ReactRedux.Provider>, rootElem);
+    //ReactDOM.render(<TopNavbar />, document.getElementById('top-navbar'));
+    //ReactDOM.render(<MainRow tweets={allTweets} />, document.getElementById('main-row'));
+
 });
 
 

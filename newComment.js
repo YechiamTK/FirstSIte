@@ -1,82 +1,96 @@
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import GenericModal from './genericModal.js';
 import GenericCard from './genericCard.js';
+import { toggleComment } from './modalSlice.js';
 
-var NewComment = function (_React$Component) {
-    _inherits(NewComment, _React$Component);
+class NewComment extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    function NewComment(props) {
-        _classCallCheck(this, NewComment);
+  postComment() {
+    /*
+    - post it to server (handled as both Tweet and comment to Tweet)
+    [function on server-side catches it and posts it?]
+    */
+  }
 
-        return _possibleConstructorReturn(this, (NewComment.__proto__ || Object.getPrototypeOf(NewComment)).call(this, props));
-    }
+  render() {
+    const {
+      showComment,
+      toggleComment
+    } = this.props;
+    var headerArgs = [className = "mt-n3 bg-dark font-weight-bold", style = {
+      border: 'none'
+    }];
+    var bodyArgs = [className = "mt-n4 bg-dark", style = {
+      border: 'none'
+    }];
+    var footerArgs = [className = "mt-n4 bg-dark text-info", style = {
+      opacity: 0.8,
+      border: 'none'
+    }];
+    var modalBody = /*#__PURE__*/React.createElement(Reactstrap.Container, {
+      fuild: true
+    }, /*#__PURE__*/React.createElement(Reactstrap.Row, null, /*#__PURE__*/React.createElement(Reactstrap.Card, {
+      className: "my-auto w-100",
+      style: {
+        border: 'none'
+      }
+    }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
+      className: "no-gutters bg-dark text-white-50"
+    }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
+      xs: "auto"
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "profile.jpg",
+      style: "height:50px;",
+      class: "img-fluid",
+      alt: ""
+    })), /*#__PURE__*/React.createElement(GenericCard, _extends({}, headerArgs, bodyArgs, footerArgs))))), /*#__PURE__*/React.createElement(Reactstrap.Row, {
+      className: "no-gutters bg-dark text-white-50"
+    }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
+      xs: "auto"
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "profile.jpg",
+      style: "height:50px;",
+      class: "img-fluid",
+      alt: ""
+    })), /*#__PURE__*/React.createElement(Reactstrap.Col, null, /*#__PURE__*/React.createElement(Reactstrap.Input, {
+      type: "textarea",
+      id: "tweet-text",
+      className: "form-control bg-dark text-white-50 border-dark overflow-auto",
+      style: {
+        resize: 'none',
+        border: 'none'
+      },
+      rows: 4
+    }))));
+    var modalFooter = /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      onClick: () => {
+        toggleComment();
+        postComment();
+      },
+      class: "close btn btn-default"
+    }, "Tweet");
+    return /*#__PURE__*/React.createElement(React.Fragment, null, showComment ? /*#__PURE__*/React.createElement(GenericModal, {
+      id: "comment",
+      body: modalBody,
+      footer: modalFooter
+    }) : null);
+  }
 
-    _createClass(NewComment, [{
-        key: 'render',
-        value: function render() {
+}
 
-            var headerArgs = [className = "mt-n3 bg-dark font-weight-bold", style = { border: 'none' }];
-            var bodyArgs = [className = "mt-n4 bg-dark", style = { border: 'none' }];
-            var footerArgs = [className = "mt-n4 bg-dark text-info", style = { opacity: 0.8, border: 'none' }];
-            var modalBody = React.createElement(
-                Container,
-                { fuild: true },
-                React.createElement(
-                    Row,
-                    null,
-                    React.createElement(
-                        Card,
-                        { className: 'my-auto w-100', style: { border: 'none' } },
-                        React.createElement(
-                            Row,
-                            { className: 'no-gutters bg-dark text-white-50' },
-                            React.createElement(
-                                Col,
-                                { xs: 'auto' },
-                                React.createElement('img', { src: 'profile.jpg', style: 'height:50px;', 'class': 'img-fluid', alt: '' })
-                            ),
-                            React.createElement(GenericCard, Object.assign({}, headerArgs, bodyArgs, footerArgs))
-                        )
-                    )
-                ),
-                React.createElement(
-                    Row,
-                    { className: 'no-gutters bg-dark text-white-50' },
-                    React.createElement(
-                        Col,
-                        { xs: 'auto' },
-                        React.createElement('img', { src: 'profile.jpg', style: 'height:50px;', 'class': 'img-fluid', alt: '' })
-                    ),
-                    React.createElement(
-                        Col,
-                        null,
-                        React.createElement(Input, { type: 'textarea', id: 'tweet-text', className: 'form-control bg-dark text-white-50 border-dark overflow-auto', style: { resize: 'none', border: 'none' }, rows: 4 })
-                    )
-                )
-            );
+const mapDispatchToProps = dispatch => ({
+  toggleComment: () => dispatch(toggleComment)
+});
 
-            var modalFooter = React.createElement(
-                Button /*onClick="newComment(this)*/,
-                { 'class': 'close btn btn-default' /*data-dismiss="modal"*/ },
-                'Tweet'
-            );
+const mapStateToProps = state => ({
+  showComment: state.modal.showComment
+});
 
-            return React.createElement(GenericModal, { id: 'comment', body: modalBody, footer: modalFooter });
-        }
-    }]);
-
-    return NewComment;
-}(React.Component);
-
-export default NewComment;
-
+export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(NewComment);
 /*
 <div class="row">
     <div class="card my-auto w-100" style="border: none;">

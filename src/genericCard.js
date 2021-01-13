@@ -4,14 +4,14 @@ class GenericCard extends React.Component{
         super(props)
     }
 
-    render(props){
+    render(){
 
         return(
-        <Col className="px-2">
-            <CardHeader {...headerArgs}>{this.cardheader}</CardHeader>
-            <CardBody {...bodyArgs} style={{whiteSpace: "pre-wrap"}}>{this.cardbody}</CardBody>
-            <CardFooter {...footerArgs}>{this.cardfooter}</CardFooter>
-        </Col>);
+        <Reactstrap.Col className="px-2">
+            <Reactstrap.CardHeader {...this.props.headerArgs}>{this.props.cardheader}</Reactstrap.CardHeader>
+            <Reactstrap.CardBody {...this.props.bodyArgs} style={{whiteSpace: "pre-wrap"}}>{this.props.cardbody}</Reactstrap.CardBody>
+            <Reactstrap.CardFooter {...this.footerArgs}>{this.props.cardfooter}</Reactstrap.CardFooter>
+        </Reactstrap.Col>);
     }
 }
 

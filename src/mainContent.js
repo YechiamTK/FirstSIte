@@ -1,5 +1,5 @@
 import TweetCard from './tweetCard.js';
-import {togglePopup, toggleComment} from './modalSlice.js';
+//import {togglePopup, toggleComment} from './modalSlice.js';
 
 class MainContent extends React.Component{
 
@@ -21,11 +21,11 @@ class MainContent extends React.Component{
         var margin = (this.props.leftTransform == "left") ? "ml-4" : "";
 
         return(
-            <Col xs={cols} className={margin}>
-                <Container fuild={true}>
-                    {this.props.tweets.map((tweet, i) => <div><TweetCard tweetInfo={tweet} place={i}/></div>)}
-                </Container>
-            </Col>);
+            <Reactstrap.Col xs={cols} className={margin}>
+                <Reactstrap.Container /* fuild={true} */>
+                    {(this.props.tweets != undefined) ? (this.props.tweets.map((tweet, i) => <div><TweetCard tweetInfo={tweet} place={i}/></div>)) : null}
+                </Reactstrap.Container>
+            </Reactstrap.Col>);
     }   
 }
 

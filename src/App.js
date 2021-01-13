@@ -3,40 +3,43 @@ import MainRow from './mainRow.js';
 import SidebarLeft from './sidebarLeft.js';
 import MainContent from './mainContent.js';
 import SidebarRight from './sidebarRight.js';
-import NewTweet from './newTweet.js';
-import NewComment from './newComment.js';
-import PopupTweet from './popupTweet.js';
+// import NewTweet from './newTweet.js';
+// import NewComment from './newComment.js';
+// import PopupTweet from './popupTweet.js';
 
 class App extends React.Component{
     render(){
-        const {showTweet} = this.props.showTweet;
-        const {showPopup} = this.props.showPopup;
-        const {showComment} = this.props.showComment;
+        //const {showTweet} = this.props.showTweet;
+        //const {showPopup} = this.props.showPopup;
+        //const {showComment} = this.props.showComment;
+
+        const {tweets} = this.props;
 
         return( 
-            <Container fuild>
-            <TopNavbar />
-            <MainRow>
-                <SidebarLeft>
-                    {showTweet && <NewTweet />}
-                </SidebarLeft>
-                <MainContent>
-                    {showPopup && <PopupTweet />}
-                    {showComment && <NewComment />}
-                </MainContent>
-                <SidebarRight></SidebarRight>
-            </MainRow>
-            </Container>
+            <Reactstrap.Container fuild>
+                <TopNavbar />
+                <MainRow tweets={tweets} >
+                    <SidebarLeft />
+                        {/* {showTweet && <NewTweet />}
+                    </SidebarLeft> */}
+                    <MainContent />
+                        {/* {showPopup && <PopupTweet />}
+                        {showComment && <NewComment />}
+                    </MainContent> */}
+                    <SidebarRight />
+                </MainRow>
+            </Reactstrap.Container>
+                
         );
     }
 
     //put in getElementById('root');
 }
 
-const mapStateToProps = state => ({
+/* const mapStateToProps = state => ({
     showTweet: state.modal.showTweet,
     showPopup: state.modal.showPopup,
     showComment: state.modal.showComment
-});
+}); */
 
-export default connect(mapStateToProps)(App);
+export default /* connect(mapStateToProps)( */App;

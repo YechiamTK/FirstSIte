@@ -1,6 +1,6 @@
 import GenericCard from './genericCard.js';
-import NewComment from './newComment.js'
-import PopupTweet from './popupTweet.js';
+//import NewComment from './newComment.js'
+//import PopupTweet from './popupTweet.js';
 
 class TweetCard extends React.Component{
 
@@ -33,41 +33,44 @@ class TweetCard extends React.Component{
 
     render(){
 
-        const {togglePopup} = this.props.showPopup;
-        const {toggleComment} = this.props.showComment;
+        const {togglePopup, toggleComment} = this.props;
         
-        header = <a href="#" className="link text-decoration-none">{this.props.tweetInfo.getUsername()}</a>;
+        const header = <a href="#" className="link text-decoration-none">{this.props.tweetInfo.getUsername()}</a>;
 
         //could be useless, will return to it later
-        bodyArgs = [onClick={setInfo}, type="button", dataToggle="modal", dataTarget="#tweet-id"];
-        body = this.props.tweetInfo.getMessage();
+        const bodyArgs = {/* onClick={setInfo},  */type:"button", dataToggle:"modal", dataTarget:"#tweet-id"};
 
-        footer = 
-            <ButtonToolbar>
-                <ButtonGroup size="sm" className="px-5">
-                    <Button className="mx-auto text-white-50 rounded-circle" toggle={toggle}/*data-toggle="modal" data-target="#post-comment"*/>
+        const body = this.props.tweetInfo.getMessage();
+
+        const footer = 
+            <Reactstrap.ButtonToolbar>
+                <Reactstrap.ButtonGroup size="sm" className="px-5">
+                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={toggleComment}/*data-toggle="modal" data-target="#post-comment"*/>
                         <i className="far fa-comment-alt"></i>
-                    </Button>
-                    <Button className="mx-auto text-white-50 rounded-circle" onClick={toggleComment} /*data-toggle="modal" data-target="#tweet-id"*/>
-                        {/*<span dataToggle="collapse" dataTarget="#comments">*/}
+                    </Reactstrap.Button>
+                    {/*<Button className="mx-auto text-white-50 rounded-circle" onClick={toggleCommentSection} /*data-toggle="modal" data-target="#tweet-id"/>
+                        {/*<span dataToggle="collapse" dataTarget="#comments">/}
                             <i className="far fa-comment-alt"></i>
-                        {/*</span>*/}
-                    </Button>
-                    <Button className="mx-auto text-white-50 rounded-circle"><i className="fas fa-retweet"></i></Button>
-                    <Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-heart"></i></Button>
-                    <Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-share-square"></i></Button>
-                </ButtonGroup>
-            </ButtonToolbar>;
+                        {/*</span>/}
+                    </Button>*/}
+                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="fas fa-retweet"></i></Reactstrap.Button>
+                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-heart"></i></Reactstrap.Button>
+                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-share-square"></i></Reactstrap.Button>
+                </Reactstrap.ButtonGroup>
+            </Reactstrap.ButtonToolbar>;
+        
+        const headerArgs={};
+        const footerArgs={};
         
         return(
-        <Card className="mx-3 my-5" id={this.props.tweetInfo.getId()} onClick={togglePopup}>
-            <Row className="no-gutters bg-dark text-white-50">
-                <Col xs="auto" style={{flexGrow: '0 !important'}}>
+        <Reactstrap.Card className="mx-3 my-5" id={this.props.tweetInfo.getId()} onClick={togglePopup}>
+            <Reactstrap.Row className="no-gutters bg-dark text-white-50">
+                <Reactstrap.Col xs="auto" style={{flexGrow: '0 !important'}}>
                     <img src={"./profile.jpg"} style={{height:'50px'}} className="img-fluid" alt="" />
-                </Col>
-                <GenericCard cardheader={header} cardbody={body} {...bodyArgs} cardfooter={footer}></GenericCard>
-            </Row>
-        </Card>);
+                </Reactstrap.Col>
+                <GenericCard cardheader={header} cardbody={body} cardfooter={footer} {...bodyArgs} /* {...headerArgs} {...footerArgs} */ />
+            </Reactstrap.Row>
+        </Reactstrap.Card>);
     }
 }
 
@@ -76,7 +79,7 @@ const mapDispatchToProps = dispatch => ({
     togglePopup: () => dispatch(togglePopup),
     toggleComment: () => dispatch(toggleComment)
 });
-export default connect({}, mapDispatchToProps)(TweetCard);
+export default ReactRedux.connect(null, mapDispatchToProps)(TweetCard);
 
 /*
 <div className="card mx-3 my-5" id={this.props.tweetInfo.getId()}>
