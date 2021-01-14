@@ -33,18 +33,20 @@ class TweetCard extends React.Component{
 
     render(){
 
-        const {togglePopup, toggleComment} = this.props;
+        const {togglePopup, toggleComment, tweetInfo} = this.props;
         
+        const id = tweetInfo.getId();
+
         const header = <a href="#" className="link text-decoration-none">{this.props.tweetInfo.getUsername()}</a>;
 
         //could be useless, will return to it later
-        const bodyArgs = {/* onClick={setInfo},  */type:"button", dataToggle:"modal", dataTarget:"#tweet-id"};
+        const bodyArgs = {/* onClick={setInfo},  */type:"button", /*dataToggle:"modal", dataTarget:"#tweet-id"*/};
 
-        const body = this.props.tweetInfo.getMessage();
+        const body = tweetInfo.getMessage();
 
         const footer = 
-            <Reactstrap.ButtonToolbar>
-                <Reactstrap.ButtonGroup size="sm" className="px-5">
+            <Reactstrap.ButtonToolbar /*key={id}*/>
+                <Reactstrap.ButtonGroup size="sm" className="px-5" /*key={id}*/>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={toggleComment}/*data-toggle="modal" data-target="#post-comment"*/>
                         <i className="far fa-comment-alt"></i>
                     </Reactstrap.Button>
@@ -59,16 +61,16 @@ class TweetCard extends React.Component{
                 </Reactstrap.ButtonGroup>
             </Reactstrap.ButtonToolbar>;
         
-        const headerArgs={};
-        const footerArgs={};
+         const headerArgs={};
+         const footerArgs={};
         
         return(
-        <Reactstrap.Card className="mx-3 my-5" id={this.props.tweetInfo.getId()} onClick={togglePopup}>
+        <Reactstrap.Card id={id} className="mx-3 my-5" onClick={togglePopup}>
             <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                 <Reactstrap.Col xs="auto" style={{flexGrow: '0 !important'}}>
                     <img src={"./profile.jpg"} style={{height:'50px'}} className="img-fluid" alt="" />
                 </Reactstrap.Col>
-                <GenericCard cardheader={header} cardbody={body} cardfooter={footer} {...bodyArgs} /* {...headerArgs} {...footerArgs} */ />
+                <GenericCard {...{headerArgs: headerArgs, bodyArgs: bodyArgs, footerArgs: footerArgs, cardheader:header, cardbody:body, cardfooter:footer}} /* {...headerArgs} {...footerArgs} */ />
             </Reactstrap.Row>
         </Reactstrap.Card>);
     }

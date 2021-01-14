@@ -14,9 +14,19 @@ class Tweet {
       this._comments = comments;
     } else {
       this._comments = [];
-    }
+    } //const rnd = Math.random() * 999999;
+    //this._id = this._username ^ rnd ^ this._date.getTime();
 
-    this._id = String.fromCharCode(65 + Math.floor(Math.random() * 26)) + this._date.getTime();
+
+    this._id = String.fromCharCode(65 + Math.floor(Math.random() * 26)) + this.guidGenerator();
+  }
+
+  guidGenerator() {
+    var S4 = () => {
+      return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+    };
+
+    return S4() + S4() + S4() + S4() + S4() + S4() + S4() + S4();
   }
 
   getName() {

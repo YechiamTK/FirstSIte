@@ -12,16 +12,16 @@ class TopNavbar extends React.Component{
                     <span className="mx-5"></span>
                     <Reactstrap.Nav className="mx-auto">
                         <Reactstrap.NavItem className="mx-5"><Reactstrap.NavLink href="#" name="home">Home</Reactstrap.NavLink></Reactstrap.NavItem>
-                        <Reactstrap.UncontrolledDropdown /*nav={true} inNavbar={true}*/ className="mx-5">
-                            <Reactstrap.DropdownToggle /* nav={true} */>Notifications</Reactstrap.DropdownToggle>
+                        <Reactstrap.UncontrolledDropdown nav inNavbar className="mx-5">
+                            <Reactstrap.DropdownToggle nav>Notifications</Reactstrap.DropdownToggle>
                             <Reactstrap.DropdownMenu>
                                 <Reactstrap.DropdownItem>notification number one long</Reactstrap.DropdownItem>
                                 <Reactstrap.DropdownItem>notification num 2</Reactstrap.DropdownItem>
                                 <Reactstrap.DropdownItem>notification number three long</Reactstrap.DropdownItem>
                             </Reactstrap.DropdownMenu>
                         </Reactstrap.UncontrolledDropdown>
-                        <Reactstrap.UncontrolledDropdown /* nav={true} inNavbar={true} */ className="mx-5">
-                            <Reactstrap.DropdownToggle /* nav={true} */>Messages</Reactstrap.DropdownToggle>
+                        <Reactstrap.UncontrolledDropdown nav inNavbar className="mx-5">
+                            <Reactstrap.DropdownToggle nav>Messages</Reactstrap.DropdownToggle>
                             <Reactstrap.DropdownMenu>
                                 <Reactstrap.DropdownItem>message number one long</Reactstrap.DropdownItem>
                                 <Reactstrap.DropdownItem>message num 2</Reactstrap.DropdownItem>

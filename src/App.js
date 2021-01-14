@@ -16,7 +16,7 @@ class App extends React.Component{
         const {tweets} = this.props;
 
         return( 
-            <Reactstrap.Container fuild>
+            <Reactstrap.Container fluid>
                 <TopNavbar />
                 <MainRow tweets={tweets} >
                     <SidebarLeft />

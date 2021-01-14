@@ -29,12 +29,18 @@ class TopNavbar extends React.Component {
       href: "#",
       name: "home"
     }, "Home")), /*#__PURE__*/React.createElement(Reactstrap.UncontrolledDropdown, {
-      /*nav={true} inNavbar={true}*/
+      nav: true,
+      inNavbar: true,
       className: "mx-5"
-    }, /*#__PURE__*/React.createElement(Reactstrap.DropdownToggle, null, "Notifications"), /*#__PURE__*/React.createElement(Reactstrap.DropdownMenu, null, /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "notification number one long"), /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "notification num 2"), /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "notification number three long"))), /*#__PURE__*/React.createElement(Reactstrap.UncontrolledDropdown, {
-      /* nav={true} inNavbar={true} */
+    }, /*#__PURE__*/React.createElement(Reactstrap.DropdownToggle, {
+      nav: true
+    }, "Notifications"), /*#__PURE__*/React.createElement(Reactstrap.DropdownMenu, null, /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "notification number one long"), /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "notification num 2"), /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "notification number three long"))), /*#__PURE__*/React.createElement(Reactstrap.UncontrolledDropdown, {
+      nav: true,
+      inNavbar: true,
       className: "mx-5"
-    }, /*#__PURE__*/React.createElement(Reactstrap.DropdownToggle, null, "Messages"), /*#__PURE__*/React.createElement(Reactstrap.DropdownMenu, null, /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "message number one long"), /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "message num 2"), /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "message number three long")))), /*#__PURE__*/React.createElement(Reactstrap.Form, {
+    }, /*#__PURE__*/React.createElement(Reactstrap.DropdownToggle, {
+      nav: true
+    }, "Messages"), /*#__PURE__*/React.createElement(Reactstrap.DropdownMenu, null, /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "message number one long"), /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "message num 2"), /*#__PURE__*/React.createElement(Reactstrap.DropdownItem, null, "message number three long")))), /*#__PURE__*/React.createElement(Reactstrap.Form, {
       inline: true,
       className: "ml-auto"
     }, /*#__PURE__*/React.createElement(Reactstrap.Input, {

@@ -21,10 +21,14 @@ class MainContent extends React.Component {
     return /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: cols,
       className: margin
-    }, /*#__PURE__*/React.createElement(Reactstrap.Container, null, this.props.tweets != undefined ? this.props.tweets.map((tweet, i) => /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(TweetCard, {
+    }, /*#__PURE__*/React.createElement(Reactstrap.Container, {
+      fluid: true
+    }, this.props.tweets != undefined ? this.props.tweets.map((tweet, i) => /*#__PURE__*/React.createElement(TweetCard, {
+      key: tweet.getId(),
+      id: tweet.getId(),
       tweetInfo: tweet,
       place: i
-    }))) : null));
+    })) : null));
   }
 
 }

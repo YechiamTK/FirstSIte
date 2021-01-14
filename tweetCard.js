@@ -1,5 +1,3 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 import GenericCard from './genericCard.js'; //import NewComment from './newComment.js'
 //import PopupTweet from './popupTweet.js';
 
@@ -35,8 +33,10 @@ class TweetCard extends React.Component {
   render() {
     const {
       togglePopup,
-      toggleComment
+      toggleComment,
+      tweetInfo
     } = this.props;
+    const id = tweetInfo.getId();
     const header = /*#__PURE__*/React.createElement("a", {
       href: "#",
       className: "link text-decoration-none"
@@ -44,14 +44,16 @@ class TweetCard extends React.Component {
 
     const bodyArgs = {
       /* onClick={setInfo},  */
-      type: "button",
-      dataToggle: "modal",
-      dataTarget: "#tweet-id"
+      type: "button"
+      /*dataToggle:"modal", dataTarget:"#tweet-id"*/
+
     };
-    const body = this.props.tweetInfo.getMessage();
+    const body = tweetInfo.getMessage();
     const footer = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
       size: "sm",
       className: "px-5"
+      /*key={id}*/
+
     }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
       className: "mx-auto text-white-50 rounded-circle",
       onClick: toggleComment
@@ -75,8 +77,8 @@ class TweetCard extends React.Component {
     const headerArgs = {};
     const footerArgs = {};
     return /*#__PURE__*/React.createElement(Reactstrap.Card, {
+      id: id,
       className: "mx-3 my-5",
-      id: this.props.tweetInfo.getId(),
       onClick: togglePopup
     }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
       className: "no-gutters bg-dark text-white-50"
@@ -92,11 +94,14 @@ class TweetCard extends React.Component {
       },
       className: "img-fluid",
       alt: ""
-    })), /*#__PURE__*/React.createElement(GenericCard, _extends({
+    })), /*#__PURE__*/React.createElement(GenericCard, {
+      headerArgs: headerArgs,
+      bodyArgs: bodyArgs,
+      footerArgs: footerArgs,
       cardheader: header,
       cardbody: body,
       cardfooter: footer
-    }, bodyArgs))));
+    })));
   }
 
 }

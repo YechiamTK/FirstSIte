@@ -22,8 +22,8 @@ class MainContent extends React.Component{
 
         return(
             <Reactstrap.Col xs={cols} className={margin}>
-                <Reactstrap.Container /* fuild={true} */>
-                    {(this.props.tweets != undefined) ? (this.props.tweets.map((tweet, i) => <div><TweetCard tweetInfo={tweet} place={i}/></div>)) : null}
+                <Reactstrap.Container fluid>
+                    {(this.props.tweets != undefined) ? (this.props.tweets.map((tweet, i) => <TweetCard key={tweet.getId()} id={tweet.getId()} tweetInfo={tweet} place={i}/>)) : null}
                 </Reactstrap.Container>
             </Reactstrap.Col>);
     }   

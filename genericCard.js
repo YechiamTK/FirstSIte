@@ -12,7 +12,7 @@ class GenericCard extends React.Component {
       style: {
         whiteSpace: "pre-wrap"
       }
-    }), this.props.cardbody), /*#__PURE__*/React.createElement(Reactstrap.CardFooter, this.footerArgs, this.props.cardfooter));
+    }), this.props.cardbody), /*#__PURE__*/React.createElement(Reactstrap.CardFooter, this.props.footerArgs, this.props.cardfooter));
   }
 
 }

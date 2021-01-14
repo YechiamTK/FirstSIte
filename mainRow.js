@@ -45,7 +45,7 @@ class MainRow extends React.Component {
   render() {
     var transformSidebarLeft = this.transformSidebarLeft;
     return /*#__PURE__*/React.createElement(Reactstrap.Container, {
-      /*  fuild={true} */
+      fluid: true,
       className: "ml-n3"
     }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
       id: "main-row"
