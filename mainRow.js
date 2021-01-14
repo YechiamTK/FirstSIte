@@ -1,5 +1,6 @@
 import SidebarLeft from './sidebarLeft.js';
 import MainContent from './mainContent.js';
+import SidebarRight from './sidebarRight.js';
 
 class MainRow extends React.Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class MainRow extends React.Component {
     }), /*#__PURE__*/React.createElement(MainContent, {
       tweets: this.props.tweets,
       leftTransform: this.state.leftTransform
-    })));
+    }), /*#__PURE__*/React.createElement(SidebarRight, null)));
   }
 
 }

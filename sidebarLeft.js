@@ -1,6 +1,5 @@
 import SideBarLeftOption from './SidebarLeftOption.js';
-import ProfileFooter from './profileFooter.js'; //import {connect} from 'react-redux';
-
+import ProfileFooter from './profileFooter.js';
 import NewTweet from './newTweet.js';
 import { toggleTweet } from './modalSlice.js';
 
@@ -65,15 +64,9 @@ class SidebarLeft extends React.Component {
       className: "fas fa-arrow-left"
     }))), /*#__PURE__*/React.createElement(Reactstrap.Container, {
       fluid: true
-      /* Reactstrap.Collapse isOpen={isOpen} onClick={toggle} */
-
-      /* style={{transition: "transform 0.5s", ...transformBar}} */
-
     }, /*#__PURE__*/React.createElement(Reactstrap.ListGroup, {
       flush: true,
-      className: "bg-secondary h-100"
-      /* collapse show */
-      ,
+      className: "bg-secondary h-100",
       id: "sb-left"
     }, /*#__PURE__*/React.createElement(SideBarLeftOption, {
       option: "#Explore"

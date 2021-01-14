@@ -21,7 +21,7 @@ class MainContent extends React.Component{
         var margin = (this.props.leftTransform == "left") ? "ml-4" : "";
 
         return(
-            <Reactstrap.Col xs={cols} className={margin}>
+            <Reactstrap.Col xs={cols} className={margin} style={{transition: 'all 0.5s'}}>
                 <Reactstrap.Container fluid>
                     {(this.props.tweets != undefined) ? (this.props.tweets.map((tweet, i) => <TweetCard key={tweet.getId()} id={tweet.getId()} tweetInfo={tweet} place={i}/>)) : null}
                 </Reactstrap.Container>

@@ -3,7 +3,7 @@ class TopNavbar extends React.Component {
   //depending on the props (notifs=dropdown notifs etc).
   render() {
     return /*#__PURE__*/React.createElement(Reactstrap.Row, {
-      fixed: "top",
+      className: "sticky-top",
       name: "top-row"
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "12",

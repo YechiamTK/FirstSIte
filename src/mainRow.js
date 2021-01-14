@@ -1,5 +1,6 @@
 import SidebarLeft from './sidebarLeft.js';
 import MainContent from './mainContent.js';
+import SidebarRight from './sidebarRight.js';
 
 class MainRow extends React.Component{
 
@@ -47,8 +48,9 @@ class MainRow extends React.Component{
         return(
         <Reactstrap.Container fluid className="ml-n3">
             <Reactstrap.Row id="main-row">
-            <SidebarLeft transformSidebarLeft = {transformSidebarLeft.bind(this)} leftTransform = {this.state.leftTransform} />
+                <SidebarLeft transformSidebarLeft = {transformSidebarLeft.bind(this)} leftTransform = {this.state.leftTransform} />
                 <MainContent tweets={this.props.tweets} leftTransform = {this.state.leftTransform} />
+                <SidebarRight />
             </Reactstrap.Row>
         </Reactstrap.Container>);
     }

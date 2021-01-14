@@ -5,7 +5,7 @@ class TopNavbar extends React.Component{
 
     render(){
         return(
-        <Reactstrap.Row fixed='top' name='top-row'>
+        <Reactstrap.Row className="sticky-top" name='top-row'>
             <Reactstrap.Col xs='12' className='bg-dark'>
                 <Reactstrap.Navbar color='dark' expand='sm' className='pt-3 shadow d-flex'>
                     <img src={"logo.png"} style={{height:'50px'}} className="rounded-circle" alt="Profile Picture" />

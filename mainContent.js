@@ -20,7 +20,10 @@ class MainContent extends React.Component {
     var margin = this.props.leftTransform == "left" ? "ml-4" : "";
     return /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: cols,
-      className: margin
+      className: margin,
+      style: {
+        transition: 'all 0.5s'
+      }
     }, /*#__PURE__*/React.createElement(Reactstrap.Container, {
       fluid: true
     }, this.props.tweets != undefined ? this.props.tweets.map((tweet, i) => /*#__PURE__*/React.createElement(TweetCard, {

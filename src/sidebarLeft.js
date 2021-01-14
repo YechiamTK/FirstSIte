@@ -1,6 +1,5 @@
 import SideBarLeftOption from './SidebarLeftOption.js';
 import ProfileFooter from './profileFooter.js';
-//import {connect} from 'react-redux';
 import NewTweet from './newTweet.js';
 import {toggleTweet} from './modalSlice.js';
 
@@ -53,8 +52,8 @@ class SidebarLeft extends React.Component{
                     <i className="fas fa-arrow-left"></i>
                 </Reactstrap.Button>
             </aside>
-            <Reactstrap.Container fluid /* Reactstrap.Collapse isOpen={isOpen} onClick={toggle} */ /* style={{transition: "transform 0.5s", ...transformBar}} */>
-                <Reactstrap.ListGroup flush  className="bg-secondary h-100"/* collapse show */ id="sb-left">
+            <Reactstrap.Container fluid>
+                <Reactstrap.ListGroup flush  className="bg-secondary h-100" id="sb-left">
                     <SideBarLeftOption option="#Explore" />
                     <SideBarLeftOption option="Bookmarks" />
                     <SideBarLeftOption option="Lists" />
