@@ -38,7 +38,7 @@ class SidebarLeft extends React.Component{
             transition: 'transform 0.5s'};
         var transformSidebarLeft = this.props.transformSidebarLeft; 
         const oppositeTransform = (this.props.leftTransform == "left") ? "right" : "left";
-        const transformBar = (this.props.leftTransform == "left") ? {transform: 'translate(-85%)'} : {transform: 'translate(0%)'};
+        const transformBar = (this.props.leftTransform == "left") ? {transform: 'translate(-80%)'} : {transform: 'translate(0%)'};
         const transformArrow = (this.props.leftTransform == "left") ? {transform: 'rotate(180deg)'} : {transform: 'rotate(0deg)'};
 
         /* const [isOpen, setIsOpen] = useState(false);
@@ -47,26 +47,26 @@ class SidebarLeft extends React.Component{
 
 
         return(
-        <Reactstrap.Col xs="2" style={{position: "fixed"}} id="sidebar-left">
+        <Reactstrap.Col xs="2" style={{position: "fixed", transition: 'transform 0.5s', ...transformBar}} id="sidebar-left">
             <aside>
                 <Reactstrap.Button color="info" style={{...arrowStyle,...transformArrow}} onClick={()=>transformSidebarLeft(oppositeTransform)}>
                     <i className="fas fa-arrow-left"></i>
                 </Reactstrap.Button>
             </aside>
-            <Reactstrap.Collapse /* isOpen={isOpen} onClick={toggle} */ style={{transition: "transform 0.5s", ...transformBar}}>
-                <ul  className="list-group bg-secondary h-100 collapse show" id="sb-left" style={{transition: 'transform 0.5s', ...transformBar}}>
+            <Reactstrap.Container fluid /* Reactstrap.Collapse isOpen={isOpen} onClick={toggle} */ /* style={{transition: "transform 0.5s", ...transformBar}} */>
+                <Reactstrap.ListGroup flush  className="bg-secondary h-100"/* collapse show */ id="sb-left">
                     <SideBarLeftOption option="#Explore" />
                     <SideBarLeftOption option="Bookmarks" />
                     <SideBarLeftOption option="Lists" />
                     <SideBarLeftOption option="Moments" />
                     <SideBarLeftOption option="Settings" />
-                    <li className="bg-secondary border-0 d-flex justify-content-center align-items-center">
+                    <Reactstrap.ListGroupItem className="bg-secondary border-0 d-flex justify-content-center align-items-center">
                         <Reactstrap.Button color="info" size="lg" block onClick={toggleTweet}>Tweet</Reactstrap.Button>
                         <NewTweet />
-                    </li>
+                    </Reactstrap.ListGroupItem>
                     <ProfileFooter name="user-name" username="@Username" />
-                </ul>
-            </Reactstrap.Collapse>
+                </Reactstrap.ListGroup>
+            </Reactstrap.Container>
         </Reactstrap.Col>);
     }
 }

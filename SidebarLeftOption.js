@@ -1,6 +1,6 @@
 class SideBarLeftOption extends React.Component {
   render() {
-    return /*#__PURE__*/React.createElement("li", {
+    return /*#__PURE__*/React.createElement(Reactstrap.ListGroupItem, {
       className: "bg-secondary border-0"
     }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
       href: "#",

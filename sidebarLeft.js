@@ -35,7 +35,7 @@ class SidebarLeft extends React.Component {
     var transformSidebarLeft = this.props.transformSidebarLeft;
     const oppositeTransform = this.props.leftTransform == "left" ? "right" : "left";
     const transformBar = this.props.leftTransform == "left" ? {
-      transform: 'translate(-85%)'
+      transform: 'translate(-80%)'
     } : {
       transform: 'translate(0%)'
     };
@@ -50,7 +50,9 @@ class SidebarLeft extends React.Component {
     return /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "2",
       style: {
-        position: "fixed"
+        position: "fixed",
+        transition: 'transform 0.5s',
+        ...transformBar
       },
       id: "sidebar-left"
     }, /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement(Reactstrap.Button, {
@@ -61,19 +63,18 @@ class SidebarLeft extends React.Component {
       onClick: () => transformSidebarLeft(oppositeTransform)
     }, /*#__PURE__*/React.createElement("i", {
       className: "fas fa-arrow-left"
-    }))), /*#__PURE__*/React.createElement(Reactstrap.Collapse, {
-      /* isOpen={isOpen} onClick={toggle} */
-      style: {
-        transition: "transform 0.5s",
-        ...transformBar
-      }
-    }, /*#__PURE__*/React.createElement("ul", {
-      className: "list-group bg-secondary h-100 collapse show",
-      id: "sb-left",
-      style: {
-        transition: 'transform 0.5s',
-        ...transformBar
-      }
+    }))), /*#__PURE__*/React.createElement(Reactstrap.Container, {
+      fluid: true
+      /* Reactstrap.Collapse isOpen={isOpen} onClick={toggle} */
+
+      /* style={{transition: "transform 0.5s", ...transformBar}} */
+
+    }, /*#__PURE__*/React.createElement(Reactstrap.ListGroup, {
+      flush: true,
+      className: "bg-secondary h-100"
+      /* collapse show */
+      ,
+      id: "sb-left"
     }, /*#__PURE__*/React.createElement(SideBarLeftOption, {
       option: "#Explore"
     }), /*#__PURE__*/React.createElement(SideBarLeftOption, {
@@ -84,7 +85,7 @@ class SidebarLeft extends React.Component {
       option: "Moments"
     }), /*#__PURE__*/React.createElement(SideBarLeftOption, {
       option: "Settings"
-    }), /*#__PURE__*/React.createElement("li", {
+    }), /*#__PURE__*/React.createElement(Reactstrap.ListGroupItem, {
       className: "bg-secondary border-0 d-flex justify-content-center align-items-center"
     }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
       color: "info",
