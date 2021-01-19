@@ -1,4 +1,5 @@
 import GenericModal from './genericModal.js';
+import {toggleTweet} from './modalSlice.js';
 //import {connect} from 'react-redux';
 
 class NewTweet extends React.Component{
@@ -16,7 +17,7 @@ class NewTweet extends React.Component{
         */
     }
 
-    render(props){
+    render(){
         const {showTweet, toggleTweet} = this.props;
         
         var modalHeader = <span></span>;
@@ -40,9 +41,7 @@ class NewTweet extends React.Component{
 
 //export default connect(mapStateToProps, closeTweet)(NewTweet);
 
-const mapDispatchtoProps = dispatch =>({
-    toggleTweet: ()=>dispatch(toggleTweet),
-});
+const mapDispatchtoProps = {toggleTweet};
 
 const mapStateToProps = state => ({
     showTweet: state.modal.showTweet,

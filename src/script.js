@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const rootElem = document.getElementById("root");
     const store = RTK.configureStore({
         reducer:{
-            modal: modalSlice.reducer
+            modal: modalSlice.reducer,
         }
     });
     for (let i=0; i<tweets.length;i++){

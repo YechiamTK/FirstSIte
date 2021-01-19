@@ -1,4 +1,5 @@
 import GenericCard from './genericCard.js';
+import {toggleComment, togglePopup} from './modalSlice.js';
 //import NewComment from './newComment.js'
 //import PopupTweet from './popupTweet.js';
 
@@ -47,7 +48,7 @@ class TweetCard extends React.Component{
         const footer = 
             <Reactstrap.ButtonToolbar /*key={id}*/>
                 <Reactstrap.ButtonGroup size="sm" className="px-5" /*key={id}*/>
-                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={toggleComment}/*data-toggle="modal" data-target="#post-comment"*/>
+                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={()=>{toggleComment}}/*data-toggle="modal" data-target="#post-comment"*/>
                         <i className="far fa-comment-alt"></i>
                     </Reactstrap.Button>
                     {/*<Button className="mx-auto text-white-50 rounded-circle" onClick={toggleCommentSection} /*data-toggle="modal" data-target="#tweet-id"/>
@@ -65,7 +66,7 @@ class TweetCard extends React.Component{
          const footerArgs={};
         
         return(
-        <Reactstrap.Card id={id} className="mx-3 my-5" onClick={togglePopup}>
+        <Reactstrap.Card id={id} className="mx-3 my-5" onClick={()=>{togglePopup}}>
             <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                 <Reactstrap.Col xs="auto" style={{flexGrow: '0 !important'}}>
                     <img src={"./profile.jpg"} style={{height:'50px'}} className="img-fluid" alt="" />

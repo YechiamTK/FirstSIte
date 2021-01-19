@@ -1,4 +1,5 @@
-import GenericCard from './genericCard.js'; //import NewComment from './newComment.js'
+import GenericCard from './genericCard.js';
+import { toggleComment, togglePopup } from './modalSlice.js'; //import NewComment from './newComment.js'
 //import PopupTweet from './popupTweet.js';
 
 class TweetCard extends React.Component {
@@ -56,7 +57,9 @@ class TweetCard extends React.Component {
 
     }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
       className: "mx-auto text-white-50 rounded-circle",
-      onClick: toggleComment
+      onClick: () => {
+        toggleComment;
+      }
       /*data-toggle="modal" data-target="#post-comment"*/
 
     }, /*#__PURE__*/React.createElement("i", {
@@ -79,7 +82,9 @@ class TweetCard extends React.Component {
     return /*#__PURE__*/React.createElement(Reactstrap.Card, {
       id: id,
       className: "mx-3 my-5",
-      onClick: togglePopup
+      onClick: () => {
+        togglePopup;
+      }
     }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
       className: "no-gutters bg-dark text-white-50"
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {

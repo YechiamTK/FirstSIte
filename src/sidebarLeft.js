@@ -44,6 +44,7 @@ class SidebarLeft extends React.Component{
 
         const toggle = () => setIsOpen(!isOpen); */
 
+        const lg = ()=> {console.log("clicked!")};
 
         return(
         <Reactstrap.Col xs="2" style={{position: "fixed", transition: 'transform 0.5s', ...transformBar}} id="sidebar-left">
@@ -60,7 +61,7 @@ class SidebarLeft extends React.Component{
                     <SideBarLeftOption option="Moments" />
                     <SideBarLeftOption option="Settings" />
                     <Reactstrap.ListGroupItem className="bg-secondary border-0 d-flex justify-content-center align-items-center">
-                        <Reactstrap.Button color="info" size="lg" block onClick={toggleTweet}>Tweet</Reactstrap.Button>
+                        <Reactstrap.Button color="info" size="lg" block onClick={()=>{lg; toggleTweet;}}>Tweet</Reactstrap.Button>
                         <NewTweet />
                     </Reactstrap.ListGroupItem>
                     <ProfileFooter name="user-name" username="@Username" />
@@ -71,7 +72,7 @@ class SidebarLeft extends React.Component{
 }
 
 //const postTweet = {type: 'modal/toggleTweet', payload: ''};
-const mapDispatchToProps = dispatch => ({toggleTweet: () => dispatch(toggleTweet)});
+const mapDispatchToProps = {toggleTweet};
 //const mapStateToProps = state => state.postTweet;
 
 export default ReactRedux.connect(null, mapDispatchToProps)(SidebarLeft);

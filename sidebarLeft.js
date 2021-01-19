@@ -46,6 +46,10 @@ class SidebarLeft extends React.Component {
     /* const [isOpen, setIsOpen] = useState(false);
       const toggle = () => setIsOpen(!isOpen); */
 
+    const lg = () => {
+      console.log("clicked!");
+    };
+
     return /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "2",
       style: {
@@ -84,7 +88,10 @@ class SidebarLeft extends React.Component {
       color: "info",
       size: "lg",
       block: true,
-      onClick: toggleTweet
+      onClick: () => {
+        lg;
+        toggleTweet;
+      }
     }, "Tweet"), /*#__PURE__*/React.createElement(NewTweet, null)), /*#__PURE__*/React.createElement(ProfileFooter, {
       name: "user-name",
       username: "@Username"
@@ -94,10 +101,9 @@ class SidebarLeft extends React.Component {
 } //const postTweet = {type: 'modal/toggleTweet', payload: ''};
 
 
-const mapDispatchToProps = dispatch => ({
-  toggleTweet: () => dispatch(toggleTweet)
-}); //const mapStateToProps = state => state.postTweet;
-
+const mapDispatchToProps = {
+  toggleTweet
+}; //const mapStateToProps = state => state.postTweet;
 
 export default ReactRedux.connect(null, mapDispatchToProps)(SidebarLeft);
 /*
