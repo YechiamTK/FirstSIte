@@ -1,7 +1,7 @@
 import GenericModal from './genericModal.js';
 import GenericCard from './genericCard.js';
 import { togglePopup } from './modalSlice.js';
-import CommentSection from './commentSection.js';
+//import CommentSection from './commentSection.js';
 
 class PopupTweet extends React.Component{
 
@@ -10,12 +10,17 @@ class PopupTweet extends React.Component{
         this.state = {showSection: false};
     }
 
-    render(props){
-        const {togglePopup, showPopup} = this.props;
+    handlePopup=()=>{
+        const {togglePopup} = this.props;
+        togglePopup();
+    }
+
+    render(){
+        const {showPopup} = this.props;
         
 
         //add close button?
-        const header =<span></span>;
+        const header = <Reactstrap.Button onClick={()=>{this.handlePopup()}} className="close text-white-50">&times;</Reactstrap.Button>;
 
         //NEED TO INSERT CARD INFO, HOW?
         const cardfooter =
@@ -37,7 +42,7 @@ class PopupTweet extends React.Component{
                     </Reactstrap.Col>
                     <GenericCard cardfooter={this.cardfooter} />
                 </Reactstrap.Row>
-                <CommentSection style={{display: this.state.showSection ? 'block' : 'none'}} onClick={()=> this.state.showSection = !this.state.showSection}/>
+                {/* <CommentSection style={{display: this.state.showSection ? 'block' : 'none'}} onClick={()=> this.state.showSection = !this.state.showSection}/> */}
             </>;
 
         const footer =<span></span>;
@@ -48,9 +53,7 @@ class PopupTweet extends React.Component{
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    togglePopup: () => dispatch(togglePopup),
-});
+const mapDispatchToProps={togglePopup};
 
 const mapStateToProps = state => ({
     showPopup: state.modal.showPopup,

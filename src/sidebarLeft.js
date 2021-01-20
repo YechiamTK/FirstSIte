@@ -7,25 +7,17 @@ class SidebarLeft extends React.Component{
 
     /* constructor(props){
         super(props);
-        //this.state = {show:false};
-        
-        //this.showModal = thi.showModal.bind(this);
-        //this.hideModal = thi.hideModal.bind(this);
+
+        //this.handleClick = this.handleClick.bind(this);
     } */
 
-    /* postTweetHandler = () =>{
-        this.props.postTweet(this.state.postTweet);
-
-        //this.setState(postTweet=false)?
-    } */
-
-    
-    //showModal = () => this.setState({show:true})
-
-    //hideModal = () => this.setState({show:true})
+    handleClick=()=>{
+        const {toggleTweet} = this.props;
+        toggleTweet();
+    }
 
     render(){
-        const {toggleTweet} = this.props;
+        //const {toggleTweet} = this.props;
 
         const arrowStyle = {
             bordeRadius: '50%',
@@ -61,7 +53,7 @@ class SidebarLeft extends React.Component{
                     <SideBarLeftOption option="Moments" />
                     <SideBarLeftOption option="Settings" />
                     <Reactstrap.ListGroupItem className="bg-secondary border-0 d-flex justify-content-center align-items-center">
-                        <Reactstrap.Button color="info" size="lg" block onClick={()=>{lg; toggleTweet;}}>Tweet</Reactstrap.Button>
+                        <Reactstrap.Button color="info" size="lg" block onClick={()=>{this.handleClick()}}>Tweet</Reactstrap.Button>
                         <NewTweet />
                     </Reactstrap.ListGroupItem>
                     <ProfileFooter name="user-name" username="@Username" />

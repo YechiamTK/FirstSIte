@@ -4,12 +4,12 @@ class GenericModal extends React.Component{
         super(props);
     }
     
-    render(props){
+    render(){
         return(
-        <Reactstrap.Modal isOpen={modal} toggle={toggle} size="lg" className="bg-dark d-flex flex-grow-1" style={{borderRadius: '20px'}} id={props.id}>
-            <Reactstrap.ModalHeader>{props.header}</Reactstrap.ModalHeader>
-            <Reactstrap.ModalBody>{props.body}</Reactstrap.ModalBody>
-            <Reactstrap.ModalFooter>{props.footer}</Reactstrap.ModalFooter>
+        <Reactstrap.Modal contentClassName="bg-dark" {...this.props.other} /* isOpen={modal} toggle={toggle} */ size="lg" className="pt-5 d-flex flex-grow-1" style={{borderRadius: '20px'}} /* id={props.id} */>
+            <Reactstrap.ModalHeader>{this.props.header}</Reactstrap.ModalHeader>
+            <Reactstrap.ModalBody>{this.props.body}</Reactstrap.ModalBody>
+            <Reactstrap.ModalFooter>{this.props.footer}</Reactstrap.ModalFooter>
         </Reactstrap.Modal>);
     }
 }

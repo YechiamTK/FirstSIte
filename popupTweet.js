@@ -1,23 +1,36 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 import GenericModal from './genericModal.js';
 import GenericCard from './genericCard.js';
-import { togglePopup } from './modalSlice.js';
-import CommentSection from './commentSection.js';
+import { togglePopup } from './modalSlice.js'; //import CommentSection from './commentSection.js';
 
 class PopupTweet extends React.Component {
   constructor(props) {
     super(props);
+
+    _defineProperty(this, "handlePopup", () => {
+      const {
+        togglePopup
+      } = this.props;
+      togglePopup();
+    });
+
     this.state = {
       showSection: false
     };
   }
 
-  render(props) {
+  render() {
     const {
-      togglePopup,
       showPopup
     } = this.props; //add close button?
 
-    const header = /*#__PURE__*/React.createElement("span", null); //NEED TO INSERT CARD INFO, HOW?
+    const header = /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      onClick: () => {
+        this.handlePopup();
+      },
+      className: "close text-white-50"
+    }, "\xD7"); //NEED TO INSERT CARD INFO, HOW?
 
     const cardfooter = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
       size: "sm",
@@ -56,12 +69,7 @@ class PopupTweet extends React.Component {
       alt: ""
     })), /*#__PURE__*/React.createElement(GenericCard, {
       cardfooter: this.cardfooter
-    })), /*#__PURE__*/React.createElement(CommentSection, {
-      style: {
-        display: this.state.showSection ? 'block' : 'none'
-      },
-      onClick: () => this.state.showSection = !this.state.showSection
-    }));
+    })));
     const footer = /*#__PURE__*/React.createElement("span", null);
     const id = "popup";
     return /*#__PURE__*/React.createElement(React.Fragment, null, " ", showPopup ? /*#__PURE__*/React.createElement(GenericModal, {
@@ -72,9 +80,9 @@ class PopupTweet extends React.Component {
 
 }
 
-const mapDispatchToProps = dispatch => ({
-  togglePopup: () => dispatch(togglePopup)
-});
+const mapDispatchToProps = {
+  togglePopup
+};
 
 const mapStateToProps = state => ({
   showPopup: state.modal.showPopup

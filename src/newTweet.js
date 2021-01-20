@@ -17,20 +17,31 @@ class NewTweet extends React.Component{
         */
     }
 
+    handleClick=()=>{
+        const {toggleTweet} = this.props;
+        toggleTweet();
+    }
+
     render(){
-        const {showTweet, toggleTweet} = this.props;
+        const {showTweet} = this.props;
         
-        var modalHeader = <span></span>;
+        var modalHeader = <Reactstrap.Button onClick={()=>{this.handleClick()}} className="close text-white-50">&times;</Reactstrap.Button>;
         //<button type="button" className="close text-white-50" data-dismiss="modal">&times;</button>
-        var modalBody = <Reactstrap.Input type="textarea" className="form control bg-secondary text-white-50 border-dark overflow-auto" 
-                    placeholder="Start typing..." style={{resize:'none;'}} rows={5}></Reactstrap.Input>;
+        var modalBody = <Reactstrap.Input type="textarea" className="form control bg-secondary text-white-50 overflow-auto"
+                    placeholder="Start typing..." style={{resize:"none"}} rows={5}></Reactstrap.Input>;
         //<textarea id="tweet-text" className="form-control bg-secondary text-white-50 border-dark overflow-auto" style={{resize:'none;'}} rows="4"></textarea>
-        var modalFooter = <Reactstrap.Button onclick={()=>{toggleTweet(); postTweet()}} className="close" color="default">Tweet</Reactstrap.Button>;
+        var modalFooter = <Reactstrap.Button onClick={()=>{this.handleClick(); this.postTweet()}} className="close" color="default">Tweet</Reactstrap.Button>;
         //<button type="button" /*onclick="postTweet()"*/ className="close btn btn-default" data-dismiss="modal">Tweet</button>;
+
+        const atrs = {
+            isOpen: showTweet,
+            toggle: ()=>this.handleClick(),
+            //move toggle to GenericModal?
+        };
 
         return(
             <>
-            {showTweet ? (<GenericModal header={modalHeader} body={modalBody} footer={modalFooter} />) : null}
+                {showTweet ? (<GenericModal other={atrs} header={modalHeader} body={modalBody} footer={modalFooter} />) : null}
             </>
         );
     }

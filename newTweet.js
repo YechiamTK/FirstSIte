@@ -1,9 +1,18 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 import GenericModal from './genericModal.js';
 import { toggleTweet } from './modalSlice.js'; //import {connect} from 'react-redux';
 
 class NewTweet extends React.Component {
   constructor(props) {
     super(props); //this.setState = {showHide: this.props.show ? {display: 'block'} : {display: 'none'}};
+
+    _defineProperty(this, "handleClick", () => {
+      const {
+        toggleTweet
+      } = this.props;
+      toggleTweet();
+    });
   }
 
   postTweet() {
@@ -16,31 +25,41 @@ class NewTweet extends React.Component {
 
   render() {
     const {
-      showTweet,
-      toggleTweet
+      showTweet
     } = this.props;
-    var modalHeader = /*#__PURE__*/React.createElement("span", null); //<button type="button" className="close text-white-50" data-dismiss="modal">&times;</button>
+    var modalHeader = /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      onClick: () => {
+        this.handleClick();
+      },
+      className: "close text-white-50"
+    }, "\xD7"); //<button type="button" className="close text-white-50" data-dismiss="modal">&times;</button>
 
     var modalBody = /*#__PURE__*/React.createElement(Reactstrap.Input, {
       type: "textarea",
-      className: "form control bg-secondary text-white-50 border-dark overflow-auto",
+      className: "form control bg-secondary text-white-50 overflow-auto",
       placeholder: "Start typing...",
       style: {
-        resize: 'none;'
+        resize: "none"
       },
       rows: 5
     }); //<textarea id="tweet-text" className="form-control bg-secondary text-white-50 border-dark overflow-auto" style={{resize:'none;'}} rows="4"></textarea>
 
     var modalFooter = /*#__PURE__*/React.createElement(Reactstrap.Button, {
-      onclick: () => {
-        toggleTweet();
-        postTweet();
+      onClick: () => {
+        this.handleClick();
+        this.postTweet();
       },
       className: "close",
       color: "default"
     }, "Tweet"); //<button type="button" /*onclick="postTweet()"*/ className="close btn btn-default" data-dismiss="modal">Tweet</button>;
 
+    const atrs = {
+      isOpen: showTweet,
+      toggle: () => this.handleClick() //move toggle to GenericModal?
+
+    };
     return /*#__PURE__*/React.createElement(React.Fragment, null, showTweet ? /*#__PURE__*/React.createElement(GenericModal, {
+      other: atrs,
       header: modalHeader,
       body: modalBody,
       footer: modalFooter

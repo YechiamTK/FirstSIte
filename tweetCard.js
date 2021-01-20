@@ -1,10 +1,27 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 import GenericCard from './genericCard.js';
-import { toggleComment, togglePopup } from './modalSlice.js'; //import NewComment from './newComment.js'
-//import PopupTweet from './popupTweet.js';
+import { toggleComment, togglePopup } from './modalSlice.js';
+import PopupTweet from './popupTweet.js'; //import NewComment from './newComment.js'
 
 class TweetCard extends React.Component {
   constructor(props) {
     super(props);
+
+    _defineProperty(this, "handlPopup", () => {
+      const {
+        togglePopup
+      } = this.props;
+      togglePopup();
+    });
+
+    _defineProperty(this, "handleComment", () => {
+      const {
+        toggleComment
+      } = this.props;
+      toggleComment();
+    });
+
     var tweetInfo = this.props.tweetInfo;
   }
   /*
@@ -33,21 +50,18 @@ class TweetCard extends React.Component {
 
   render() {
     const {
-      togglePopup,
-      toggleComment,
       tweetInfo
     } = this.props;
     const id = tweetInfo.getId();
     const header = /*#__PURE__*/React.createElement("a", {
-      href: "#",
-      className: "link text-decoration-none"
+      className: "link text-decoration-none",
+      onClick: () => {
+        this.handlPopup();
+      }
     }, this.props.tweetInfo.getUsername()); //could be useless, will return to it later
 
     const bodyArgs = {
-      /* onClick={setInfo},  */
-      type: "button"
-      /*dataToggle:"modal", dataTarget:"#tweet-id"*/
-
+      /* onClick={setInfo},  type:"button", /*dataToggle:"modal", dataTarget:"#tweet-id"*/
     };
     const body = tweetInfo.getMessage();
     const footer = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
@@ -58,7 +72,7 @@ class TweetCard extends React.Component {
     }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
       className: "mx-auto text-white-50 rounded-circle",
       onClick: () => {
-        toggleComment;
+        this.handleComment();
       }
       /*data-toggle="modal" data-target="#post-comment"*/
 
@@ -83,9 +97,9 @@ class TweetCard extends React.Component {
       id: id,
       className: "mx-3 my-5",
       onClick: () => {
-        togglePopup;
+        this.handlPopup();
       }
-    }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
+    }, /*#__PURE__*/React.createElement(PopupTweet, null), /*#__PURE__*/React.createElement(Reactstrap.Row, {
       className: "no-gutters bg-dark text-white-50"
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "auto",
@@ -111,11 +125,10 @@ class TweetCard extends React.Component {
 
 }
 
-const mapDispatchToProps = dispatch => ({
-  togglePopup: () => dispatch(togglePopup),
-  toggleComment: () => dispatch(toggleComment)
-});
-
+const mapDispatchToProps = {
+  togglePopup,
+  toggleComment
+};
 export default ReactRedux.connect(null, mapDispatchToProps)(TweetCard);
 /*
 <div className="card mx-3 my-5" id={this.props.tweetInfo.getId()}>

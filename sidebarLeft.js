@@ -1,27 +1,24 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 import SideBarLeftOption from './SidebarLeftOption.js';
 import ProfileFooter from './profileFooter.js';
 import NewTweet from './newTweet.js';
 import { toggleTweet } from './modalSlice.js';
 
 class SidebarLeft extends React.Component {
-  /* constructor(props){
-      super(props);
-      //this.state = {show:false};
-      
-      //this.showModal = thi.showModal.bind(this);
-      //this.hideModal = thi.hideModal.bind(this);
-  } */
+  constructor(...args) {
+    super(...args);
 
-  /* postTweetHandler = () =>{
-      this.props.postTweet(this.state.postTweet);
-        //this.setState(postTweet=false)?
-  } */
-  //showModal = () => this.setState({show:true})
-  //hideModal = () => this.setState({show:true})
+    _defineProperty(this, "handleClick", () => {
+      const {
+        toggleTweet
+      } = this.props;
+      toggleTweet();
+    });
+  }
+
   render() {
-    const {
-      toggleTweet
-    } = this.props;
+    //const {toggleTweet} = this.props;
     const arrowStyle = {
       bordeRadius: '50%',
       position: 'absolute',
@@ -89,8 +86,7 @@ class SidebarLeft extends React.Component {
       size: "lg",
       block: true,
       onClick: () => {
-        lg;
-        toggleTweet;
+        this.handleClick();
       }
     }, "Tweet"), /*#__PURE__*/React.createElement(NewTweet, null)), /*#__PURE__*/React.createElement(ProfileFooter, {
       name: "user-name",
