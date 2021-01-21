@@ -2,7 +2,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 import GenericModal from './genericModal.js';
 import GenericCard from './genericCard.js';
-import { togglePopup } from './modalSlice.js'; //import CommentSection from './commentSection.js';
+import { togglePopup } from './modalSlice.js';
+import CommentSection from './commentSection.js';
 
 class PopupTweet extends React.Component {
   constructor(props) {
@@ -12,7 +13,16 @@ class PopupTweet extends React.Component {
       const {
         togglePopup
       } = this.props;
+      this.setState({
+        showSection: false
+      });
       togglePopup();
+    });
+
+    _defineProperty(this, "toggleCommentSection", () => {
+      this.setState({
+        showSection: !this.state.showSection
+      });
     });
 
     this.state = {
@@ -23,8 +33,7 @@ class PopupTweet extends React.Component {
   render() {
     const {
       showPopup
-    } = this.props; //add close button?
-
+    } = this.props;
     const header = /*#__PURE__*/React.createElement(Reactstrap.Button, {
       onClick: () => {
         this.handlePopup();
@@ -40,9 +49,10 @@ class PopupTweet extends React.Component {
     }, /*#__PURE__*/React.createElement("i", {
       className: "far fa-comment-alt"
     })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
-      className: "mx-auto text-white-50 rounded-circle"
-      /*onClick="{toggleCommentSection}*/
-
+      className: "mx-auto text-white-50 rounded-circle",
+      onClick: () => {
+        this.toggleCommentSection();
+      }
     }, /*#__PURE__*/React.createElement("i", {
       className: "far fa-comments"
     })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
@@ -71,7 +81,7 @@ class PopupTweet extends React.Component {
     })), /*#__PURE__*/React.createElement(GenericCard, {
       cardfooter: cardfooter
     })));
-    const footer = /*#__PURE__*/React.createElement("span", null);
+    const footer = this.state.showSection ? /*#__PURE__*/React.createElement(CommentSection, null) : null;
     const id = "popup";
     const atrs = {
       isOpen: showPopup,
@@ -82,6 +92,7 @@ class PopupTweet extends React.Component {
       other: atrs,
       header: header,
       body: body,
+      footer: footer,
       id: id
     }) : null, " ");
   }

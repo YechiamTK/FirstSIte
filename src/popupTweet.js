@@ -1,7 +1,7 @@
 import GenericModal from './genericModal.js';
 import GenericCard from './genericCard.js';
 import { togglePopup } from './modalSlice.js';
-//import CommentSection from './commentSection.js';
+import CommentSection from './commentSection.js';
 
 class PopupTweet extends React.Component{
 
@@ -12,14 +12,21 @@ class PopupTweet extends React.Component{
 
     handlePopup=()=>{
         const {togglePopup} = this.props;
+        this.setState({
+            showSection: false
+        });
         togglePopup();
+    }
+
+    toggleCommentSection=()=>{
+        this.setState({
+            showSection: !this.state.showSection
+        });
     }
 
     render(){
         const {showPopup} = this.props;
-        
 
-        //add close button?
         const header = <Reactstrap.Button onClick={()=>{this.handlePopup()}} className="close text-white-50">&times;</Reactstrap.Button>;
 
         //NEED TO INSERT CARD INFO, HOW?
@@ -27,7 +34,7 @@ class PopupTweet extends React.Component{
             <Reactstrap.ButtonToolbar>
                 <Reactstrap.ButtonGroup size="sm" className="px-5">
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-comment-alt"></i></Reactstrap.Button>
-                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" /*onClick="{toggleCommentSection}*/><i className="far fa-comments"></i></Reactstrap.Button>
+                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={()=>{this.toggleCommentSection()}}><i className="far fa-comments"></i></Reactstrap.Button>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="fas fa-retweet"></i></Reactstrap.Button>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-heart"></i></Reactstrap.Button>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-share-square"></i></Reactstrap.Button>
@@ -45,7 +52,7 @@ class PopupTweet extends React.Component{
                 {/* <CommentSection style={{display: this.state.showSection ? 'block' : 'none'}} onClick={()=> this.state.showSection = !this.state.showSection}/> */}
             </>;
 
-        const footer =<span></span>;
+        const footer = this.state.showSection ? (<CommentSection />) : null;
 
         const id = "popup";
 
@@ -55,7 +62,7 @@ class PopupTweet extends React.Component{
             //move toggle to GenericModal?
         };
 
-        return (<> {showPopup ? (<GenericModal other={atrs} header={header} body={body} id={id} />) : null} </>);
+        return (<> {showPopup ? (<GenericModal other={atrs} header={header} body={body} footer={footer} id={id} />) : null} </>);
     }
 }
 

@@ -1,17 +1,17 @@
-import React from 'react';
-import {ListGroup, ListGroupItem, Col, Row, Button, ButtonGroup, ButtonToolbar} from 'reactstrap';
-import GenericCard from './genericCard';
+//import React from 'react';
+//import {ListGroup, ListGroupItem, Col, Row, Button, ButtonGroup, ButtonToolbar} from 'reactstrap';
+import GenericCard from './genericCard.js';
 
 class CommentSection extends React.Component{
 
     render(){
 
-        header = <a href="#" class="link text-decoration-none">@Username</a>;
-
         //need to think about the whole "setInfo" thing, also in tweetCard.js
-        body =  <span></span>;
+        //for now, for debugging purposes: just garbage to see if it works.
+        const header = <a href="#" className="link text-decoration-none">@Username</a>;
+        const body =  <div>IT WORKS</div>;
 
-        footer = 
+        const footer = 
             <Reactstrap.ButtonToolbar>
                 <Reactstrap.ButtonGroup size="sm" className="px-5">
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" /*onClick={toggleComment} need to somehow fetch relevent Tweet info*/>
@@ -30,10 +30,10 @@ class CommentSection extends React.Component{
 
         return(
             <Reactstrap.ListGroup>
-                <Reactstrap.ListGroupItem className="toClone" style={{display: 'none'}} /*probably have a better way*/>
+                <Reactstrap.ListGroupItem className="toClone" /* style={{display: 'none'}} */ /*probably have a better way*/>
                     <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                         <Reactstrap.Col xs='auto'>
-                            <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="Profile Pic" />
+                            <img src={"./profile.jpg"} style={{height: "50px"}} className="img-fluid" alt="Profile Pic" />
                         </Reactstrap.Col>
                         <GenericCard cardheader={header} cardbody={body} cardfooter={footer} />
                     </Reactstrap.Row>

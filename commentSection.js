@@ -1,16 +1,17 @@
-import React from 'react';
-import { ListGroup, ListGroupItem, Col, Row, Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
-import GenericCard from './genericCard';
+//import React from 'react';
+//import {ListGroup, ListGroupItem, Col, Row, Button, ButtonGroup, ButtonToolbar} from 'reactstrap';
+import GenericCard from './genericCard.js';
 
 class CommentSection extends React.Component {
   render() {
-    header = /*#__PURE__*/React.createElement("a", {
+    //need to think about the whole "setInfo" thing, also in tweetCard.js
+    //for now, for debugging purposes: just garbage to see if it works.
+    const header = /*#__PURE__*/React.createElement("a", {
       href: "#",
-      class: "link text-decoration-none"
-    }, "@Username"); //need to think about the whole "setInfo" thing, also in tweetCard.js
-
-    body = /*#__PURE__*/React.createElement("span", null);
-    footer = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
+      className: "link text-decoration-none"
+    }, "@Username");
+    const body = /*#__PURE__*/React.createElement("div", null, "IT WORKS");
+    const footer = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
       size: "sm",
       className: "px-5"
     }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
@@ -33,10 +34,9 @@ class CommentSection extends React.Component {
       className: "far fa-share-square"
     }))));
     return /*#__PURE__*/React.createElement(Reactstrap.ListGroup, null, /*#__PURE__*/React.createElement(Reactstrap.ListGroupItem, {
-      className: "toClone",
-      style: {
-        display: 'none'
-      }
+      className: "toClone"
+      /* style={{display: 'none'}} */
+
       /*probably have a better way*/
 
     }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
@@ -44,9 +44,11 @@ class CommentSection extends React.Component {
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "auto"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "profile.jpg",
-      style: "height:50px;",
-      class: "img-fluid",
+      src: "./profile.jpg",
+      style: {
+        height: "50px"
+      },
+      className: "img-fluid",
       alt: "Profile Pic"
     })), /*#__PURE__*/React.createElement(GenericCard, {
       cardheader: header,
