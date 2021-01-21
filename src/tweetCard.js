@@ -32,7 +32,7 @@ class TweetCard extends React.Component{
         $("#tweet-id").find(".card-body").text(twt);
     }*/
 
-    handlPopup =()=>{
+    handlePopup =()=>{
         const {togglePopup} = this.props;
         togglePopup();
     }
@@ -48,7 +48,7 @@ class TweetCard extends React.Component{
         
         const id = tweetInfo.getId();
 
-        const header = <a className="link text-decoration-none" onClick={()=>{this.handlPopup()}}>{this.props.tweetInfo.getUsername()}</a>;
+        const header = <a className="link text-decoration-none" onClick={()=>{this.handlePopup()}}>{this.props.tweetInfo.getUsername()}</a>;
 
         //could be useless, will return to it later
         const bodyArgs = {/* onClick={setInfo},  type:"button", /*dataToggle:"modal", dataTarget:"#tweet-id"*/};
@@ -76,13 +76,13 @@ class TweetCard extends React.Component{
          const footerArgs={};
         
         return(
-        <Reactstrap.Card id={id} className="mx-3 my-5" onClick={()=>{this.handlPopup()}}>
-            <PopupTweet />
+        <Reactstrap.Card id={id} className="mx-3 my-5" onClick={()=>{this.handlePopup()}}>
+            {/* <PopupTweet /> */}
             <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                 <Reactstrap.Col xs="auto" style={{flexGrow: '0 !important'}}>
                     <img src={"./profile.jpg"} style={{height:'50px'}} className="img-fluid" alt="" />
                 </Reactstrap.Col>
-                <GenericCard {...{headerArgs: headerArgs, bodyArgs: bodyArgs, footerArgs: footerArgs, cardheader:header, cardbody:body, cardfooter:footer}} /* {...headerArgs} {...footerArgs} */ />
+                <GenericCard {...{headerArgs: headerArgs, bodyArgs: bodyArgs, footerArgs: footerArgs, cardheader:header, cardbody:body, cardfooter:footer}} />
             </Reactstrap.Row>
         </Reactstrap.Card>);
     }

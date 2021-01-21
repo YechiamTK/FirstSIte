@@ -54,7 +54,6 @@ class SidebarLeft extends React.Component{
                     <SideBarLeftOption option="Settings" />
                     <Reactstrap.ListGroupItem className="bg-secondary border-0 d-flex justify-content-center align-items-center">
                         <Reactstrap.Button color="info" size="lg" block onClick={()=>{this.handleClick()}}>Tweet</Reactstrap.Button>
-                        <NewTweet />
                     </Reactstrap.ListGroupItem>
                     <ProfileFooter name="user-name" username="@Username" />
                 </Reactstrap.ListGroup>

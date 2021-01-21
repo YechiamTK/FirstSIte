@@ -88,7 +88,7 @@ class SidebarLeft extends React.Component {
       onClick: () => {
         this.handleClick();
       }
-    }, "Tweet"), /*#__PURE__*/React.createElement(NewTweet, null)), /*#__PURE__*/React.createElement(ProfileFooter, {
+    }, "Tweet")), /*#__PURE__*/React.createElement(ProfileFooter, {
       name: "user-name",
       username: "@Username"
     }))));

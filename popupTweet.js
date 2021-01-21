@@ -58,23 +58,31 @@ class PopupTweet extends React.Component {
     }, /*#__PURE__*/React.createElement("i", {
       className: "far fa-share-square"
     }))));
-    var body = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Reactstrap.Row, {
+    const body = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Reactstrap.Row, {
       className: "no-gutters bg-dark text-white-50"
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "auto"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "profile.jpg",
-      style: "height:50px;",
-      class: "img-fluid",
-      alt: ""
+      src: "./profile.jpg",
+      style: {
+        height: "50px"
+      },
+      className: "img-fluid"
     })), /*#__PURE__*/React.createElement(GenericCard, {
       cardfooter: this.cardfooter
     })));
     const footer = /*#__PURE__*/React.createElement("span", null);
     const id = "popup";
+    const atrs = {
+      isOpen: showPopup,
+      toggle: () => this.handlePopup() //move toggle to GenericModal?
+
+    };
     return /*#__PURE__*/React.createElement(React.Fragment, null, " ", showPopup ? /*#__PURE__*/React.createElement(GenericModal, {
-      body: this.body,
-      id: this.id
+      other: atrs,
+      header: header,
+      body: body,
+      id: id
     }) : null, " ");
   }
 

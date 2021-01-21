@@ -34,11 +34,11 @@ class PopupTweet extends React.Component{
                 </Reactstrap.ButtonGroup>
             </Reactstrap.ButtonToolbar>;
 
-        var body =
+        const body =
             <>
                 <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                     <Reactstrap.Col xs="auto">
-                        <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="" />
+                        <img src={"./profile.jpg"} style={{height: "50px"}} className="img-fluid" />
                     </Reactstrap.Col>
                     <GenericCard cardfooter={this.cardfooter} />
                 </Reactstrap.Row>
@@ -49,7 +49,13 @@ class PopupTweet extends React.Component{
 
         const id = "popup";
 
-        return (<> {showPopup ? (<GenericModal body={this.body} id={this.id} />) : null} </>);
+        const atrs = {
+            isOpen: showPopup,
+            toggle: ()=>this.handlePopup(),
+            //move toggle to GenericModal?
+        };
+
+        return (<> {showPopup ? (<GenericModal other={atrs} header={header} body={body} id={id} />) : null} </>);
     }
 }
 

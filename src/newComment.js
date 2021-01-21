@@ -18,9 +18,13 @@ class NewComment extends React.Component{
     render(){
         const {showComment, toggleComment} = this.props;
 
-        var headerArgs = [className="mt-n3 bg-dark font-weight-bold", style={border: 'none'}];
-        var bodyArgs = [className="mt-n4 bg-dark", style={border: 'none'}];
-        var footerArgs = [className="mt-n4 bg-dark text-info", style={opacity: 0.8, border: 'none'}];
+        const headerStyle = {border: 'none'};
+        const bodyStyle = {border: 'none'};
+        const footerStyle = {opacity: 0.8, border: 'none'};
+
+        var headerArgs = {className:"mt-n3 bg-dark font-weight-bold", style:{headerStyle}};
+        var bodyArgs = {className:"mt-n4 bg-dark", style:{bodyStyle}};
+        var footerArgs = {className:"mt-n4 bg-dark text-info", style:{footerStyle}};
         var modalBody =
             <Reactstrap.Container fuild>
                 <Reactstrap.Row>

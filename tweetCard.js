@@ -8,7 +8,7 @@ class TweetCard extends React.Component {
   constructor(props) {
     super(props);
 
-    _defineProperty(this, "handlPopup", () => {
+    _defineProperty(this, "handlePopup", () => {
       const {
         togglePopup
       } = this.props;
@@ -56,7 +56,7 @@ class TweetCard extends React.Component {
     const header = /*#__PURE__*/React.createElement("a", {
       className: "link text-decoration-none",
       onClick: () => {
-        this.handlPopup();
+        this.handlePopup();
       }
     }, this.props.tweetInfo.getUsername()); //could be useless, will return to it later
 
@@ -97,9 +97,9 @@ class TweetCard extends React.Component {
       id: id,
       className: "mx-3 my-5",
       onClick: () => {
-        this.handlPopup();
+        this.handlePopup();
       }
-    }, /*#__PURE__*/React.createElement(PopupTweet, null), /*#__PURE__*/React.createElement(Reactstrap.Row, {
+    }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
       className: "no-gutters bg-dark text-white-50"
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "auto",
