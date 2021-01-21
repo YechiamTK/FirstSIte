@@ -1,7 +1,5 @@
 import GenericCard from './genericCard.js';
 import {toggleComment, togglePopup} from './modalSlice.js';
-import PopupTweet from './popupTweet.js';
-//import NewComment from './newComment.js'
 
 class TweetCard extends React.Component{
 
@@ -56,16 +54,11 @@ class TweetCard extends React.Component{
         const body = tweetInfo.getMessage();
 
         const footer = 
-            <Reactstrap.ButtonToolbar /*key={id}*/>
-                <Reactstrap.ButtonGroup size="sm" className="px-5" /*key={id}*/>
-                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={()=>{this.handleComment()}}/*data-toggle="modal" data-target="#post-comment"*/>
+            <Reactstrap.ButtonToolbar>
+                <Reactstrap.ButtonGroup size="sm" className="px-5">
+                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={()=>{this.handleComment()}}>
                         <i className="far fa-comment-alt"></i>
                     </Reactstrap.Button>
-                    {/*<Button className="mx-auto text-white-50 rounded-circle" onClick={toggleCommentSection} /*data-toggle="modal" data-target="#tweet-id"/>
-                        {/*<span dataToggle="collapse" dataTarget="#comments">/}
-                            <i className="far fa-comment-alt"></i>
-                        {/*</span>/}
-                    </Button>*/}
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="fas fa-retweet"></i></Reactstrap.Button>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-heart"></i></Reactstrap.Button>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-share-square"></i></Reactstrap.Button>
@@ -77,7 +70,6 @@ class TweetCard extends React.Component{
         
         return(
         <Reactstrap.Card id={id} className="mx-3 my-5">
-            {/* <PopupTweet /> */}
             <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                 <Reactstrap.Col xs="auto" style={{flexGrow: '0 !important'}}>
                     <img src={"./profile.jpg"} style={{height:'50px'}} className="img-fluid" alt="" />
@@ -94,28 +86,3 @@ const mapDispatchToProps = {
     toggleComment};
 
 export default ReactRedux.connect(null, mapDispatchToProps)(TweetCard);
-
-/*
-<div className="card mx-3 my-5" id={this.props.tweetInfo.getId()}>
-    <div className="row no-gutters bg-dark text-white-50">
-        <div className="col-auto" style={{flexGrow: '0 !important'}}>
-            <img src={"./profile.jpg"} style={{height:'50px'}} className="img-fluid" alt="" />
-        </div>
-        <div className="col">
-            <div className="px-2">
-                <div className="card-header"><a href="#" className="link text-decoration-none">{this.props.tweetInfo.getUsername()}</a></div>
-                <div className="card-body" onClick={this.setInfo} type="button" data-toggle="modal" data-target="#tweet-id">{this.props.tweetInfo.getMessage()}</div>
-                <div className="card-footer">
-                    <span className="btn-toolbar btn-group-sm px-5">
-                        <button type="button" className="btn mx-auto text-white-50 rounded-circle" data-toggle="modal" data-target="#post-comment"><i className="far fa-comment-alt"></i></button>
-                        <button type="button" className="btn mx-auto text-white-50 rounded-circle" data-toggle="modal" data-target="#tweet-id"><span data-toggle="collapse" data-target="#comments"><i className="far fa-comments"></i></span></button>
-                        <button type="button" className="btn mx-auto text-white-50 rounded-circle"><i className="fas fa-retweet"></i></button>
-                        <button type="button" className="btn mx-auto text-white-50 rounded-circle"><i className="far fa-heart"></i></button>
-                        <button type="button" className="btn mx-auto text-white-50 rounded-circle"><i className="far fa-share-square"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>           
-</div>
-*/

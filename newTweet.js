@@ -32,8 +32,7 @@ class NewTweet extends React.Component {
         this.handleClick();
       },
       className: "close text-white-50"
-    }, "\xD7"); //<button type="button" className="close text-white-50" data-dismiss="modal">&times;</button>
-
+    }, "\xD7");
     var modalBody = /*#__PURE__*/React.createElement(Reactstrap.Input, {
       type: "textarea",
       className: "form control bg-secondary text-white-50 overflow-auto",
@@ -42,8 +41,7 @@ class NewTweet extends React.Component {
         resize: "none"
       },
       rows: 5
-    }); //<textarea id="tweet-text" className="form-control bg-secondary text-white-50 border-dark overflow-auto" style={{resize:'none;'}} rows="4"></textarea>
-
+    });
     var modalFooter = /*#__PURE__*/React.createElement(Reactstrap.Button, {
       onClick: () => {
         this.handleClick();
@@ -51,8 +49,7 @@ class NewTweet extends React.Component {
       },
       className: "close",
       color: "default"
-    }, "Tweet"); //<button type="button" /*onclick="postTweet()"*/ className="close btn btn-default" data-dismiss="modal">Tweet</button>;
-
+    }, "Tweet");
     const atrs = {
       isOpen: showTweet,
       toggle: () => this.handleClick() //move toggle to GenericModal?
@@ -66,10 +63,7 @@ class NewTweet extends React.Component {
     }) : null);
   }
 
-} //const closeTweet = {type: 'modals/toggleModal', payload: ''};
-//const mapStateToProps = state => state.postTweet;
-//export default connect(mapStateToProps, closeTweet)(NewTweet);
-
+}
 
 const mapDispatchtoProps = {
   toggleTweet
@@ -77,7 +71,6 @@ const mapDispatchtoProps = {
 
 const mapStateToProps = state => ({
   showTweet: state.modal.showTweet
-}); //(state=>{showTweet: state.modal.showTweet}), (dispatch=>{toggleTweet: ()=>dispatch(toggleTweet)})
-
+});
 
 export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(NewTweet);

@@ -8,7 +8,5 @@ class SideBarLeftOption extends React.Component{
         );
     }
 }
-//<a href="#" className="btn btn-secondary btn-lg btn-block text-white-50" role="button" name="explore">{this.props.option}</a>
-
 
 export default SideBarLeftOption;

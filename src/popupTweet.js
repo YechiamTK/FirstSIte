@@ -49,7 +49,6 @@ class PopupTweet extends React.Component{
                     </Reactstrap.Col>
                     <GenericCard cardfooter={cardfooter} />
                 </Reactstrap.Row>
-                {/* <CommentSection style={{display: this.state.showSection ? 'block' : 'none'}} onClick={()=> this.state.showSection = !this.state.showSection}/> */}
             </>;
 
         const footer = this.state.showSection ? (<CommentSection />) : null;

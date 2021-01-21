@@ -1,5 +1,3 @@
-import TopNavbar from './topNavbar.js';
-import MainRow from './mainRow.js';
 import modalSlice from './modalSlice.js';
 import App from './App.js';
 
@@ -26,8 +24,6 @@ document.addEventListener("DOMContentLoaded", function(){
         <ReactRedux.Provider store={store}>
             <App tweets={allTweets} />
         </ReactRedux.Provider>, rootElem);
-    //ReactDOM.render(<TopNavbar />, document.getElementById('top-navbar'));
-    //ReactDOM.render(<MainRow tweets={allTweets} />, document.getElementById('main-row'));
 
 });
 
@@ -54,68 +50,6 @@ function newTweet(tweet_info, allTweets) {
     //create a new Tweet object with the tweet's info and push it to the tweets' db
     let newTweet = new Tweet(tweet_info.username,tweet_info.username,tweet_info.tweet);
     allTweets.push(newTweet);
-    
-    //let card_class = document.createElement("div");
-    //card_class.id=counter;
-    //$("div[name='main-content'").prepend(card_class);
-    //ReactDOM.render(<TweetCard username={newTweet.getUsername()} content={newTweet.getMessage()}/>, $("div[name='main-content'").find("#"+counter)[0]);
-    
-    //start making the tags needed to insert the new card layout.
-    /*let card_class = document.createElement("div");
-    card_class.setAttribute("class", "card mx-3 my-5");
-    card_class.setAttribute("name", "card-class"+counter);
-    let row_class = document.createElement("div");
-    row_class.setAttribute("class", "row no-gutters bg-dark text-white-50");
-    row_class.setAttribute("name", "row-class"+counter);
-    let profile_class = '<div class="col-auto" style="flex-grow:0 !important;">'+
-    '<img src="logo.png" style="height:50px;" class="img-fluid" alt=""></img></div>';
-    let col_class = document.createElement("div");
-    col_class.setAttribute("class", "col");
-    col_class.setAttribute("name", "col-class"+counter);
-    let card_col_class = document.createElement("div");
-    card_col_class.setAttribute("class", "card-block px-2");
-    card_col_class.setAttribute("name", "card-col-class"+counter);
-    let card_footer = '<div class="card-footer"><span class="btn-toolbar btn-group-sm px-5">'+
-        '<button type="button" class="btn text-white-50 mx-auto rounded-circle" data-toggle="modal" data-target="#post-comment"><i class="far fa-comment-alt"></i></button>'+
-        '<button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="fas fa-retweet"></i></button>'+
-        '<button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-heart"></i></button>'+
-        '<button type="button" class="btn text-white-50 mx-auto rounded-circle"><i class="far fa-share-square"></i></button></span></div>';
-
-    //get the tweet info (object parameter) and put it in the header and body of the card.
-    let username = newTweet.getUsername();
-    let tweet = newTweet.getMessage();
-    let card_header = '<div class="card-header"><a href="#" class="link text-decoration-none">@'+username+
-    '</a></div><span class="tweet-id" style="display:none;">'+newTweet._id+'</span>';
-    let card_body = '<div class="card-body" style="white-space: pre-wrap;" onclick="setInfo(this)" type="button"'+
-                    'data-toggle="modal" data-target="#tweet-id">'+tweet+"</div>";
-
-    //now actually add the card to the html.
-    $("div[name='main-content'").prepend(card_class);
-    $("div[name='card-class"+counter+"']").append(row_class);
-    $("div[name='row-class"+counter+"']").append(profile_class);
-    $("div[name='row-class"+counter+"']").append(col_class);
-    $("div[name='col-class"+counter+"']").append(card_col_class);
-    $("div[name='card-col-class"+counter+"']").append(card_header);
-    $("div[name='card-col-class"+counter+"']").append(card_body);
-    $("div[name='card-col-class"+counter+"']").append(card_footer);    
-    */
-    //add click function on the comment button to put the info of the commented tweet
-   
-    /*$('.fa-comment-alt').parent().on('click', function(){
-        //get tweet from parents' card using secret id [not very safe, but will do for now]
-        let id = $(this).parents(".card-footer").siblings(".tweet-id").text();
-        let tweet = allTweets[getTweetPlaceById(id,allTweets)];
-        
-        //get the new tweet's DOM
-        let header = $("#post-comment").find(".card").find(".card-header");
-        let body = $("#post-comment").find(".card").find(".card-body");
-        let footer = $("#post-comment").find(".card").find(".card-footer");
-
-        //insert the info to the comment modal
-        header.html(tweet.getUsername()+"<span class='tweet-id' style='display:none;'>"+tweet.getId()+"</span>");
-        body.html(tweet.getMessage());
-        footer.text("replying to "+tweet.getUsername());
-    });*/
 }
 
 

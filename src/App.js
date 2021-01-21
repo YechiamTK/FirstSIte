@@ -9,9 +9,6 @@ import SidebarRight from './sidebarRight.js';
 
 class App extends React.Component{
     render(){
-        //const {showTweet} = this.props.showTweet;
-        //const {showPopup} = this.props.showPopup;
-        //const {showComment} = this.props.showComment;
 
         const {tweets} = this.props;
 
@@ -20,12 +17,7 @@ class App extends React.Component{
                 <TopNavbar />
                 <MainRow tweets={tweets} >
                     <SidebarLeft />
-                        {/* {showTweet && <NewTweet />}
-                    </SidebarLeft> */}
                     <MainContent />
-                        {/* {showPopup && <PopupTweet />}
-                        {showComment && <NewComment />}
-                    </MainContent> */}
                     <SidebarRight />
                 </MainRow>
                 <NewTweet />
@@ -35,14 +27,6 @@ class App extends React.Component{
                 
         );
     }
-
-    //put in getElementById('root');
 }
 
-/* const mapStateToProps = state => ({
-    showTweet: state.modal.showTweet,
-    showPopup: state.modal.showPopup,
-    showComment: state.modal.showComment
-}); */
-
-export default /* connect(mapStateToProps)( */App;
+export default App;

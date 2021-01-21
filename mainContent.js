@@ -1,14 +1,10 @@
-import TweetCard from './tweetCard.js'; //import {togglePopup, toggleComment} from './modalSlice.js';
+import TweetCard from './tweetCard.js';
 
 class MainContent extends React.Component {
   constructor(props) {
     super(props);
-    var tweets = this.props.tweets; //this.setState = {popup: false, comment: false};
-  } //showPopup = () => this.setState({popup: true});
-  //hidePopup = () => this.setState({popup: false});
-  //showComment = () => this.setState({comment: true});
-  //hideComment = () => this.setState({comment: false});
-
+    var tweets = this.props.tweets;
+  }
 
   render() {
     var cols = this.props.leftTransform == "left" ? {

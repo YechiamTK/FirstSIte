@@ -1,4 +1,3 @@
-//import { createSlice } from '@reduxjs/toolkit'
 const modalSlice = RTK.createSlice({
   name: 'modal',
   initialState: {
@@ -8,7 +7,6 @@ const modalSlice = RTK.createSlice({
   },
   reducers: {
     toggleTweet(state) {
-      //if(state.showModal){alert("hi");}
       state.showTweet = !state.showTweet;
     },
 

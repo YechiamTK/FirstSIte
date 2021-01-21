@@ -135,29 +135,3 @@ const mapStateToProps = state => ({
 });
 
 export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(NewComment);
-/*
-<div class="row">
-    <div class="card my-auto w-100" style="border: none;">
-        <div class="row no-gutters bg-dark text-white-50">
-            <div class="col-auto">
-                <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-            </div>
-            <div class="col">
-                <div class="px-2">
-                    <div class="card-header mt-n3 bg-dark font-weight-bold" style="border:none;"></div>
-                    <div class="card-body mt-n4 bg-dark" style="white-space:pre-wrap;border:none;"></div>
-                    <div class="card-footer mt-n4 bg-dark text-info" style="opacity: 0.8;border:none;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row no-gutters bg-dark text-white-50">
-    <div class="col-auto">
-        <img src="profile.jpg" style="height:50px;" class="img-fluid" alt="">
-    </div>
-    <div class="col">
-        <textarea id="tweet-text" class="form-control bg-dark text-white-50 border-dark overflow-auto" style="resize:none;border:none;" rows="4"></textarea>
-    </div>
-</div>
-*/
