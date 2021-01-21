@@ -69,7 +69,7 @@ class PopupTweet extends React.Component {
       },
       className: "img-fluid"
     })), /*#__PURE__*/React.createElement(GenericCard, {
-      cardfooter: this.cardfooter
+      cardfooter: cardfooter
     })));
     const footer = /*#__PURE__*/React.createElement("span", null);
     const id = "popup";

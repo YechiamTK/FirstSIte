@@ -61,7 +61,7 @@ class TweetCard extends React.Component {
     }, this.props.tweetInfo.getUsername()); //could be useless, will return to it later
 
     const bodyArgs = {
-      /* onClick={setInfo},  type:"button", /*dataToggle:"modal", dataTarget:"#tweet-id"*/
+      onClick: this.handlePopup
     };
     const body = tweetInfo.getMessage();
     const footer = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
@@ -95,10 +95,7 @@ class TweetCard extends React.Component {
     const footerArgs = {};
     return /*#__PURE__*/React.createElement(Reactstrap.Card, {
       id: id,
-      className: "mx-3 my-5",
-      onClick: () => {
-        this.handlePopup();
-      }
+      className: "mx-3 my-5"
     }, /*#__PURE__*/React.createElement(Reactstrap.Row, {
       className: "no-gutters bg-dark text-white-50"
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {

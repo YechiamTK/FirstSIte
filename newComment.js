@@ -1,4 +1,4 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 import GenericModal from './genericModal.js';
 import GenericCard from './genericCard.js';
@@ -7,6 +7,13 @@ import { toggleComment } from './modalSlice.js';
 class NewComment extends React.Component {
   constructor(props) {
     super(props);
+
+    _defineProperty(this, "handleComment", () => {
+      const {
+        toggleComment
+      } = this.props;
+      toggleComment();
+    });
   }
 
   postComment() {
@@ -18,8 +25,7 @@ class NewComment extends React.Component {
 
   render() {
     const {
-      showComment,
-      toggleComment
+      showComment
     } = this.props;
     const headerStyle = {
       border: 'none'
@@ -31,26 +37,26 @@ class NewComment extends React.Component {
       opacity: 0.8,
       border: 'none'
     };
-    var headerArgs = {
+    const headerArgs = {
       className: "mt-n3 bg-dark font-weight-bold",
       style: {
         headerStyle
       }
     };
-    var bodyArgs = {
+    const bodyArgs = {
       className: "mt-n4 bg-dark",
       style: {
         bodyStyle
       }
     };
-    var footerArgs = {
+    const footerArgs = {
       className: "mt-n4 bg-dark text-info",
       style: {
         footerStyle
       }
     };
-    var modalBody = /*#__PURE__*/React.createElement(Reactstrap.Container, {
-      fuild: true
+    const modalBody = /*#__PURE__*/React.createElement(Reactstrap.Container, {
+      fluid: true
     }, /*#__PURE__*/React.createElement(Reactstrap.Row, null, /*#__PURE__*/React.createElement(Reactstrap.Card, {
       className: "my-auto w-100",
       style: {
@@ -61,18 +67,26 @@ class NewComment extends React.Component {
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "auto"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "profile.jpg",
-      style: "height:50px;",
-      class: "img-fluid",
+      src: "./profile.jpg",
+      style: {
+        height: "50px"
+      },
+      className: "img-fluid",
       alt: ""
-    })), /*#__PURE__*/React.createElement(GenericCard, _extends({}, headerArgs, bodyArgs, footerArgs))))), /*#__PURE__*/React.createElement(Reactstrap.Row, {
+    })), /*#__PURE__*/React.createElement(GenericCard, {
+      headerArgs: headerArgs,
+      bodyArgs: bodyArgs,
+      footerArgs: footerArgs
+    })))), /*#__PURE__*/React.createElement(Reactstrap.Row, {
       className: "no-gutters bg-dark text-white-50"
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "auto"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "profile.jpg",
-      style: "height:50px;",
-      class: "img-fluid",
+      src: "./profile.jpg",
+      style: {
+        height: "50px"
+      },
+      className: "img-fluid",
       alt: ""
     })), /*#__PURE__*/React.createElement(Reactstrap.Col, null, /*#__PURE__*/React.createElement(Reactstrap.Input, {
       type: "textarea",
@@ -84,15 +98,27 @@ class NewComment extends React.Component {
       },
       rows: 4
     }))));
-    var modalFooter = /*#__PURE__*/React.createElement(Reactstrap.Button, {
+    const modalHeader = /*#__PURE__*/React.createElement(Reactstrap.Button, {
       onClick: () => {
-        toggleComment();
+        this.handleComment();
+      },
+      className: "close text-white-50"
+    }, "\xD7");
+    const modalFooter = /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      onClick: () => {
+        this.handleComment();
         postComment();
       },
-      class: "close btn btn-default"
+      className: "close btn btn-default"
     }, "Tweet");
+    const atrs = {
+      isOpen: showComment,
+      toggle: () => this.handleComment() //move toggle to GenericModal?
+
+    };
     return /*#__PURE__*/React.createElement(React.Fragment, null, showComment ? /*#__PURE__*/React.createElement(GenericModal, {
-      id: "comment",
+      other: atrs,
+      header: modalHeader,
       body: modalBody,
       footer: modalFooter
     }) : null);
@@ -100,9 +126,9 @@ class NewComment extends React.Component {
 
 }
 
-const mapDispatchToProps = dispatch => ({
-  toggleComment: () => dispatch(toggleComment)
-});
+const mapDispatchToProps = {
+  toggleComment
+};
 
 const mapStateToProps = state => ({
   showComment: state.modal.showComment

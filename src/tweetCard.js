@@ -51,7 +51,7 @@ class TweetCard extends React.Component{
         const header = <a className="link text-decoration-none" onClick={()=>{this.handlePopup()}}>{this.props.tweetInfo.getUsername()}</a>;
 
         //could be useless, will return to it later
-        const bodyArgs = {/* onClick={setInfo},  type:"button", /*dataToggle:"modal", dataTarget:"#tweet-id"*/};
+        const bodyArgs = {onClick: this.handlePopup};
 
         const body = tweetInfo.getMessage();
 
@@ -76,7 +76,7 @@ class TweetCard extends React.Component{
          const footerArgs={};
         
         return(
-        <Reactstrap.Card id={id} className="mx-3 my-5" onClick={()=>{this.handlePopup()}}>
+        <Reactstrap.Card id={id} className="mx-3 my-5">
             {/* <PopupTweet /> */}
             <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                 <Reactstrap.Col xs="auto" style={{flexGrow: '0 !important'}}>

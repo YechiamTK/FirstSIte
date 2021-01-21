@@ -17,7 +17,7 @@ class GenericModal extends React.Component {
       }
       /* id={props.id} */
 
-    }), /*#__PURE__*/React.createElement(Reactstrap.ModalHeader, null, this.props.header), /*#__PURE__*/React.createElement(Reactstrap.ModalBody, null, this.props.body), /*#__PURE__*/React.createElement(Reactstrap.ModalFooter, null, this.props.footer));
+    }), /*#__PURE__*/React.createElement(Reactstrap.ModalHeader, this.props.headerArgs, this.props.header), /*#__PURE__*/React.createElement(Reactstrap.ModalBody, this.props.bodyArgs, this.props.body), /*#__PURE__*/React.createElement(Reactstrap.ModalFooter, this.props.footerArgs, this.props.footer));
   }
 
 }
