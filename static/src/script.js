@@ -2,7 +2,7 @@ import modalSlice from './modalSlice.js';
 import App from './App.js';
 
 "use strict";
-var allTweets = [];                 //global variable, because it merely emulates the object I'd control via a server
+var allTweets = JSON.parse(document.getElementById('root').dataset.tweets);
 var currUser = "Yechiam Weiss";     //global variable, because I actually need to set it globally as the logged in user
 
 /*
@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function(){
             modal: modalSlice.reducer,
         }
     });
-    for (let i=0; i<tweets.length;i++){
+    /*for (let i=0; i<tweets.length;i++){
         newTweet(tweets[i], allTweets);
-    }
+    }*/
 
     ReactDOM.render(
         <ReactRedux.Provider store={store}>

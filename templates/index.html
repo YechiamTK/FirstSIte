@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
-    <link rel="stylesheet" href="bs_overrides.css" />
-    <script src="./tweets.js"></script>
-    <script src="./tweetClass.js"></script>
-    <script type='module' src="./script.js"></script>
+    <link rel="stylesheet" href="../static/bs_overrides.css" />
+    <script src="../static/tweets.js"></script>
+    <script src="../static/tweetClass.js"></script>
+    <script type='module' src="../static/script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -26,6 +26,6 @@
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.2/react-redux.min.js"></script>
     <script crossorigin src="https://unpkg.com/@reduxjs/toolkit/dist/redux-toolkit.umd.js"></script>
 
-    <div id="root"></div>
+    <div id="root" tweets={{tweets|tojson}}></div>
 </body>
 </html>
