@@ -3,7 +3,7 @@ from flask import (
 )
 
 from .db import get_db
-
+import json
 
 bp = Blueprint('posts', __name__)
 
@@ -15,4 +15,25 @@ def index():
         ' FROM tweet t JOIN user u ON t.author_id=u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('/index.html', tweets=posts)
+    tweets = []
+    for post in posts:
+        tweets.append(list(post))
+    return render_template('/index.html', tweets=json.dumps(tweets, default=str))
+
+@bp.route('/', methods=('GET', 'POST'))
+def postTweet():
+    if request.method == 'POST':
+        body = request.form('body')
+        author_id = request.form('id')
+        err = None
+
+        if not body:
+            error = "No tweet text"
+        
+        db = get_db()
+        db.execute(
+            'INSERT INTO tweet(author_id, body)'
+            ' VALUES (?, ?)',
+            (author_id, body)
+        )
+        db.commit()

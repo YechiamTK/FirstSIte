@@ -35,6 +35,7 @@ class NewTweet extends React.Component {
     }, "\xD7");
     var modalBody = /*#__PURE__*/React.createElement(Reactstrap.Input, {
       type: "textarea",
+      method: "post",
       className: "form control bg-secondary text-white-50 overflow-auto",
       placeholder: "Start typing...",
       style: {
@@ -47,6 +48,7 @@ class NewTweet extends React.Component {
         this.handleClick();
         this.postTweet();
       },
+      type: "submit",
       className: "close",
       color: "default"
     }, "Tweet");

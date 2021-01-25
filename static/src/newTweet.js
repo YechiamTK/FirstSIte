@@ -27,10 +27,10 @@ class NewTweet extends React.Component{
         
         var modalHeader = <Reactstrap.Button onClick={()=>{this.handleClick()}} className="close text-white-50">&times;</Reactstrap.Button>;
         
-        var modalBody = <Reactstrap.Input type="textarea" className="form control bg-secondary text-white-50 overflow-auto"
+        var modalBody = <Reactstrap.Input type="textarea" method="post" className="form control bg-secondary text-white-50 overflow-auto"
                     placeholder="Start typing..." style={{resize:"none"}} rows={5}></Reactstrap.Input>;
         
-        var modalFooter = <Reactstrap.Button onClick={()=>{this.handleClick(); this.postTweet()}} className="close" color="default">Tweet</Reactstrap.Button>;
+        var modalFooter = <Reactstrap.Button onClick={()=>{this.handleClick(); this.postTweet()}} type="submit" className="close" color="default">Tweet</Reactstrap.Button>;
 
         const atrs = {
             isOpen: showTweet,

@@ -4,8 +4,7 @@ DROP TABLE IF EXISTS tweet;
 CREATE TABLE user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
-    flname TEXT NOT NULL,
-    password TEXT NOT NULL
+    flname TEXT NOT NULL
 );
 
 CREATE TABLE tweet(

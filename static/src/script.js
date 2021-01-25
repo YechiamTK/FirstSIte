@@ -2,7 +2,8 @@ import modalSlice from './modalSlice.js';
 import App from './App.js';
 
 "use strict";
-var allTweets = JSON.parse(document.getElementById('root').dataset.tweets);
+const twts = document.getElementById('root').getAttribute("data-tweets");
+var allTweets = twts ? JSON.parse(twts) : null;
 var currUser = "Yechiam Weiss";     //global variable, because I actually need to set it globally as the logged in user
 
 /*
