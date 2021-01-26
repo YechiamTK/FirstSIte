@@ -2,8 +2,11 @@ import modalSlice from './modalSlice.js';
 import App from './App.js';
 
 "use strict";
-const twts = document.getElementById('root').getAttribute("data-tweets");
-var allTweets = twts ? JSON.parse(twts) : null;
+const patterns = [
+    /\\u0027(.*)\\u0027/,
+    /\[?.*?\]/g
+]
+var allTweets = [] 
 var currUser = "Yechiam Weiss";     //global variable, because I actually need to set it globally as the logged in user
 
 /*
@@ -12,14 +15,29 @@ I'll need to edit it later with db to load all [recent?] tweets from db.
 */
 document.addEventListener("DOMContentLoaded", function(){
     const rootElem = document.getElementById("root");
+    const posts = [...rootElem.getAttribute("data-posts").matchAll(patterns[1])];
+    
+    const twts = [];
+    posts.forEach((o,i,a)=>twts.push(a[i][0].substring(1, a[i][0].length-1).split(',')));
+    
+    for(let i=0;i<twts.length;i++){
+        //twts[i][0] = twts[i][0].match(patterns[1])[1];
+        twts[i].forEach((o,j,a)=>a[j]=a[j].match(patterns[0]) ? a[j].match(patterns[0])[1] : a[j]);
+        twts[i].splice(2,6,twts[i].slice(2,8).join(','));
+        twts[i].forEach((o,j,a)=>a[j]=a[j].trim());
+    }
+
+    //const tweets = []
+    //tweets.push(twts);
+    
     const store = RTK.configureStore({
         reducer:{
             modal: modalSlice.reducer,
         }
     });
-    /*for (let i=0; i<tweets.length;i++){
-        newTweet(tweets[i], allTweets);
-    }*/
+    for (let i=0; i<twts.length;i++){
+        newTweet(twts[i], allTweets);
+    }
 
     ReactDOM.render(
         <ReactRedux.Provider store={store}>
@@ -44,12 +62,17 @@ Currently in js-format. When I'll start using a db
 I'll need to put it in json-format.
 NOTE: Currently (I think) too convoluted because I'm not using a list.
 */
-function newTweet(tweet_info, allTweets) {
+function newTweet(tweet, allTweets) {
     //hopefully temporary only: count the cards added for unique id.
     let counter = add();
 
+    const body = tweet[1];
+    const time = Date(tweet[2]);
+    const usrname = tweet[4];
+    const flname = tweet[5];
+
     //create a new Tweet object with the tweet's info and push it to the tweets' db
-    let newTweet = new Tweet(tweet_info.username,tweet_info.username,tweet_info.tweet);
+    let newTweet = new Tweet(flname, usrname, body, time);
     allTweets.push(newTweet);
 }
 

@@ -15,11 +15,11 @@ def index():
         ' FROM tweet t JOIN user u ON t.author_id=u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    tweets = []
+    tweets = ""
     for post in posts:
-        tweets.append(list(post))
-    return render_template('/index.html', tweets=json.dumps(tweets, default=str))
-
+        tweets+=(str(list(post)))
+    return render_template('/index.html', posts=tweets)
+#json.dumps(tweets, default=str)
 @bp.route('/', methods=('GET', 'POST'))
 def postTweet():
     if request.method == 'POST':

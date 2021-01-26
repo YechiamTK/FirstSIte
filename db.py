@@ -31,9 +31,23 @@ def init_db():
     db.commit()
 
     db.execute(
+        'INSERT INTO user(username, flname)'
+        ' VALUES (?, ?)',
+        ("YechiamWE2", "Yechiam Weiss2")
+    )
+    db.commit()
+
+    db.execute(
         'INSERT INTO tweet(author_id, body)'
         ' VALUES (?, ?)',
         (1, "abcdefg")
+    )
+    db.commit()
+
+    db.execute(
+        'INSERT INTO tweet(author_id, body)'
+        ' VALUES (?, ?)',
+        (2, "hijklm")
     )
     db.commit()
 
