@@ -4,11 +4,12 @@ from flask import (
 
 from .db import get_db
 import json
+import sys
 
 bp = Blueprint('posts', __name__)
 
-@bp.route('/')
-def index():
+@bp.route('/', methods=('GET', 'POST'))
+def index():        
     db = get_db()
     posts = db.execute(
         'SELECT t.id, body, created, author_id, username, flname'
@@ -18,13 +19,18 @@ def index():
     tweets = ""
     for post in posts:
         tweets+=(str(list(post)))
+    print('CHECK', file=sys.stdout)
     return render_template('/index.html', posts=tweets)
+
 #json.dumps(tweets, default=str)
-@bp.route('/', methods=('GET', 'POST'))
+
+@bp.route('/postTweet', methods=('GET', 'POST'))
 def postTweet():
+    print('Entered postTweet', file=sys.stdout)
     if request.method == 'POST':
-        body = request.form('body')
-        author_id = request.form('id')
+        print('Caught POST', file=sys.stdout)
+        body = request.form['newtweet']
+        """ author_id = request.form('id') """
         err = None
 
         if not body:
@@ -34,6 +40,23 @@ def postTweet():
         db.execute(
             'INSERT INTO tweet(author_id, body)'
             ' VALUES (?, ?)',
-            (author_id, body)
+            (1, body)
         )
         db.commit()
+    return ('', 204)
+
+
+@bp.route('/fetchTweets')
+def fetchTweets():
+    print('Entered fetchTweets', file=sys.stdout)
+    db = get_db()
+    posts = db.execute(
+    'SELECT t.id, body, created, author_id, username, flname'
+    ' FROM tweet t JOIN user u ON t.author_id=u.id'
+    ' ORDER BY created DESC'
+    ).fetchall()
+    tweets = ""
+    for post in posts:
+        tweets+=(str(list(post)))
+    print('FETCH', file=sys.stdout)
+    return (tweets)

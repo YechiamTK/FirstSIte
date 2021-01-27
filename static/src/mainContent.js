@@ -1,23 +1,65 @@
+import { updateTweets } from './flaskSlice.js';
 import TweetCard from './tweetCard.js';
 
 class MainContent extends React.Component{
 
     constructor(props){
         super(props);
-        var tweets = this.props.tweets;
+        this.state = {tweets: this.state ? this.state.tweets : this.props.tweets};
+        this.handleUpdate = this.handleUpdate.bind(this);
+        this.updateFromServer = this.updateFromServer.bind(this);
+    }
+
+    updateFromServer=()=>{
+        //const {updateTweets} = this.props;
+        let xhttp = new XMLHttpRequest();
+        let data = "Error";
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200){
+                data = this.responseText;
+            }
+        };
+        xhttp.open("GET", '/fetchTweets', false);
+        xhttp.send();
+        return data
+        //updateTweets();
+        
+    }    
+    
+    handleUpdate=()=>{
+        const {updateTweets} = this.props;  
+        const {update} = this.props;
+        if(update){
+            //this.state = {tweets: []};
+            //this.updateFromServer(this.state.tweets);
+            this.setState({tweets: this.updateFromServer()});
+            updateTweets();
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        this.handleUpdate();
     }
 
     render(){
+        //this.handleUpdate();
+
         var cols = (this.props.leftTransform == "left") ?  {size: 10} : {size: 8, offset: 2};
         var margin = (this.props.leftTransform == "left") ? "ml-4" : "";
 
         return(
             <Reactstrap.Col xs={cols} className={margin} style={{transition: 'all 0.5s'}}>
                 <Reactstrap.Container fluid>
-                    {(this.props.tweets != undefined) ? (this.props.tweets.map((tweet, i) => <TweetCard key={tweet.getId()} id={tweet.getId()} tweetInfo={tweet} place={i}/>)) : null}
+                    {(this.state.tweets != undefined) ? (this.state.tweets.map((tweet, i) => <TweetCard key={tweet.getId()} id={tweet.getId()} tweetInfo={tweet} place={i}/>)) : null}
                 </Reactstrap.Container>
             </Reactstrap.Col>);
     }   
 }
 
-export default MainContent;
+const mapDispatchtoProps={updateTweets};
+
+const mapStateToProps = state => ({
+    update: state.flask.update,
+});
+
+export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(MainContent);

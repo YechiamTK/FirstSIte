@@ -1,4 +1,5 @@
 import modalSlice from './modalSlice.js';
+import flaskSlice from './flaskSlice.js';
 import App from './App.js';
 
 "use strict";
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const store = RTK.configureStore({
         reducer:{
             modal: modalSlice.reducer,
+            flask: flaskSlice.reducer,
         }
     });
     for (let i=0; i<twts.length;i++){

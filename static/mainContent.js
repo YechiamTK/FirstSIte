@@ -1,12 +1,59 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+import { updateTweets } from './flaskSlice.js';
 import TweetCard from './tweetCard.js';
 
 class MainContent extends React.Component {
   constructor(props) {
     super(props);
-    var tweets = this.props.tweets;
+
+    _defineProperty(this, "updateFromServer", () => {
+      //const {updateTweets} = this.props;
+      let xhttp = new XMLHttpRequest();
+      let data = "Error";
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          data = this.responseText;
+        }
+      };
+
+      xhttp.open("GET", '/fetchTweets', false);
+      xhttp.send();
+      return data; //updateTweets();
+    });
+
+    _defineProperty(this, "handleUpdate", () => {
+      const {
+        updateTweets
+      } = this.props;
+      const {
+        update
+      } = this.props;
+
+      if (update) {
+        //this.state = {tweets: []};
+        //this.updateFromServer(this.state.tweets);
+        this.setState({
+          tweets: this.updateFromServer()
+        });
+        updateTweets();
+      }
+    });
+
+    this.state = {
+      tweets: this.state ? this.state.tweets : this.props.tweets
+    };
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.updateFromServer = this.updateFromServer.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.handleUpdate();
   }
 
   render() {
+    //this.handleUpdate();
     var cols = this.props.leftTransform == "left" ? {
       size: 10
     } : {
@@ -22,7 +69,7 @@ class MainContent extends React.Component {
       }
     }, /*#__PURE__*/React.createElement(Reactstrap.Container, {
       fluid: true
-    }, this.props.tweets != undefined ? this.props.tweets.map((tweet, i) => /*#__PURE__*/React.createElement(TweetCard, {
+    }, this.state.tweets != undefined ? this.state.tweets.map((tweet, i) => /*#__PURE__*/React.createElement(TweetCard, {
       key: tweet.getId(),
       id: tweet.getId(),
       tweetInfo: tweet,
@@ -32,4 +79,12 @@ class MainContent extends React.Component {
 
 }
 
-export default MainContent;
+const mapDispatchtoProps = {
+  updateTweets
+};
+
+const mapStateToProps = state => ({
+  update: state.flask.update
+});
+
+export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(MainContent);

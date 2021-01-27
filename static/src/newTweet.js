@@ -1,5 +1,6 @@
 import GenericModal from './genericModal.js';
 import {toggleTweet} from './modalSlice.js';
+import {updateTweets} from './flaskSlice.js';
 //import {connect} from 'react-redux';
 
 class NewTweet extends React.Component{
@@ -9,12 +10,9 @@ class NewTweet extends React.Component{
         //this.setState = {showHide: this.props.show ? {display: 'block'} : {display: 'none'}};
     }
 
-    postTweet(){
-        /*
-        - get Tweets' data
-        - post it to server
-        [function on server-side catches it and posts it?]
-        */
+    postTweet=()=>{
+        const {updateTweets} = this.props;
+        updateTweets();
     }
 
     handleClick=()=>{
@@ -27,10 +25,15 @@ class NewTweet extends React.Component{
         
         var modalHeader = <Reactstrap.Button onClick={()=>{this.handleClick()}} className="close text-white-50">&times;</Reactstrap.Button>;
         
-        var modalBody = <Reactstrap.Input type="textarea" method="post" className="form control bg-secondary text-white-50 overflow-auto"
-                    placeholder="Start typing..." style={{resize:"none"}} rows={5}></Reactstrap.Input>;
+        var modalBody = 
+        <Reactstrap.Form id="postform" method="post" action="/postTweet">
+            <Reactstrap.Input type="textarea" className="form control bg-secondary text-white-50 overflow-auto"
+                    placeholder="Start typing..." style={{resize:"none"}} name="newtweet" rows={5}>
+            </Reactstrap.Input>;
+        </Reactstrap.Form>
+
         
-        var modalFooter = <Reactstrap.Button onClick={()=>{this.handleClick(); this.postTweet()}} type="submit" className="close" color="default">Tweet</Reactstrap.Button>;
+        var modalFooter = <Reactstrap.Button type="submit" form="postform" onClick={()=>{setTimeout(()=>{this.postTweet()},100), this.handleClick();}} className="close" color="default">Tweet</Reactstrap.Button>;
 
         const atrs = {
             isOpen: showTweet,
@@ -46,10 +49,10 @@ class NewTweet extends React.Component{
     }
 }
 
-const mapDispatchtoProps = {toggleTweet};
+const mapDispatchtoProps = {toggleTweet, updateTweets};
 
 const mapStateToProps = state => ({
-    showTweet: state.modal.showTweet,
+    showTweet: state.modal.showTweet
 });
 
 export default ReactRedux.connect(mapStateToProps,mapDispatchtoProps)(NewTweet);
