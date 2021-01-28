@@ -48,7 +48,7 @@ def postTweet():
 
 @bp.route('/fetchTweets')
 def fetchTweets():
-    print('Entered fetchTweets', file=sys.stdout)
+    print('Entered fetchTweets', file=sys.stdout) #debug
     db = get_db()
     cur = db.execute(
     'SELECT t.id, body, created, author_id, username, flname'
@@ -56,9 +56,28 @@ def fetchTweets():
     ' ORDER BY created DESC'
     )
     headers = list(map(lambda x: x[0], cur.description))
-    print(headers, file=sys.stdout)
+    print(headers, file=sys.stdout) #debug
     posts = [{header:row[i] for i, header in enumerate(headers)} for row in cur]
-    print(posts, file=sys.stdout)
+    print(posts, file=sys.stdout)   #debug
     tweets = json.dumps(posts, default=str)
-    print('FETCH', file=sys.stdout)
+    print('FETCH', file=sys.stdout) #debug
     return (tweets)
+
+@bp.route('/fetchComments/<rootTweetId>')
+def fetchComments(rootTweetId):
+    print('Entered fetchComments', file=sys.stdout) #debug
+    db = get_db()
+    cur = db.execute(
+        'SELECT t.id, author_id, root_tweet_id, created, body, username, flname'
+        ' FROM tweet t JOIN user u ON t.author_id=u.id'
+        ' WHERE is_root=0 AND root_tweet_id=?'
+        ' ORDER BY created DESC',
+        (rootTweetId)
+    )
+    headers = list(map(lambda x: x[0], cur.description))
+    print(headers, file=sys.stdout) #debug
+    comments = [{header:row[i] for i, header in enumerate(headers)} for row in cur]
+    print(comments, file=sys.stdout)   #debug
+    comments = json.dumps(comments, default=str)
+    print('FETCH', file=sys.stdout) #debug
+    return (comments)

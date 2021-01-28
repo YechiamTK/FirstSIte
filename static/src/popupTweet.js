@@ -7,7 +7,10 @@ class PopupTweet extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {showSection: false};
+        this.state = {
+            showSection: false,
+            comments: {}
+        };
     }
 
     handlePopup=()=>{
@@ -18,8 +21,27 @@ class PopupTweet extends React.Component{
         togglePopup();
     }
 
-    toggleCommentSection=()=>{
+
+    fetchCommentsFromServer=(tweetId)=>{
+        let xhttp = new XMLHttpRequest();
+        let data = "Error";
+        //let comments = [];
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200){
+                data = this.responseText;
+                data = JSON.parse(data);
+                //data.forEach((o,i,a)=>newTweet(a[i],newTweets, true));
+            }
+        };
+        xhttp.open("GET", '/fetchComments/'+tweetId, false);
+        xhttp.send();
+        return data
+        //updateTweets();
+    }
+
+    toggleCommentSection=(tweetId)=>{
         this.setState({
+            comments: this.fetchCommentsFromServer(tweetId),
             showSection: !this.state.showSection
         });
     }
@@ -29,13 +51,14 @@ class PopupTweet extends React.Component{
         const {tweet} = this.props;
         
         let usrname = "",
-            message = "";
-            //footer = "";
+            message = "",
+            tweetId = "";
 
         if(Object.keys(tweet).length!==0 && tweet.payload!==undefined){
             const parsedTweet = JSON.parse(tweet.payload);
             message = parsedTweet._message;
             usrname = parsedTweet._username;
+            tweetId = parsedTweet._id;
         }
 
         const header = <Reactstrap.Button onClick={()=>{this.handlePopup()}} className="close text-white-50">&times;</Reactstrap.Button>;
@@ -45,7 +68,7 @@ class PopupTweet extends React.Component{
             <Reactstrap.ButtonToolbar>
                 <Reactstrap.ButtonGroup size="sm" className="px-5">
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-comment-alt"></i></Reactstrap.Button>
-                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={()=>{this.toggleCommentSection()}}><i className="far fa-comments"></i></Reactstrap.Button>
+                    <Reactstrap.Button className="mx-auto text-white-50 rounded-circle" onClick={()=>{this.toggleCommentSection(tweetId)}}><i className="far fa-comments"></i></Reactstrap.Button>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="fas fa-retweet"></i></Reactstrap.Button>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-heart"></i></Reactstrap.Button>
                     <Reactstrap.Button className="mx-auto text-white-50 rounded-circle"><i className="far fa-share-square"></i></Reactstrap.Button>
@@ -62,7 +85,7 @@ class PopupTweet extends React.Component{
                 </Reactstrap.Row>
             </>;
 
-        const footer = this.state.showSection ? (<CommentSection />) : null;
+        const footer = this.state.showSection ? (<CommentSection comments={this.state.comments} />) : null;
 
         const id = "popup";
 

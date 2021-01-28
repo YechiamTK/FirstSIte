@@ -19,14 +19,32 @@ class PopupTweet extends React.Component {
       togglePopup();
     });
 
-    _defineProperty(this, "toggleCommentSection", () => {
+    _defineProperty(this, "fetchCommentsFromServer", tweetId => {
+      let xhttp = new XMLHttpRequest();
+      let data = "Error"; //let comments = [];
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          data = this.responseText;
+          data = JSON.parse(data); //data.forEach((o,i,a)=>newTweet(a[i],newTweets, true));
+        }
+      };
+
+      xhttp.open("GET", '/fetchComments/' + tweetId, false);
+      xhttp.send();
+      return data; //updateTweets();
+    });
+
+    _defineProperty(this, "toggleCommentSection", tweetId => {
       this.setState({
+        comments: this.fetchCommentsFromServer(tweetId),
         showSection: !this.state.showSection
       });
     });
 
     this.state = {
-      showSection: false
+      showSection: false,
+      comments: {}
     };
   }
 
@@ -38,12 +56,14 @@ class PopupTweet extends React.Component {
       tweet
     } = this.props;
     let usrname = "",
-        message = ""; //footer = "";
+        message = "",
+        tweetId = "";
 
     if (Object.keys(tweet).length !== 0 && tweet.payload !== undefined) {
       const parsedTweet = JSON.parse(tweet.payload);
       message = parsedTweet._message;
       usrname = parsedTweet._username;
+      tweetId = parsedTweet._id;
     }
 
     const header = /*#__PURE__*/React.createElement(Reactstrap.Button, {
@@ -63,7 +83,7 @@ class PopupTweet extends React.Component {
     })), /*#__PURE__*/React.createElement(Reactstrap.Button, {
       className: "mx-auto text-white-50 rounded-circle",
       onClick: () => {
-        this.toggleCommentSection();
+        this.toggleCommentSection(tweetId);
       }
     }, /*#__PURE__*/React.createElement("i", {
       className: "far fa-comments"
@@ -95,7 +115,9 @@ class PopupTweet extends React.Component {
       cardbody: message,
       cardfooter: cardfooter
     })));
-    const footer = this.state.showSection ? /*#__PURE__*/React.createElement(CommentSection, null) : null;
+    const footer = this.state.showSection ? /*#__PURE__*/React.createElement(CommentSection, {
+      comments: this.state.comments
+    }) : null;
     const id = "popup";
     const atrs = {
       isOpen: showPopup,

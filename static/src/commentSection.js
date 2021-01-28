@@ -6,10 +6,11 @@ class CommentSection extends React.Component{
 
     render(){
 
-        //need to think about the whole "setInfo" thing, also in tweetCard.js
-        //for now, for debugging purposes: just garbage to see if it works.
-        const header = <a href="#" className="link text-decoration-none">@Username</a>;
-        const body =  <div>IT WORKS</div>;
+        const {comments} = this.props;
+
+        //TEMPORARY: Need to loop {comments} (or do something better because React?)
+        const header = <a href="#" className="link text-decoration-none">{comments[0]["username"]}</a>;
+        const body =  <div>{comments[0]["body"]}</div>;
 
         const footer = 
             <Reactstrap.ButtonToolbar>

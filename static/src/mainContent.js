@@ -8,10 +8,10 @@ class MainContent extends React.Component{
         super(props);
         this.state = {tweets: this.state ? this.state.tweets : this.props.tweets};
         this.handleUpdate = this.handleUpdate.bind(this);
-        this.updateFromServer = this.updateFromServer.bind(this);
+        this.fetchTweetsFromServer = this.fetchTweetsFromServer.bind(this);
     }
 
-    updateFromServer=()=>{
+    fetchTweetsFromServer=()=>{
         //const {updateTweets} = this.props;
         let xhttp = new XMLHttpRequest();
         let data = "Error";
@@ -36,7 +36,7 @@ class MainContent extends React.Component{
         if(update){
             //this.state = {tweets: []};
             //this.updateFromServer(this.state.tweets);
-            this.setState({tweets: this.updateFromServer()});
+            this.setState({tweets: this.fetchTweetsFromServer()});
             updateTweets();
         }
     }

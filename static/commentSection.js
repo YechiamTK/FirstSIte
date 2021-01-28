@@ -4,13 +4,15 @@ import GenericCard from './genericCard.js';
 
 class CommentSection extends React.Component {
   render() {
-    //need to think about the whole "setInfo" thing, also in tweetCard.js
-    //for now, for debugging purposes: just garbage to see if it works.
+    const {
+      comments
+    } = this.props; //TEMPORARY: Need to loop {comments} (or do something better because React?)
+
     const header = /*#__PURE__*/React.createElement("a", {
       href: "#",
       className: "link text-decoration-none"
-    }, "@Username");
-    const body = /*#__PURE__*/React.createElement("div", null, "IT WORKS");
+    }, comments[0]["username"]);
+    const body = /*#__PURE__*/React.createElement("div", null, comments[0]["body"]);
     const footer = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
       size: "sm",
       className: "px-5"

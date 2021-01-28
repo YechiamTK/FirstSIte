@@ -1,5 +1,5 @@
 class Tweet{
-    constructor(name, username, message, date, comments){
+    constructor(name, username, message, date, id, comments){
         this._name = name;
         this._username = username;
         this._message = message;
@@ -17,7 +17,7 @@ class Tweet{
         }
         //const rnd = Math.random() * 999999;
         //this._id = this._username ^ rnd ^ this._date.getTime();
-        this._id = String.fromCharCode(65 + Math.floor(Math.random() * 26)) + this.guidGenerator();
+        this._id = id ? id : String.fromCharCode(65 + Math.floor(Math.random() * 26)) + this.guidGenerator();
     }
     guidGenerator() {
         var S4 = () => {

@@ -23,6 +23,7 @@ def init_db():
     db = get_db()
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
+
     db.execute(
         'INSERT INTO user(username, flname)'
         ' VALUES (?, ?)',
@@ -48,6 +49,13 @@ def init_db():
         'INSERT INTO tweet(author_id, body)'
         ' VALUES (?, ?)',
         (2, "hijklm")
+    )
+    db.commit()
+    
+    db.execute(
+        'INSERT INTO tweet(author_id, root_tweet_id, is_root, body)'
+        ' VALUES (?, ?, ?, ?)',
+        (1, 1, 0, "comm4nt")
     )
     db.commit()
 

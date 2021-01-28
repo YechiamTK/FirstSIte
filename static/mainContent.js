@@ -8,7 +8,7 @@ class MainContent extends React.Component {
   constructor(props) {
     super(props);
 
-    _defineProperty(this, "updateFromServer", () => {
+    _defineProperty(this, "fetchTweetsFromServer", () => {
       //const {updateTweets} = this.props;
       let xhttp = new XMLHttpRequest();
       let data = "Error";
@@ -39,7 +39,7 @@ class MainContent extends React.Component {
         //this.state = {tweets: []};
         //this.updateFromServer(this.state.tweets);
         this.setState({
-          tweets: this.updateFromServer()
+          tweets: this.fetchTweetsFromServer()
         });
         updateTweets();
       }
@@ -49,7 +49,7 @@ class MainContent extends React.Component {
       tweets: this.state ? this.state.tweets : this.props.tweets
     };
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.updateFromServer = this.updateFromServer.bind(this);
+    this.fetchTweetsFromServer = this.fetchTweetsFromServer.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

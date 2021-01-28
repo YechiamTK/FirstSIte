@@ -12,6 +12,7 @@ CREATE TABLE tweet(
     author_id INTEGER NOT NULL,
     created TIMESTAMP/*this way?*/ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     body TEXT NOT NULL,
+    is_root INTEGER NOT NULL DEFAULT 1,
+    root_tweet_id INTEGER,
     FOREIGN KEY (author_id) REFERENCES user (id)
-    /*need to add comments*/
-);  
+);
