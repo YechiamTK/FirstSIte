@@ -31,8 +31,8 @@ class TweetCard extends React.Component{
     }*/
 
     handlePopup =()=>{
-        const {togglePopup} = this.props;
-        togglePopup();
+        const {togglePopup, tweetInfo} = this.props;
+        togglePopup(JSON.stringify(tweetInfo));
     }
 
     handleComment =()=>{

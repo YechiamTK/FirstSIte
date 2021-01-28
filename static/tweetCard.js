@@ -9,9 +9,10 @@ class TweetCard extends React.Component {
 
     _defineProperty(this, "handlePopup", () => {
       const {
-        togglePopup
+        togglePopup,
+        tweetInfo
       } = this.props;
-      togglePopup();
+      togglePopup(JSON.stringify(tweetInfo));
     });
 
     _defineProperty(this, "handleComment", () => {
@@ -21,7 +22,7 @@ class TweetCard extends React.Component {
       toggleComment();
     });
 
-    var tweetInfo = this.props.tweetInfo;
+    var _tweetInfo = this.props.tweetInfo;
   }
   /*
   Pass the tweet info from the card to the pop-up modal.

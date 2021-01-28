@@ -4,7 +4,8 @@ const modalSlice = RTK.createSlice({
     initialState: {
         showTweet: false,
         showComment: false,
-        showPopup: false
+        showPopup: false,
+        tweet: {}
     },
     reducers: {
         toggleTweet(state){
@@ -13,8 +14,9 @@ const modalSlice = RTK.createSlice({
         toggleComment(state){
             state.showComment = !state.showComment;
         },
-        togglePopup(state){
+        togglePopup(state, tweet){
             state.showPopup = !state.showPopup;
+            state.tweet = tweet;
         },
     },
 });

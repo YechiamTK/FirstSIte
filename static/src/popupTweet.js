@@ -26,6 +26,17 @@ class PopupTweet extends React.Component{
 
     render(){
         const {showPopup} = this.props;
+        const {tweet} = this.props;
+        
+        let usrname = "",
+            message = "";
+            //footer = "";
+
+        if(Object.keys(tweet).length!==0 && tweet.payload!==undefined){
+            const parsedTweet = JSON.parse(tweet.payload);
+            message = parsedTweet._message;
+            usrname = parsedTweet._username;
+        }
 
         const header = <Reactstrap.Button onClick={()=>{this.handlePopup()}} className="close text-white-50">&times;</Reactstrap.Button>;
 
@@ -47,7 +58,7 @@ class PopupTweet extends React.Component{
                     <Reactstrap.Col xs="auto">
                         <img src={"./profile.jpg"} style={{height: "50px"}} className="img-fluid" />
                     </Reactstrap.Col>
-                    <GenericCard cardfooter={cardfooter} />
+                    <GenericCard cardheader={usrname} cardbody={message} cardfooter={cardfooter} />
                 </Reactstrap.Row>
             </>;
 
@@ -69,6 +80,7 @@ const mapDispatchToProps={togglePopup};
 
 const mapStateToProps = state => ({
     showPopup: state.modal.showPopup,
+    tweet: state.modal.tweet,
 });
 
 export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(PopupTweet);
