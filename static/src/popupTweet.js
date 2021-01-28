@@ -85,7 +85,7 @@ class PopupTweet extends React.Component{
                 </Reactstrap.Row>
             </>;
 
-        const footer = this.state.showSection ? (<CommentSection comments={this.state.comments} />) : null;
+        const footer = (this.state.showSection && this.state.comments.length!==0) ? (<CommentSection comments={this.state.comments} />) : null;
 
         const id = "popup";
 

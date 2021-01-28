@@ -115,7 +115,7 @@ class PopupTweet extends React.Component {
       cardbody: message,
       cardfooter: cardfooter
     })));
-    const footer = this.state.showSection ? /*#__PURE__*/React.createElement(CommentSection, {
+    const footer = this.state.showSection && this.state.comments.length !== 0 ? /*#__PURE__*/React.createElement(CommentSection, {
       comments: this.state.comments
     }) : null;
     const id = "popup";
