@@ -12,7 +12,6 @@ class MainContent extends React.Component{
     }
 
     fetchTweetsFromServer=()=>{
-        //const {updateTweets} = this.props;
         let xhttp = new XMLHttpRequest();
         let data = "Error";
         let newTweets = [];
@@ -26,7 +25,6 @@ class MainContent extends React.Component{
         xhttp.open("GET", '/fetchTweets', false);
         xhttp.send();
         return newTweets
-        //updateTweets();
         
     }    
     
@@ -34,8 +32,6 @@ class MainContent extends React.Component{
         const {updateTweets} = this.props;  
         const {update} = this.props;
         if(update){
-            //this.state = {tweets: []};
-            //this.updateFromServer(this.state.tweets);
             this.setState({tweets: this.fetchTweetsFromServer()});
             updateTweets();
         }
@@ -48,7 +44,6 @@ class MainContent extends React.Component{
     }
 
     render(){
-        //this.handleUpdate();
 
         var cols = (this.props.leftTransform == "left") ?  {size: 10} : {size: 8, offset: 2};
         var margin = (this.props.leftTransform == "left") ? "ml-4" : "";

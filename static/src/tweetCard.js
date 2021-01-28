@@ -1,5 +1,5 @@
 import GenericCard from './genericCard.js';
-import {toggleComment, togglePopup} from './modalSlice.js';
+import {toggleComment, togglePopup, setActiveTweet} from './modalSlice.js';
 
 class TweetCard extends React.Component{
 
@@ -7,36 +7,16 @@ class TweetCard extends React.Component{
         super(props);
         var tweetInfo = this.props.tweetInfo;
     }
-    /*
-    Pass the tweet info from the card to the pop-up modal.
-    *
-    setInfo = () =>{
-        //get tweet's info from the card
-        let usrname = $(this).siblings(".card-header").text();
-        let twt = this.innerText;
-        let id = '<span class="tweet-id" style="display:none;">'+$(this).siblings("span").text()+'</span>';
-        //empty the header, otherwise close button won't work.
-        $("#tweet-id").find(".card-header").empty();
-        //create close button
-        let closeBtn = $("<button>&times;</button>");
-        closeBtn.attr({
-            'type': 'button',
-            'class': 'close text-white-50',
-            'data-dismiss': 'modal'});
-        //add the tweet's info and the close button to the modal's html.
-        $("#tweet-id").find(".card-header").text(usrname);
-        $("#tweet-id").find(".card-header").append(closeBtn);
-        $("#tweet-id").find(".card-header").append(id);
-        $("#tweet-id").find(".card-body").text(twt);
-    }*/
 
     handlePopup =()=>{
-        const {togglePopup, tweetInfo} = this.props;
-        togglePopup(JSON.stringify(tweetInfo));
+        const {togglePopup, tweetInfo, setActiveTweet} = this.props;
+        setActiveTweet(JSON.stringify(tweetInfo));
+        togglePopup();
     }
 
     handleComment =()=>{
-        const {toggleComment} = this.props;
+        const {toggleComment, setActiveTweet, tweetInfo} = this.props;
+        setActiveTweet(JSON.stringify(tweetInfo));
         toggleComment();
     }
 
@@ -83,6 +63,7 @@ class TweetCard extends React.Component{
 
 const mapDispatchToProps = {
     togglePopup,
-    toggleComment};
+    toggleComment,
+    setActiveTweet};
 
 export default ReactRedux.connect(null, mapDispatchToProps)(TweetCard);

@@ -2,11 +2,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 import GenericModal from './genericModal.js';
 import { toggleTweet } from './modalSlice.js';
-import { updateTweets } from './flaskSlice.js'; //import {connect} from 'react-redux';
+import { updateTweets } from './flaskSlice.js';
 
 class NewTweet extends React.Component {
   constructor(props) {
-    super(props); //this.setState = {showHide: this.props.show ? {display: 'block'} : {display: 'none'}};
+    super(props);
 
     _defineProperty(this, "postTweet", () => {
       const {
@@ -51,12 +51,10 @@ class NewTweet extends React.Component {
       },
       name: "newtweet",
       rows: 5
-    }), ";");
+    }));
     var modalFooter = /*#__PURE__*/React.createElement(Reactstrap.Button, {
       type: "submit",
-      form: "postform"
-      /* onClick={()=>{this.postTweet(), this.handleClick();}} */
-      ,
+      form: "postform",
       className: "close",
       color: "default"
     }, "Tweet");

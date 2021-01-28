@@ -25,18 +25,16 @@ class PopupTweet extends React.Component{
     fetchCommentsFromServer=(tweetId)=>{
         let xhttp = new XMLHttpRequest();
         let data = "Error";
-        //let comments = [];
+        
         xhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200){
                 data = this.responseText;
                 data = JSON.parse(data);
-                //data.forEach((o,i,a)=>newTweet(a[i],newTweets, true));
             }
         };
         xhttp.open("GET", '/fetchComments/'+tweetId, false);
         xhttp.send();
         return data
-        //updateTweets();
     }
 
     toggleCommentSection=(tweetId)=>{
@@ -63,7 +61,6 @@ class PopupTweet extends React.Component{
 
         const header = <Reactstrap.Button onClick={()=>{this.handlePopup()}} className="close text-white-50">&times;</Reactstrap.Button>;
 
-        //NEED TO INSERT CARD INFO, HOW?
         const cardfooter =
             <Reactstrap.ButtonToolbar>
                 <Reactstrap.ButtonGroup size="sm" className="px-5">

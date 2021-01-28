@@ -9,7 +9,6 @@ class MainContent extends React.Component {
     super(props);
 
     _defineProperty(this, "fetchTweetsFromServer", () => {
-      //const {updateTweets} = this.props;
       let xhttp = new XMLHttpRequest();
       let data = "Error";
       let newTweets = [];
@@ -24,7 +23,7 @@ class MainContent extends React.Component {
 
       xhttp.open("GET", '/fetchTweets', false);
       xhttp.send();
-      return newTweets; //updateTweets();
+      return newTweets;
     });
 
     _defineProperty(this, "handleUpdate", () => {
@@ -36,8 +35,6 @@ class MainContent extends React.Component {
       } = this.props;
 
       if (update) {
-        //this.state = {tweets: []};
-        //this.updateFromServer(this.state.tweets);
         this.setState({
           tweets: this.fetchTweetsFromServer()
         });
@@ -59,7 +56,6 @@ class MainContent extends React.Component {
   }
 
   render() {
-    //this.handleUpdate();
     var cols = this.props.leftTransform == "left" ? {
       size: 10
     } : {

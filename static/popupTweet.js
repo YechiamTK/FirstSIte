@@ -21,18 +21,18 @@ class PopupTweet extends React.Component {
 
     _defineProperty(this, "fetchCommentsFromServer", tweetId => {
       let xhttp = new XMLHttpRequest();
-      let data = "Error"; //let comments = [];
+      let data = "Error";
 
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           data = this.responseText;
-          data = JSON.parse(data); //data.forEach((o,i,a)=>newTweet(a[i],newTweets, true));
+          data = JSON.parse(data);
         }
       };
 
       xhttp.open("GET", '/fetchComments/' + tweetId, false);
       xhttp.send();
-      return data; //updateTweets();
+      return data;
     });
 
     _defineProperty(this, "toggleCommentSection", tweetId => {
@@ -71,8 +71,7 @@ class PopupTweet extends React.Component {
         this.handlePopup();
       },
       className: "close text-white-50"
-    }, "\xD7"); //NEED TO INSERT CARD INFO, HOW?
-
+    }, "\xD7");
     const cardfooter = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
       size: "sm",
       className: "px-5"

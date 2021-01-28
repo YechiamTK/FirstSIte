@@ -19,13 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
   posts.forEach((o, i, a) => twts.push(a[i][0].substring(1, a[i][0].length - 1).split(',')));
 
   for (let i = 0; i < twts.length; i++) {
-    //twts[i][0] = twts[i][0].match(patterns[1])[1];
     twts[i].forEach((o, j, a) => a[j] = a[j].match(patterns[0]) ? a[j].match(patterns[0])[1] : a[j]);
     twts[i].splice(2, 6, twts[i].slice(2, 8).join(','));
     twts[i].forEach((o, j, a) => a[j] = a[j].trim());
-  } //const tweets = []
-  //tweets.push(twts);
-
+  }
 
   const store = RTK.configureStore({
     reducer: {

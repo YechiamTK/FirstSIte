@@ -8,19 +8,31 @@ class NewComment extends React.Component {
   constructor(props) {
     super(props);
 
+    _defineProperty(this, "postComment", () => {
+      let xhttp = new XMLHttpRequest();
+      const {
+        tweet
+      } = this.props;
+      let tweetId = '';
+
+      if (Object.keys(tweet).length !== 0 && tweet.payload !== undefined) {
+        const parsedTweet = JSON.parse(tweet.payload);
+        tweetId = parsedTweet._id;
+      }
+
+      const form = document.querySelector('#commentform');
+      const data = Object.fromEntries(new FormData(form).entries());
+      xhttp.open("POST", '/postComment/' + tweetId, false);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send('newcomment=' + data["newcomment"]);
+    });
+
     _defineProperty(this, "handleComment", () => {
       const {
         toggleComment
       } = this.props;
       toggleComment();
     });
-  }
-
-  postComment() {
-    /*
-    - post it to server (handled as both Tweet and comment to Tweet)
-    [function on server-side catches it and posts it?]
-    */
   }
 
   render() {
@@ -88,16 +100,19 @@ class NewComment extends React.Component {
       },
       className: "img-fluid",
       alt: ""
-    })), /*#__PURE__*/React.createElement(Reactstrap.Col, null, /*#__PURE__*/React.createElement(Reactstrap.Input, {
+    })), /*#__PURE__*/React.createElement(Reactstrap.Col, null, /*#__PURE__*/React.createElement(Reactstrap.Form, {
+      id: "commentform"
+    }, /*#__PURE__*/React.createElement(Reactstrap.Input, {
       type: "textarea",
       id: "tweet-text",
+      name: "newcomment",
       className: "form-control bg-dark text-white-50 border-dark overflow-auto",
       style: {
         resize: 'none',
         border: 'none'
       },
       rows: 4
-    }))));
+    })))));
     const modalHeader = /*#__PURE__*/React.createElement(Reactstrap.Button, {
       onClick: () => {
         this.handleComment();
@@ -105,10 +120,9 @@ class NewComment extends React.Component {
       className: "close text-white-50"
     }, "\xD7");
     const modalFooter = /*#__PURE__*/React.createElement(Reactstrap.Button, {
-      onClick: () => {
-        this.handleComment();
-        postComment();
-      },
+      onClick: () => setTimeout(() => {
+        this.postComment(), this.handleComment();
+      }, 500),
       className: "close btn btn-default"
     }, "Tweet");
     const atrs = {
@@ -131,7 +145,8 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  showComment: state.modal.showComment
+  showComment: state.modal.showComment,
+  tweet: state.modal.tweet
 });
 
 export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(NewComment);

@@ -1,13 +1,11 @@
 import GenericModal from './genericModal.js';
 import {toggleTweet} from './modalSlice.js';
 import {updateTweets} from './flaskSlice.js';
-//import {connect} from 'react-redux';
 
 class NewTweet extends React.Component{
 
     constructor(props){
         super(props);
-        //this.setState = {showHide: this.props.show ? {display: 'block'} : {display: 'none'}};
     }
 
     postTweet=()=>{
@@ -29,11 +27,11 @@ class NewTweet extends React.Component{
         <Reactstrap.Form id="postform" method="post" action="/postTweet" onSubmit={()=>{setTimeout(()=>{this.postTweet(), this.handleClick()}, 500)}}>
             <Reactstrap.Input type="textarea" className="form control bg-secondary text-white-50 overflow-auto"
                     placeholder="Start typing..." style={{resize:"none"}} name="newtweet" rows={5}>
-            </Reactstrap.Input>;
-        </Reactstrap.Form>
+            </Reactstrap.Input>
+        </Reactstrap.Form>;
 
         
-        var modalFooter = <Reactstrap.Button type="submit" form="postform" /* onClick={()=>{this.postTweet(), this.handleClick();}} */ className="close" color="default">Tweet</Reactstrap.Button>;
+        var modalFooter = <Reactstrap.Button type="submit" form="postform" className="close" color="default">Tweet</Reactstrap.Button>;
 
         const atrs = {
             isOpen: showTweet,

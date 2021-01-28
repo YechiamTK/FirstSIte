@@ -14,12 +14,14 @@ const modalSlice = RTK.createSlice({
         toggleComment(state){
             state.showComment = !state.showComment;
         },
-        togglePopup(state, tweet){
+        togglePopup(state){
             state.showPopup = !state.showPopup;
-            state.tweet = tweet;
         },
+        setActiveTweet(state, tweet){
+            state.tweet = tweet;
+        }
     },
 });
 
-export const {toggleTweet, toggleComment, togglePopup} = modalSlice.actions;
+export const {toggleTweet, toggleComment, togglePopup, setActiveTweet} = modalSlice.actions;
 export default modalSlice;

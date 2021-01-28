@@ -81,3 +81,28 @@ def fetchComments(rootTweetId):
     comments = json.dumps(comments, default=str)
     print('FETCH', file=sys.stdout) #debug
     return (comments)
+
+@bp.route('/postComment/<rootTweetId>', methods=('GET', 'POST'))
+def postComment(rootTweetId):
+    print('Entered postComment', file=sys.stdout)
+    err = ''
+    if not rootTweetId:
+        err = "No tweet id"
+    elif request.method == 'POST':
+        print('Caught POST', file=sys.stdout)
+        body = request.form['newcomment']
+        """ author_id = request.form('id') """
+
+        if not body:
+            err = "No tweet text"
+        else:
+            print(body, file=sys.stdout)
+            db = get_db()
+            db.execute(
+                'INSERT INTO tweet(is_root, root_tweet_id, author_id, body)'
+                ' VALUES (?, ?, ?, ?)',
+                (0, rootTweetId, 1, body)
+            )
+            db.commit()
+
+    return (err)
