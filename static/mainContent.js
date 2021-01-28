@@ -2,6 +2,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 import { updateTweets } from './flaskSlice.js';
 import TweetCard from './tweetCard.js';
+import { newTweet } from './script.js';
 
 class MainContent extends React.Component {
   constructor(props) {
@@ -11,16 +12,19 @@ class MainContent extends React.Component {
       //const {updateTweets} = this.props;
       let xhttp = new XMLHttpRequest();
       let data = "Error";
+      let newTweets = [];
 
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           data = this.responseText;
+          data = JSON.parse(data);
+          data.forEach((o, i, a) => newTweet(a[i], newTweets, true));
         }
       };
 
       xhttp.open("GET", '/fetchTweets', false);
       xhttp.send();
-      return data; //updateTweets();
+      return newTweets; //updateTweets();
     });
 
     _defineProperty(this, "handleUpdate", () => {
@@ -49,7 +53,9 @@ class MainContent extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.handleUpdate();
+    if (prevProps.update !== this.props.update) {
+      this.handleUpdate();
+    }
   }
 
   render() {

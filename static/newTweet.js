@@ -36,7 +36,12 @@ class NewTweet extends React.Component {
     var modalBody = /*#__PURE__*/React.createElement(Reactstrap.Form, {
       id: "postform",
       method: "post",
-      action: "/postTweet"
+      action: "/postTweet",
+      onSubmit: () => {
+        setTimeout(() => {
+          this.postTweet(), this.handleClick();
+        }, 500);
+      }
     }, /*#__PURE__*/React.createElement(Reactstrap.Input, {
       type: "textarea",
       className: "form control bg-secondary text-white-50 overflow-auto",
@@ -49,12 +54,9 @@ class NewTweet extends React.Component {
     }), ";");
     var modalFooter = /*#__PURE__*/React.createElement(Reactstrap.Button, {
       type: "submit",
-      form: "postform",
-      onClick: () => {
-        setTimeout(() => {
-          this.postTweet();
-        }, 100), this.handleClick();
-      },
+      form: "postform"
+      /* onClick={()=>{this.postTweet(), this.handleClick();}} */
+      ,
       className: "close",
       color: "default"
     }, "Tweet");

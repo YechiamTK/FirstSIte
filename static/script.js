@@ -63,13 +63,26 @@ NOTE: Currently (I think) too convoluted because I'm not using a list.
 */
 
 
-function newTweet(tweet, allTweets) {
+export function newTweet(tweet, allTweets, jsoned = false) {
   //hopefully temporary only: count the cards added for unique id.
   let counter = add();
-  const body = tweet[1];
-  const time = Date(tweet[2]);
-  const usrname = tweet[4];
-  const flname = tweet[5]; //create a new Tweet object with the tweet's info and push it to the tweets' db
+  let body = '',
+      time = '',
+      usrname = '',
+      flname = '';
+
+  if (jsoned) {
+    body = tweet['body'];
+    time = Date(tweet['created']);
+    usrname = tweet['username'];
+    flname = tweet['flname'];
+  } else {
+    body = tweet[1];
+    time = Date(tweet[2]);
+    usrname = tweet[4];
+    flname = tweet[5];
+  } //create a new Tweet object with the tweet's info and push it to the tweets' db
+
 
   let newTweet = new Tweet(flname, usrname, body, time);
   allTweets.push(newTweet);
@@ -82,7 +95,6 @@ Hence we have the Tweet in two location (perhaps not the best model):
     2. Inside the previous Tweets' comments array 
 I'll might have to think of a more efficient model later.
 */
-
 
 function newComment(elem) {
   //get the new tweets' info, create Tweet object and push it to the array

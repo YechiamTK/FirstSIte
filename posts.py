@@ -50,13 +50,15 @@ def postTweet():
 def fetchTweets():
     print('Entered fetchTweets', file=sys.stdout)
     db = get_db()
-    posts = db.execute(
+    cur = db.execute(
     'SELECT t.id, body, created, author_id, username, flname'
     ' FROM tweet t JOIN user u ON t.author_id=u.id'
     ' ORDER BY created DESC'
-    ).fetchall()
-    tweets = ""
-    for post in posts:
-        tweets+=(str(list(post)))
+    )
+    headers = list(map(lambda x: x[0], cur.description))
+    print(headers, file=sys.stdout)
+    posts = [{header:row[i] for i, header in enumerate(headers)} for row in cur]
+    print(posts, file=sys.stdout)
+    tweets = json.dumps(posts, default=str)
     print('FETCH', file=sys.stdout)
     return (tweets)

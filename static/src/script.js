@@ -64,14 +64,26 @@ Currently in js-format. When I'll start using a db
 I'll need to put it in json-format.
 NOTE: Currently (I think) too convoluted because I'm not using a list.
 */
-function newTweet(tweet, allTweets) {
+export function newTweet(tweet, allTweets, jsoned=false) {
     //hopefully temporary only: count the cards added for unique id.
     let counter = add();
+    let body = '',
+        time = '',
+        usrname = '',
+        flname = '';
 
-    const body = tweet[1];
-    const time = Date(tweet[2]);
-    const usrname = tweet[4];
-    const flname = tweet[5];
+    if (jsoned){
+        body = tweet['body'];
+        time = Date(tweet['created']);
+        usrname = tweet['username'];
+        flname = tweet['flname'];
+    }
+    else {
+        body = tweet[1];
+        time = Date(tweet[2]);
+        usrname = tweet[4];
+        flname = tweet[5];
+    }
 
     //create a new Tweet object with the tweet's info and push it to the tweets' db
     let newTweet = new Tweet(flname, usrname, body, time);

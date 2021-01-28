@@ -26,14 +26,14 @@ class NewTweet extends React.Component{
         var modalHeader = <Reactstrap.Button onClick={()=>{this.handleClick()}} className="close text-white-50">&times;</Reactstrap.Button>;
         
         var modalBody = 
-        <Reactstrap.Form id="postform" method="post" action="/postTweet">
+        <Reactstrap.Form id="postform" method="post" action="/postTweet" onSubmit={()=>{setTimeout(()=>{this.postTweet(), this.handleClick()}, 500)}}>
             <Reactstrap.Input type="textarea" className="form control bg-secondary text-white-50 overflow-auto"
                     placeholder="Start typing..." style={{resize:"none"}} name="newtweet" rows={5}>
             </Reactstrap.Input>;
         </Reactstrap.Form>
 
         
-        var modalFooter = <Reactstrap.Button type="submit" form="postform" onClick={()=>{setTimeout(()=>{this.postTweet()},100), this.handleClick();}} className="close" color="default">Tweet</Reactstrap.Button>;
+        var modalFooter = <Reactstrap.Button type="submit" form="postform" /* onClick={()=>{this.postTweet(), this.handleClick();}} */ className="close" color="default">Tweet</Reactstrap.Button>;
 
         const atrs = {
             isOpen: showTweet,
