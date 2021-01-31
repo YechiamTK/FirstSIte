@@ -30,10 +30,14 @@ def config_app(flapp, test_config=None):
     import db
     db.init_app(flapp)
 
-    import posts
-    flapp.register_blueprint(posts.bp)
-    flapp.add_url_rule('/', endpoint='index.html')
+    #import posts
+    #flapp.register_blueprint(posts.bp)
+    #flapp.add_url_rule('/', endpoint='index')
     #flapp.add_url_rule('/', endpoint='postTweet')
+
+    @flapp.route('/')
+    def index():
+        return "<h1>Welcome to our server !!</h1>"
 
     return flapp
 
