@@ -38,5 +38,5 @@ def config_app(flapp, test_config=None):
     return flapp
 
 if __name__ == "__main__":
-    app = config_app()
+    app = config_app(app)
     app.run()
