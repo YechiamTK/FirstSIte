@@ -35,11 +35,11 @@ def config_app(flapp, test_config=None):
     #flapp.add_url_rule('/', endpoint='index')
     #flapp.add_url_rule('/', endpoint='postTweet')
 
-    @flapp.route('/')
-    def index():
-        return "<h1>Welcome to our server !!</h1>"
-
     return flapp
+
+@app.route('/')
+def index():
+    return "<h1>Welcome to our server !!</h1>"
 
 if __name__ == "__main__":
     app = config_app(app)
