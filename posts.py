@@ -2,7 +2,7 @@ from flask import (
     Blueprint, g, redirect, render_template, request, url_for
 )
 
-from .db import get_db
+from db import get_db
 import json
 import sys
 
