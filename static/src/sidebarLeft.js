@@ -1,6 +1,6 @@
 import SideBarLeftOption from './SidebarLeftOption.js';
 import ProfileFooter from './profileFooter.js';
-import NewTweet from './newTweet.js';
+//import NewTweet from './newTweet.js';
 import {toggleTweet} from './modalSlice.js';
 
 class SidebarLeft extends React.Component{

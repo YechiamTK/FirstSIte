@@ -1,4 +1,4 @@
-import SideBarRightOption from "./SideBarRightOption.js";
+import SideBarRightOption from "./SidebarRightOption.js";
 
 class SidebarRight extends React.Component{
 

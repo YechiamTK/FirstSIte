@@ -1,8 +1,8 @@
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 import SideBarLeftOption from './SidebarLeftOption.js';
-import ProfileFooter from './profileFooter.js';
-import NewTweet from './newTweet.js';
+import ProfileFooter from './profileFooter.js'; //import NewTweet from './newTweet.js';
+
 import { toggleTweet } from './modalSlice.js';
 
 class SidebarLeft extends React.Component {
