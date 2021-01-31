@@ -20,7 +20,7 @@ def index():
     for post in posts:
         tweets+=(str(list(post)))
     print('CHECK', file=sys.stdout)
-    return render_template('/index.html', posts=tweets)
+    return render_template('index.html', posts=tweets)
 
 #json.dumps(tweets, default=str)
 
