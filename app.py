@@ -32,7 +32,7 @@ def config_app(flapp, test_config=None):
 
     import posts
     flapp.register_blueprint(posts.bp)
-    flapp.add_url_rule('/', endpoint='index')
+    flapp.add_url_rule('/', endpoint='index.html')
     #flapp.add_url_rule('/', endpoint='postTweet')
 
     return flapp
