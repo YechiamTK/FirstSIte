@@ -10,7 +10,7 @@ bp = Blueprint('posts', __name__)
 
 @bp.route('/', methods=('GET', 'POST'))
 def index():        
-    db = get_db()
+    """db = get_db()
     posts = db.execute(
         'SELECT t.id, body, created, author_id, username, flname'
         ' FROM tweet t JOIN user u ON t.author_id=u.id'
@@ -19,8 +19,8 @@ def index():
     tweets = ""
     for post in posts:
         tweets+=(str(list(post)))
-    print('CHECK', file=sys.stdout)
-    return render_template('index.html', posts=tweets)
+    print('CHECK', file=sys.stdout)"""
+    return render_template('index.html', posts="")
 
 #json.dumps(tweets, default=str)
 
