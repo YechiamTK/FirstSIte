@@ -2,8 +2,5 @@ Flask
 gunicorn
 Jinja2
 Werkzeug
-os
 sqlite3
 click
-json
-sys
