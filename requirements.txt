@@ -1,0 +1,9 @@
+Flask
+gunicorn
+Jinja2
+Wekzeug
+os
+sqlite3
+click
+json
+sys
