@@ -22,9 +22,9 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    #@app.route('/hello')
+    #def hello():
+    #    return 'Hello, World!'
 
     from . import db
     db.init_app(app)
@@ -35,3 +35,5 @@ def create_app(test_config=None):
     #app.add_url_rule('/', endpoint='postTweet')
 
     return app
+
+create_app()
