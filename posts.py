@@ -19,15 +19,15 @@ Returns json:
 """
 @bp.route('/auth', methods=('GET', 'POST'))
 def authenticate():
-    if request.method == 'GET':
-        credentials = [request.args.get('user'), request.args.get('password')]
+    if request.method == 'POST':
+        credentials = [request.form['user'], request.form['password']]
+        click.echo(credentials)
 
         if not credentials:
             err = "No authentication credentials were sent"
             click.echo(err)
             return ({"id": -1,"error": err})
 
-        click.echo(credentials)
         db = get_db()
         cur = db.execute('SELECT username, pswrd FROM user ORDER BY username DESC')
         err = "User not found!"

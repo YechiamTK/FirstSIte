@@ -82,7 +82,7 @@ class LoginScreen extends React.Component {
     }, /*#__PURE__*/React.createElement(Reactstrap.Form, {
       id: "authenticate",
       className: "w-75 offset-1",
-      method: "get",
+      method: "post",
       action: "/auth",
       onSubmit: () => {
         setTimeout(() => {
