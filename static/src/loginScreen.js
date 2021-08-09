@@ -76,7 +76,7 @@ class LoginScreen extends React.Component{
                 <Reactstrap.Col className="col align-self-center">
                         <Reactstrap.Card className="bg-secondary w-50 offset-3">
                             <Reactstrap.Row className="no-gutters text-white-50 w-50 offset-3">
-                                <Reactstrap.Form id="authenticate" className="w-75 offset-1" method="get" action="/auth" onSubmit={()=>{setTimeout(()=>{this.checkAuth()}, 500)}}>
+                                <Reactstrap.Form id="authenticate" className="w-75 offset-1" method="post" action="/auth" onSubmit={()=>{setTimeout(()=>{this.checkAuth()}, 500)}}>
                                     <Reactstrap.FormGroup>
                                         <Reactstrap.Label for="userName">Enter Username</Reactstrap.Label>
                                         <Reactstrap.Input type="text" name="user" id="userName" placeholder="insert username here..."/>
