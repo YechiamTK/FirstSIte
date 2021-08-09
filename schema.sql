@@ -3,8 +3,11 @@ DROP TABLE IF EXISTS tweet;
 
 CREATE TABLE user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    flname TEXT NOT NULL
+    username TEXT NOT NULL,
+    pswrd TEXT NOT NULL DEFAULT 123456,
+    flname TEXT NOT NULL,
+    propic TEXT DEFAULT "\static\images\profile.png",
+    UNIQUE(username, pswrd)
 );
 
 CREATE TABLE tweet(

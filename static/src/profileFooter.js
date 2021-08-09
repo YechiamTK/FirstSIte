@@ -6,7 +6,7 @@ class ProfileFooter extends React.Component{
                 <div className="mt-5"></div>
                 <Reactstrap.Row className="d-flex">
                     <Reactstrap.Col xs="auto">
-                        <img src={"logo.png"} className="rounded-circle img-fluid" style={{height: '40px'}} alt="Profile Picture" />
+                        <img src={"/static/images/logo.png"} className="rounded-circle img-fluid" style={{height: '40px'}} alt="Profile Picture" />
                     </Reactstrap.Col>
                     <Reactstrap.Col>
                     <div>{this.props.name}</div>

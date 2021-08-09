@@ -6,7 +6,7 @@ class MainContent extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {tweets: this.state ? this.state.tweets : this.props.tweets};
+        this.state = {tweets: this.state ? this.state.tweets : this.fetchTweetsFromServer()};
         this.handleUpdate = this.handleUpdate.bind(this);
         this.fetchTweetsFromServer = this.fetchTweetsFromServer.bind(this);
     }

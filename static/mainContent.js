@@ -43,7 +43,7 @@ class MainContent extends React.Component {
     });
 
     this.state = {
-      tweets: this.state ? this.state.tweets : this.props.tweets
+      tweets: this.state ? this.state.tweets : this.fetchTweetsFromServer()
     };
     this.handleUpdate = this.handleUpdate.bind(this);
     this.fetchTweetsFromServer = this.fetchTweetsFromServer.bind(this);

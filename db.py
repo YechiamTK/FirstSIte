@@ -16,6 +16,7 @@ def get_db():
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row
+        click.echo("successfully connected to db")
 
     return g.db
 
@@ -59,9 +60,12 @@ def init_db():
     )
     db.commit()
 
+    click.echo("successfully initiated db")
+
 @click.command('init-db')
 @with_appcontext
 def init_db_command():
+    click.echo('entered init_db_command')
     init_db()
     click.echo('initialized db')
     db = get_db()
@@ -76,5 +80,6 @@ def close_db(e=None):
 
 
 def init_app(app):
+    click.echo('entered init_app')
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)

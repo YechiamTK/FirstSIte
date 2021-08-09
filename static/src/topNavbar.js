@@ -8,7 +8,7 @@ class TopNavbar extends React.Component{
         <Reactstrap.Row className="sticky-top" name='top-row'>
             <Reactstrap.Col xs='12' className='bg-dark'>
                 <Reactstrap.Navbar color='dark' expand='sm' className='pt-3 shadow d-flex'>
-                    <img src={"logo.png"} style={{height:'50px'}} className="rounded-circle" alt="Profile Picture" />
+                    <img src={"/static/images/logo.png"} style={{height:'50px'}} className="rounded-circle" alt="Profile Picture" />
                     <span className="mx-5"></span>
                     <Reactstrap.Nav className="mx-auto">
                         <Reactstrap.NavItem className="mx-5"><Reactstrap.NavLink href="#" name="home">Home</Reactstrap.NavLink></Reactstrap.NavItem>

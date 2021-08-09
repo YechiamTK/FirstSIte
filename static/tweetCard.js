@@ -82,7 +82,7 @@ class TweetCard extends React.Component {
         flexGrow: '0 !important'
       }
     }, /*#__PURE__*/React.createElement("img", {
-      src: "./profile.jpg",
+      src: "/static/images/profile.jpg",
       style: {
         height: '50px'
       },

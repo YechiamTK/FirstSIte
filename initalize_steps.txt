@@ -1,0 +1,6 @@
+1. set FLASK_APP=app
+2. (optional) set FLASK_ENV=development (cmd) | $env:FLASK_ENV="development"
+3. http-server ./ -p 80
+4. (for development) npx babel --watch src --out-dir . --presets @babel/preset-react
+5. flask init-db
+6. flask run

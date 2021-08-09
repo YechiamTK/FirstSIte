@@ -52,7 +52,7 @@ class TweetCard extends React.Component{
         <Reactstrap.Card id={id} className="mx-3 my-5">
             <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                 <Reactstrap.Col xs="auto" style={{flexGrow: '0 !important'}}>
-                    <img src={"./profile.jpg"} style={{height:'50px'}} className="img-fluid" alt="" />
+                    <img src={"/static/images/profile.jpg"} style={{height:'50px'}} className="img-fluid" alt="" />
                 </Reactstrap.Col>
                 <GenericCard {...{headerArgs: headerArgs, bodyArgs: bodyArgs, footerArgs: footerArgs, cardheader:header, cardbody:body, cardfooter:footer}} />
             </Reactstrap.Row>

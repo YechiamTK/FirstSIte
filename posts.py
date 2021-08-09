@@ -5,8 +5,49 @@ from flask import (
 from db import get_db
 import json
 import sys
+import click
+import json
 
 bp = Blueprint('posts', __name__)
+
+"""
+Autentication REST request.
+Checks the user params against the db.
+Returns json:
+    id of the user (if authenticated, else -1)
+    Error (if not authenticated, else None)
+"""
+@bp.route('/auth', methods=('GET', 'POST'))
+def authenticate():
+    if request.method == 'GET':
+        credentials = [request.args.get('user'), request.args.get('password')]
+
+        if not credentials:
+            err = "No authentication credentials were sent"
+            click.echo(err)
+            return ({"id": -1,"error": err})
+
+        click.echo(credentials)
+        db = get_db()
+        cur = db.execute('SELECT username, pswrd FROM user ORDER BY username DESC')
+        err = "User not found!"
+
+        for user in cur:
+            click.echo(user.keys())
+            click.echo(user['username'])
+            click.echo(user['pswrd'])
+            if credentials == [user['username'], user['pswrd']]:
+                id = db.execute('SELECT id FROM user WHERE username = (?) AND pswrd = (?)', (credentials[0], credentials[1]))
+                click.echo('Found the user! Sending him in now...')
+                for cred in id:
+                    click.echo(cred['id'])
+                    err = None
+                    return ({"id": cred['id'],"error": err})
+        click.echo(err)
+        return ({"id": -1,"error": err})
+
+
+
 
 @bp.route('/', methods=('GET', 'POST'))
 def index():        
@@ -20,6 +61,7 @@ def index():
     for post in posts:
         tweets+=(str(list(post)))
     print('CHECK', file=sys.stdout)"""
+    click.echo("starting render")
     return render_template('index.html', posts="")
 
 #json.dumps(tweets, default=str)
@@ -49,6 +91,7 @@ def postTweet():
 @bp.route('/fetchTweets')
 def fetchTweets():
     print('Entered fetchTweets', file=sys.stdout) #debug
+    click.echo('Entered fetchTweets')
     db = get_db()
     cur = db.execute(
     'SELECT t.id, body, created, author_id, username, flname'
@@ -61,6 +104,10 @@ def fetchTweets():
     print(posts, file=sys.stdout)   #debug
     tweets = json.dumps(posts, default=str)
     print('FETCH', file=sys.stdout) #debug
+    if (tweets):
+        click.echo('supposedly have tweets')
+    else:
+        click.echo('no tweets available!')
     return (tweets)
 
 @bp.route('/fetchComments/<rootTweetId>')

@@ -94,7 +94,7 @@ class NewComment extends React.Component {
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "auto"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "./profile.jpg",
+      src: "/static/images/profile.jpg",
       style: {
         height: "50px"
       },

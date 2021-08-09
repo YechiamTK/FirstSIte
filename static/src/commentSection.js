@@ -34,7 +34,7 @@ class CommentSection extends React.Component{
                 <Reactstrap.ListGroupItem className="toClone" /* style={{display: 'none'}} */ /*probably have a better way*/>
                     <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                         <Reactstrap.Col xs='auto'>
-                            <img src={"./profile.jpg"} style={{height: "50px"}} className="img-fluid" alt="Profile Pic" />
+                            <img src={"/static/images/profile.jpg"} style={{height: "50px"}} className="img-fluid" alt="Profile Pic" />
                         </Reactstrap.Col>
                         <GenericCard cardheader={header} cardbody={body} cardfooter={footer} />
                     </Reactstrap.Row>

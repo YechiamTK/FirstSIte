@@ -76,7 +76,7 @@ class PopupTweet extends React.Component{
             <>
                 <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                     <Reactstrap.Col xs="auto">
-                        <img src={"./profile.jpg"} style={{height: "50px"}} className="img-fluid" />
+                        <img src={"/static/images/profile.jpg"} style={{height: "50px"}} className="img-fluid" />
                     </Reactstrap.Col>
                     <GenericCard cardheader={usrname} cardbody={message} cardfooter={cardfooter} />
                 </Reactstrap.Row>

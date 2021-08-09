@@ -29,9 +29,10 @@ except OSError:
 
 import db
 db.init_app(app)
-
+app.logger.info("initiated db")
 import posts
 app.register_blueprint(posts.bp)
+app.logger.info("registered posts blueprint")
 app.add_url_rule('/', endpoint='index')
 #app.add_url_rule('/', endpoint='postTweet')
 
@@ -43,3 +44,4 @@ app.add_url_rule('/', endpoint='index')
 
 if __name__ == "__main__":
     app.run()
+    print ("app started")

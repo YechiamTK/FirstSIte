@@ -13,7 +13,7 @@ class TopNavbar extends React.Component {
       expand: "sm",
       className: "pt-3 shadow d-flex"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "logo.png",
+      src: "/static/images/logo.png",
       style: {
         height: '50px'
       },

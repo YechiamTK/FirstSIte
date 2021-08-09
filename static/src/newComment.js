@@ -53,7 +53,7 @@ class NewComment extends React.Component{
                 </Reactstrap.Row>
                 <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                     <Reactstrap.Col xs="auto">
-                        <img src={"./profile.jpg"} style={{height: "50px"}} className="img-fluid" alt="" />
+                        <img src={"/static/images/profile.jpg"} style={{height: "50px"}} className="img-fluid" alt="" />
                     </Reactstrap.Col>
                     <Reactstrap.Col>
                         <Reactstrap.Form id="commentform">

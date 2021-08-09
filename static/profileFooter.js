@@ -9,7 +9,7 @@ class ProfileFooter extends React.Component {
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       xs: "auto"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "logo.png",
+      src: "/static/images/logo.png",
       className: "rounded-circle img-fluid",
       style: {
         height: '40px'
