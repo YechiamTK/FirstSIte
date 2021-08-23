@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, g, redirect, render_template, request, url_for
+    Blueprint, g, redirect, render_template, request, url_for, jsonify
 )
 
 from db import get_db
@@ -17,54 +17,47 @@ Returns json:
     id of the user (if authenticated, else -1)
     Error (if not authenticated, else None)
 """
-@bp.route('/auth', methods=('GET', 'POST'))
+@bp.route('/auth', methods=['GET', 'POST'])
 def authenticate():
     if request.method == 'POST':
-        credentials = [request.form['user'], request.form['password']]
-        click.echo(credentials)
+        credentials = json.loads(request.data)
+        credentials = list(credentials.values())
+        res = {"id": -1,"error": None}
 
         if not credentials:
             err = "No authentication credentials were sent"
             click.echo(err)
-            return ({"id": -1,"error": err})
+            res['error']=err
+            return(res)
 
         db = get_db()
         cur = db.execute('SELECT username, pswrd FROM user ORDER BY username DESC')
         err = "User not found!"
 
-        for user in cur:
-            click.echo(user.keys())
-            click.echo(user['username'])
-            click.echo(user['pswrd'])
-            if credentials == [user['username'], user['pswrd']]:
+        for userRow in cur:
+            click.echo(userRow.keys())
+            click.echo(userRow['username'])
+            click.echo(userRow['pswrd'])
+            if credentials == [userRow['username'], userRow['pswrd']]:
                 id = db.execute('SELECT id FROM user WHERE username = (?) AND pswrd = (?)', (credentials[0], credentials[1]))
                 click.echo('Found the user! Sending him in now...')
                 for cred in id:
                     click.echo(cred['id'])
                     err = None
-                    return ({"id": cred['id'],"error": err})
+                    res['id']=cred['id']
+                    return(res)
+
         click.echo(err)
-        return ({"id": -1,"error": err})
+        res['error']=err
+        click.echo(json.dumps(res))
+        return(res)
 
 
-
-
-@bp.route('/', methods=('GET', 'POST'))
-def index():        
-    """db = get_db()
-    posts = db.execute(
-        'SELECT t.id, body, created, author_id, username, flname'
-        ' FROM tweet t JOIN user u ON t.author_id=u.id'
-        ' ORDER BY created DESC'
-    ).fetchall()
-    tweets = ""
-    for post in posts:
-        tweets+=(str(list(post)))
-    print('CHECK', file=sys.stdout)"""
+@bp.route('/')
+def index():
     click.echo("starting render")
-    return render_template('index.html', posts="")
+    return render_template('index.html', posts="", login="")
 
-#json.dumps(tweets, default=str)
 
 @bp.route('/postTweet', methods=('GET', 'POST'))
 def postTweet():

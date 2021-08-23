@@ -2,7 +2,8 @@ const flaskSlice = RTK.createSlice({
   name: 'flask',
   initialState: {
     update: false,
-    signIn: false
+    signIn: false,
+    id: -1
   },
   reducers: {
     updateTweets(state) {

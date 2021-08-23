@@ -12,13 +12,12 @@ import SidebarRight from './sidebarRight.js';
 class App extends React.Component{
     render(){
 
-        const {tweets} = this.props;
-        const {signIn} = this.props.signIn;
-
+        const {tweets, signIn} = this.props;
+        
         return( 
             <Reactstrap.Container fluid className="d-flex vh-100">
-                {{signIn} ? <LoginScreen /> :
-                <>
+                {signIn ?
+                (<>
                     <TopNavbar />
                     <MainRow tweets={tweets} >
                         <SidebarLeft />
@@ -28,7 +27,8 @@ class App extends React.Component{
                     <NewTweet />
                     <NewComment />
                     <PopupTweet />
-                </>
+                </>) :
+                (<LoginScreen />)
                 }
             </Reactstrap.Container>
                 
