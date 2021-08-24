@@ -15,12 +15,15 @@ class App extends React.Component {
       tweets,
       signIn
     } = this.props;
-    return /*#__PURE__*/React.createElement(Reactstrap.Container, {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, signIn ? /*#__PURE__*/React.createElement(Reactstrap.Container, {
+      fluid: true,
+      className: "vh-100"
+    }, /*#__PURE__*/React.createElement(TopNavbar, null), /*#__PURE__*/React.createElement(MainRow, {
+      tweets: tweets
+    }, /*#__PURE__*/React.createElement(SidebarLeft, null), /*#__PURE__*/React.createElement(MainContent, null), /*#__PURE__*/React.createElement(SidebarRight, null)), /*#__PURE__*/React.createElement(NewTweet, null), /*#__PURE__*/React.createElement(NewComment, null), /*#__PURE__*/React.createElement(PopupTweet, null)) : /*#__PURE__*/React.createElement(Reactstrap.Container, {
       fluid: true,
       className: "d-flex vh-100"
-    }, signIn ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(TopNavbar, null), /*#__PURE__*/React.createElement(MainRow, {
-      tweets: tweets
-    }, /*#__PURE__*/React.createElement(SidebarLeft, null), /*#__PURE__*/React.createElement(MainContent, null), /*#__PURE__*/React.createElement(SidebarRight, null)), /*#__PURE__*/React.createElement(NewTweet, null), /*#__PURE__*/React.createElement(NewComment, null), /*#__PURE__*/React.createElement(PopupTweet, null)) : /*#__PURE__*/React.createElement(LoginScreen, null));
+    }, /*#__PURE__*/React.createElement(LoginScreen, null)));
   }
 
 }
@@ -34,3 +37,21 @@ const mapStateToProps = state => ({
 });
 
 export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(App);
+{
+  /* <Reactstrap.Container fluid className="d-flex vh-100">
+                 {signIn ?
+                 (<>
+                     <TopNavbar />
+                     <MainRow tweets={tweets} >
+                         <SidebarLeft />
+                         <MainContent />
+                         <SidebarRight />
+                     </MainRow>
+                     <NewTweet />
+                     <NewComment />
+                     <PopupTweet />
+                 </>) :
+                 (<LoginScreen />)
+                 }
+             </Reactstrap.Container> */
+}

@@ -24,6 +24,7 @@ class LoginScreen extends React.Component{
     authentication=(e)=>{           //SHOULD TRANSFER TO FETCH axios
         let _id;
         const {user, password} = this.state;
+        const {signInAttempt} = this.props;
         let verify = {}
 
         verify['user'] = user;
@@ -38,6 +39,7 @@ class LoginScreen extends React.Component{
             console.log(data);
             _id=data['id'];
             this.setState({id: this._id});
+            signInAttempt();
             console.log(_id);
             console.log(this.state._id);
         }.bind(this));

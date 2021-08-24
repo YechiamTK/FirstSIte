@@ -23,6 +23,9 @@ class LoginScreen extends React.Component {
         user,
         password
       } = this.state;
+      const {
+        signInAttempt
+      } = this.props;
       let verify = {};
       verify['user'] = user;
       verify['password'] = password;
@@ -35,6 +38,7 @@ class LoginScreen extends React.Component {
         this.setState({
           id: this._id
         });
+        signInAttempt();
         console.log(_id);
         console.log(this.state._id);
       }.bind(this));

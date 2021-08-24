@@ -15,7 +15,37 @@ class App extends React.Component{
         const {tweets, signIn} = this.props;
         
         return( 
-            <Reactstrap.Container fluid className="d-flex vh-100">
+            <>
+                {signIn ?
+                    (<Reactstrap.Container fluid className="vh-100">
+                        <TopNavbar />
+                        <MainRow tweets={tweets} >
+                            <SidebarLeft />
+                            <MainContent />
+                            <SidebarRight />
+                        </MainRow>
+                        <NewTweet />
+                        <NewComment />
+                        <PopupTweet />
+                    </Reactstrap.Container>) :
+                    <Reactstrap.Container fluid className="d-flex vh-100">
+                        <LoginScreen />
+                    </Reactstrap.Container>
+                }
+            </>
+        );
+    }
+}
+
+const mapDispatchtoProps={signInAttempt};
+
+const mapStateToProps = state => ({
+    signIn: state.flask.signIn,
+});
+
+export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(App);
+
+{/* <Reactstrap.Container fluid className="d-flex vh-100">
                 {signIn ?
                 (<>
                     <TopNavbar />
@@ -30,16 +60,4 @@ class App extends React.Component{
                 </>) :
                 (<LoginScreen />)
                 }
-            </Reactstrap.Container>
-                
-        );
-    }
-}
-
-const mapDispatchtoProps={signInAttempt};
-
-const mapStateToProps = state => ({
-    signIn: state.flask.signIn,
-});
-
-export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(App);
+            </Reactstrap.Container> */}
