@@ -27,6 +27,9 @@ class NewTweet extends React.Component {
     const {
       showTweet
     } = this.props;
+    const {
+      id
+    } = this.props;
     var modalHeader = /*#__PURE__*/React.createElement(Reactstrap.Button, {
       onClick: () => {
         this.handleClick();
@@ -36,7 +39,7 @@ class NewTweet extends React.Component {
     var modalBody = /*#__PURE__*/React.createElement(Reactstrap.Form, {
       id: "postform",
       method: "post",
-      action: "/postTweet",
+      action: "/postTweet/" + id,
       onSubmit: () => {
         setTimeout(() => {
           this.postTweet(), this.handleClick();

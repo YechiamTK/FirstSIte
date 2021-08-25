@@ -59,9 +59,10 @@ def index():
     return render_template('index.html', posts="", login="")
 
 
-@bp.route('/postTweet', methods=('GET', 'POST'))
-def postTweet():
+@bp.route('/postTweet/<id>', methods=('GET', 'POST'))
+def postTweet(id):
     print('Entered postTweet', file=sys.stdout)
+    print('id received is:' + id, file=sys.stdout)
     if request.method == 'POST':
         print('Caught POST', file=sys.stdout)
         body = request.form['newtweet']
@@ -75,7 +76,7 @@ def postTweet():
         db.execute(
             'INSERT INTO tweet(author_id, body)'
             ' VALUES (?, ?)',
-            (1, body)
+            (id, body)
         )
         db.commit()
     return ('', 204)
@@ -122,8 +123,8 @@ def fetchComments(rootTweetId):
     print('FETCH', file=sys.stdout) #debug
     return (comments)
 
-@bp.route('/postComment/<rootTweetId>', methods=('GET', 'POST'))
-def postComment(rootTweetId):
+@bp.route('/postComment/<rootTweetId>&<id>', methods=('GET', 'POST'))
+def postComment(rootTweetId, id):
     print('Entered postComment', file=sys.stdout)
     err = ''
     if not rootTweetId:
@@ -141,7 +142,7 @@ def postComment(rootTweetId):
             db.execute(
                 'INSERT INTO tweet(is_root, root_tweet_id, author_id, body)'
                 ' VALUES (?, ?, ?, ?)',
-                (0, rootTweetId, 1, body)
+                (0, rootTweetId, id, body)
             )
             db.commit()
 

@@ -10,9 +10,14 @@ const flaskSlice = RTK.createSlice({
         updateTweets(state){
             state.update = !state.update;
         },
-        signInAttempt(state){
+        signInAttempt(state, action){
+            //if (action.type == 'signIn/signed'){
+            state.id = action.payload;
+            console.log(state.id + "\n" + action.payload);
+            //}
             state.signIn = !state.signIn;
         }
+        
     },
 });
 

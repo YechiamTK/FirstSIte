@@ -12,19 +12,19 @@ import SidebarRight from './sidebarRight.js';
 class App extends React.Component{
     render(){
 
-        const {tweets, signIn} = this.props;
+        const {tweets, signIn, id} = this.props;
         
         return( 
             <>
                 {signIn ?
-                    (<Reactstrap.Container fluid className="vh-100">
+                    (<Reactstrap.Container id={id} fluid className="vh-100">
                         <TopNavbar />
                         <MainRow tweets={tweets} >
                             <SidebarLeft />
                             <MainContent />
                             <SidebarRight />
                         </MainRow>
-                        <NewTweet />
+                        <NewTweet id={id}/>
                         <NewComment />
                         <PopupTweet />
                     </Reactstrap.Container>) :
@@ -41,23 +41,7 @@ const mapDispatchtoProps={signInAttempt};
 
 const mapStateToProps = state => ({
     signIn: state.flask.signIn,
+    id: state.flask.id
 });
 
 export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(App);
-
-{/* <Reactstrap.Container fluid className="d-flex vh-100">
-                {signIn ?
-                (<>
-                    <TopNavbar />
-                    <MainRow tweets={tweets} >
-                        <SidebarLeft />
-                        <MainContent />
-                        <SidebarRight />
-                    </MainRow>
-                    <NewTweet />
-                    <NewComment />
-                    <PopupTweet />
-                </>) :
-                (<LoginScreen />)
-                }
-            </Reactstrap.Container> */}

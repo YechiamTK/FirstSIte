@@ -20,11 +20,12 @@ class NewTweet extends React.Component{
 
     render(){
         const {showTweet} = this.props;
+        const {id} = this.props;
         
         var modalHeader = <Reactstrap.Button onClick={()=>{this.handleClick()}} className="close text-white-50">&times;</Reactstrap.Button>;
         
         var modalBody = 
-        <Reactstrap.Form id="postform" method="post" action="/postTweet" onSubmit={()=>{setTimeout(()=>{this.postTweet(), this.handleClick()}, 500)}}>
+        <Reactstrap.Form id="postform" method="post" action={"/postTweet/"+id} onSubmit={()=>{setTimeout(()=>{this.postTweet(), this.handleClick()}, 500)}}>
             <Reactstrap.Input type="textarea" className="form control bg-secondary text-white-50 overflow-auto"
                     placeholder="Start typing..." style={{resize:"none"}} name="newtweet" rows={5}>
             </Reactstrap.Input>

@@ -38,7 +38,9 @@ class LoginScreen extends React.Component {
         this.setState({
           id: this._id
         });
-        signInAttempt();
+        signInAttempt(_id); //idk why but type and payload are already there ?
+        //ALSO: perhaps I don't need to use Redux for the id
+
         console.log(_id);
         console.log(this.state._id);
       }.bind(this));
