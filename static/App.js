@@ -24,7 +24,9 @@ class App extends React.Component {
       tweets: tweets
     }, /*#__PURE__*/React.createElement(SidebarLeft, null), /*#__PURE__*/React.createElement(MainContent, null), /*#__PURE__*/React.createElement(SidebarRight, null)), /*#__PURE__*/React.createElement(NewTweet, {
       id: id
-    }), /*#__PURE__*/React.createElement(NewComment, null), /*#__PURE__*/React.createElement(PopupTweet, null)) : /*#__PURE__*/React.createElement(Reactstrap.Container, {
+    }), /*#__PURE__*/React.createElement(NewComment, {
+      id: id
+    }), /*#__PURE__*/React.createElement(PopupTweet, null)) : /*#__PURE__*/React.createElement(Reactstrap.Container, {
       fluid: true,
       className: "d-flex vh-100"
     }, /*#__PURE__*/React.createElement(LoginScreen, null)));

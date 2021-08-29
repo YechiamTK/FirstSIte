@@ -25,7 +25,7 @@ class App extends React.Component{
                             <SidebarRight />
                         </MainRow>
                         <NewTweet id={id}/>
-                        <NewComment />
+                        <NewComment id={id}/>
                         <PopupTweet />
                     </Reactstrap.Container>) :
                     <Reactstrap.Container fluid className="d-flex vh-100">

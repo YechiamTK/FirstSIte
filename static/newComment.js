@@ -11,7 +11,8 @@ class NewComment extends React.Component {
     _defineProperty(this, "postComment", () => {
       let xhttp = new XMLHttpRequest();
       const {
-        tweet
+        tweet,
+        id
       } = this.props;
       let tweetId = '';
 
@@ -22,7 +23,7 @@ class NewComment extends React.Component {
 
       const form = document.querySelector('#commentform');
       const data = Object.fromEntries(new FormData(form).entries());
-      xhttp.open("POST", '/postComment/' + tweetId, false);
+      xhttp.open("POST", '/postComment/' + tweetId + '&' + id, false);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.send('newcomment=' + data["newcomment"]);
     });
