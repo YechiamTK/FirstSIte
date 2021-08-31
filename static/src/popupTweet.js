@@ -83,6 +83,7 @@ class PopupTweet extends React.Component{
             </>;
 
         const footer = (this.state.showSection && this.state.comments.length!==0) ? (<CommentSection comments={this.state.comments} />) : null;
+        const footerStyle = (this.state.showSection && this.state.comments.length!==0) ? {display:"block", backgroundColor: "#6c757d"} : {display:"block"};
 
         const id = "popup";
 
@@ -92,7 +93,7 @@ class PopupTweet extends React.Component{
             //move toggle to GenericModal?
         };
 
-        return (<> {showPopup ? (<GenericModal other={atrs} header={header} body={body} footer={footer} id={id} />) : null} </>);
+        return (<> {showPopup ? (<GenericModal other={atrs} header={header} body={body} footerStyle={footerStyle} footer={footer} id={id} />) : null} </>);
     }
 }
 

@@ -8,11 +8,17 @@ class CommentSection extends React.Component {
       comments
     } = this.props; //TEMPORARY: Need to loop {comments} (or do something better because React?)
 
-    const header = /*#__PURE__*/React.createElement("a", {
-      href: "#",
-      className: "link text-decoration-none"
-    }, comments[0]["username"]);
-    const body = /*#__PURE__*/React.createElement("div", null, comments[0]["body"]);
+    const header = [];
+    const body = [];
+    comments.forEach(comment => {
+      header.push( /*#__PURE__*/React.createElement("a", {
+        href: "#",
+        className: "link text-decoration-none"
+      }, comment["username"]));
+      body.push( /*#__PURE__*/React.createElement("div", null, comment["body"]));
+    }); //const header = <a href="#" className="link text-decoration-none">{comments[0]["username"]}</a>;
+    //const body =  <div>{comments[0]["body"]}</div>;
+
     const footer = /*#__PURE__*/React.createElement(Reactstrap.ButtonToolbar, null, /*#__PURE__*/React.createElement(Reactstrap.ButtonGroup, {
       size: "sm",
       className: "px-5"
@@ -35,8 +41,9 @@ class CommentSection extends React.Component {
     }, /*#__PURE__*/React.createElement("i", {
       className: "far fa-share-square"
     }))));
-    return /*#__PURE__*/React.createElement(Reactstrap.ListGroup, null, /*#__PURE__*/React.createElement(Reactstrap.ListGroupItem, {
-      className: "toClone"
+    return /*#__PURE__*/React.createElement(Reactstrap.ListGroup, null, comments.map((comment, i) => /*#__PURE__*/React.createElement(Reactstrap.ListGroupItem, {
+      key: i,
+      className: "toClone bg-dark my-1"
       /* style={{display: 'none'}} */
 
       /*probably have a better way*/
@@ -52,11 +59,13 @@ class CommentSection extends React.Component {
       },
       className: "img-fluid",
       alt: "Profile Pic"
-    })), /*#__PURE__*/React.createElement(GenericCard, {
-      cardheader: header,
-      cardbody: body,
+    })), /*#__PURE__*/React.createElement(GenericCard
+    /* key={i} */
+    , {
+      cardheader: header[i],
+      cardbody: body[i],
       cardfooter: footer
-    }))));
+    })))));
   }
 
 }

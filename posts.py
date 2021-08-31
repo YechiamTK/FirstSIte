@@ -107,13 +107,14 @@ def fetchTweets():
 @bp.route('/fetchComments/<rootTweetId>')
 def fetchComments(rootTweetId):
     print('Entered fetchComments', file=sys.stdout) #debug
+    #print('root tweet id is:' + rootTweetId + ' and its type is: ' + str(type(rootTweetId)), file=sys.stdout) #debug
     db = get_db()
     cur = db.execute(
         'SELECT t.id, author_id, root_tweet_id, created, body, username, flname'
         ' FROM tweet t JOIN user u ON t.author_id=u.id'
         ' WHERE is_root=0 AND root_tweet_id=?'
         ' ORDER BY created DESC',
-        (rootTweetId)
+        ((rootTweetId,))
     )
     headers = list(map(lambda x: x[0], cur.description))
     print(headers, file=sys.stdout) #debug

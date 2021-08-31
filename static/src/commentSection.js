@@ -7,10 +7,16 @@ class CommentSection extends React.Component{
     render(){
 
         const {comments} = this.props;
-
+        
         //TEMPORARY: Need to loop {comments} (or do something better because React?)
-        const header = <a href="#" className="link text-decoration-none">{comments[0]["username"]}</a>;
-        const body =  <div>{comments[0]["body"]}</div>;
+        const header = [];
+        const body = [];
+        comments.forEach(comment=>{
+            header.push(<a href="#" className="link text-decoration-none">{comment["username"]}</a>);
+            body.push(<div>{comment["body"]}</div>);
+        });
+        //const header = <a href="#" className="link text-decoration-none">{comments[0]["username"]}</a>;
+        //const body =  <div>{comments[0]["body"]}</div>;
 
         const footer = 
             <Reactstrap.ButtonToolbar>
@@ -31,14 +37,18 @@ class CommentSection extends React.Component{
 
         return(
             <Reactstrap.ListGroup>
-                <Reactstrap.ListGroupItem className="toClone" /* style={{display: 'none'}} */ /*probably have a better way*/>
+                {(comments.map((comment, i) => 
+                <Reactstrap.ListGroupItem key={i} className="toClone bg-dark my-1" /* style={{display: 'none'}} */ /*probably have a better way*/>
                     <Reactstrap.Row className="no-gutters bg-dark text-white-50">
                         <Reactstrap.Col xs='auto'>
                             <img src={"/static/images/profile.jpg"} style={{height: "50px"}} className="img-fluid" alt="Profile Pic" />
                         </Reactstrap.Col>
-                        <GenericCard cardheader={header} cardbody={body} cardfooter={footer} />
+                        {/* {comments.forEach(comment=>{
+                            <GenericCard cardheader={header[comments.indexOf(comment)]} cardbody={body[comments.indexOf(comment)]} cardfooter={footer} />
+                        })} */}
+                        <GenericCard /* key={i} */ cardheader={header[i]} cardbody={body[i]} cardfooter={footer}/>
                     </Reactstrap.Row>
-                </Reactstrap.ListGroupItem>
+                </Reactstrap.ListGroupItem>))}
             </Reactstrap.ListGroup>
         )
     }

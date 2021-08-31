@@ -7,6 +7,7 @@ class GenericCard extends React.Component {
 
   render() {
     return /*#__PURE__*/React.createElement(Reactstrap.Col, {
+      /* key={this.props.key} */
       className: "px-2"
     }, /*#__PURE__*/React.createElement(Reactstrap.CardHeader, this.props.headerArgs, this.props.cardheader), /*#__PURE__*/React.createElement(Reactstrap.CardBody, _extends({}, this.props.bodyArgs, {
       style: {

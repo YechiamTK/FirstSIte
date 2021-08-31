@@ -14,7 +14,13 @@ class GenericModal extends React.Component {
       style: {
         borderRadius: '20px'
       }
-    }), /*#__PURE__*/React.createElement(Reactstrap.ModalHeader, this.props.headerArgs, this.props.header), /*#__PURE__*/React.createElement(Reactstrap.ModalBody, this.props.bodyArgs, this.props.body), /*#__PURE__*/React.createElement(Reactstrap.ModalFooter, this.props.footerArgs, this.props.footer));
+    }), /*#__PURE__*/React.createElement(Reactstrap.ModalHeader, {
+      style: this.props.headerStyle
+    }, this.props.header), /*#__PURE__*/React.createElement(Reactstrap.ModalBody, {
+      style: this.props.bodyStyle
+    }, this.props.body), /*#__PURE__*/React.createElement(Reactstrap.ModalFooter, {
+      style: this.props.footerStyle
+    }, this.props.footer));
   }
 
 }
