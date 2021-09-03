@@ -52,6 +52,54 @@ def authenticate():
         click.echo(json.dumps(res))
         return(res)
 
+"""
+Sign-up REST request.
+Signs the user to the db.
+Returns json:
+    id of the user (if signed up successful, else -1)
+    Error (if not authenticated, else None)
+"""
+@bp.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        info = json.loads(request.data)
+        click.echo("info type is:" + str(type(info)))
+        click.echo("info is:" + str(info))
+        #info = list(info.values())
+        #click.echo("info as list looks like:" + str(info))
+        res = {"id": -1,"error": None}
+
+        if not info:
+            err = "No registeration information were sent"
+            click.echo(err)
+            res['error']=err
+            return(res)
+
+        db = get_db()
+        db.execute('INSERT INTO user(username, pswrd, flname)'
+            ' VALUES (?, ?, ?)', (info['user'], info['password'], info['flname']))
+        #err = "User not found!"
+
+        """ for userRow in cur:
+            click.echo(userRow.keys())
+            click.echo(userRow['username'])
+            click.echo(userRow['pswrd'])
+            if credentials == [userRow['username'], userRow['pswrd']]:
+                id = db.execute('SELECT id FROM user WHERE username = (?) AND pswrd = (?)', (credentials[0], credentials[1]))
+                click.echo('Found the user! Sending him in now...')
+                for cred in id:
+                    click.echo(cred['id'])
+                    err = None
+                    res['id']=cred['id']
+                    return(res) """
+        db.commit()
+        return ('', 204)
+
+        #click.echo(err)
+        #res['error']=err
+        #click.echo(json.dumps(res))
+        #return(res)
+
 
 @bp.route('/')
 def index():

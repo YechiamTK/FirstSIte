@@ -4,6 +4,7 @@ const flaskSlice = RTK.createSlice({
     initialState: {
         update: false,
         signIn: false,
+        signUp: false,
         id: -1
     },
     reducers: {
@@ -16,10 +17,13 @@ const flaskSlice = RTK.createSlice({
             console.log(state.id + "\n" + action.payload);
             //}
             state.signIn = !state.signIn;
+        },
+        signUpAttempt(state){
+            state.signUp = !state.signUp;
         }
         
     },
 });
 
-export const {updateTweets, signInAttempt} = flaskSlice.actions;
+export const {updateTweets, signInAttempt, signUpAttempt} = flaskSlice.actions;
 export default flaskSlice;

@@ -28,9 +28,9 @@ class App extends React.Component{
                         <NewComment id={id}/>
                         <PopupTweet />
                     </Reactstrap.Container>) :
-                    <Reactstrap.Container fluid className="d-flex vh-100">
+                    (<Reactstrap.Container fluid className="d-flex vh-100">
                         <LoginScreen />
-                    </Reactstrap.Container>
+                    </Reactstrap.Container>)
                 }
             </>
         );
@@ -41,7 +41,7 @@ const mapDispatchtoProps={signInAttempt};
 
 const mapStateToProps = state => ({
     signIn: state.flask.signIn,
-    id: state.flask.id
+    id: state.flask.id,
 });
 
 export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(App);

@@ -1,10 +1,11 @@
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-import { signInAttempt } from './flaskSlice.js';
+import { signInAttempt, signUpAttempt } from './flaskSlice.js';
+import SignUp from './signUp.js';
 
 class LoginScreen extends React.Component {
   constructor(props) {
-    super(props); //this.checkAuth = this.checkAuth.bind(this);
+    super(props);
 
     _defineProperty(this, "handleInputChange", event => {
       const target = event.target; //necessary? 
@@ -47,6 +48,13 @@ class LoginScreen extends React.Component {
       e.preventDefault();
     });
 
+    _defineProperty(this, "moveToSignUp", () => {
+      const {
+        signUpAttempt
+      } = this.props;
+      signUpAttempt();
+    });
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.authentication = this.authentication.bind(this);
     this.state = {
@@ -57,21 +65,11 @@ class LoginScreen extends React.Component {
     };
   }
 
-  /* handleUpdate=()=>{
-      const {updateTweets} = this.props;  
-      const {update} = this.props;
-      if(update){
-          this.setState({tweets: this.fetchTweetsFromServer()});
-          updateTweets();
-      }
-  }
-    componentDidUpdate(prevProps, prevState, snapshot){
-      if (prevProps.update !== this.props.update){
-          this.handleUpdate();
-      }
-  } */
   render() {
-    return /*#__PURE__*/React.createElement(Reactstrap.Row, {
+    const {
+      signUp
+    } = this.props;
+    return /*#__PURE__*/React.createElement(React.Fragment, null, signUp ? /*#__PURE__*/React.createElement(SignUp, null) : /*#__PURE__*/React.createElement(Reactstrap.Row, {
       className: "d-flex flex-grow-1"
     }, /*#__PURE__*/React.createElement(Reactstrap.Col, {
       className: "col align-self-center"
@@ -108,17 +106,25 @@ class LoginScreen extends React.Component {
       /* onClick={this.authentication} */
       ,
       form: "authenticate"
-    }, "Login")))));
+    }, "Login")), /*#__PURE__*/React.createElement(Reactstrap.Row, {
+      className: "justify-content-center w-50 offset-3"
+    }, /*#__PURE__*/React.createElement(Reactstrap.Button, {
+      className: "bg-primary",
+      type: "button",
+      onClick: this.moveToSignUp
+    }, "Sign Up"))))));
   }
 
 }
 
 const mapDispatchtoProps = {
-  signInAttempt
+  signInAttempt,
+  signUpAttempt
 };
 
 const mapStateToProps = state => ({
-  signIn: state.flask.signIn
+  signIn: state.flask.signIn,
+  signUp: state.flask.signUp
 });
 
 export default ReactRedux.connect(mapStateToProps, mapDispatchtoProps)(LoginScreen);
