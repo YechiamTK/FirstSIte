@@ -1,1 +1,3 @@
 node_modules
+__pycache__/posts.cpython-38.pyc
+instance/db.sqlite
